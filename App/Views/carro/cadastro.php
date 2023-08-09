@@ -33,6 +33,16 @@
       <label for="inputCodigo" class="form-label">Código</label>
       <input type="text" class="form-control" id="inputCodigo" disabled>
     </div>
+   
+    <div class="col-md-6">
+      <label for="inputNome" class="form-label">Nome</label>
+      <input type="text" class="form-control" id="inputNome" name="Nome">
+    </div>
+
+    <div class="col-md-6">
+      <label for="inputMarca" class="form-label">Marca</label>
+      <input type="text" class="form-control" id="inputMarca" name="Marca">
+    </div>
 
     <div class="col-md-11">
       <label for="inputAno" class="form-label">Ano</label>
@@ -42,6 +52,15 @@
     <div class="col-md-6">
       <label for="inputCor" class="form-label">Cor</label>
       <input type="text" class="form-control" id="inputCor" name="cor">
+    </div>
+
+    <div class="col-4">
+      <label for="selectCambio" class="form-label">Cambio</label>
+        <select class="form-select" aria-label="Selecione o Cambio" id="selectCambio" name="cambio">
+          <option selected>Selecione a Direção</option>
+          <option value="manual">Direção manual</option>
+          <option value="hidraulica">Direção automatico</option>
+        </select>
     </div>
 
     <div class="col-4">
