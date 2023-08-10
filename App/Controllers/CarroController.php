@@ -28,7 +28,12 @@ class CarroController extends Controller
 
         $carro->setAno($_POST['ano']);
         $carro->setCor($_POST['cor']);
-        $carro->setPreco($_POST['preco']);
+        $carro->setId_modelo($_POST['modelo']);
+        $carro->setTipo_tracao($_POST['tracao']);
+        $carro->setTipo_freio($_POST['freio']);
+        $carro->setTipo_combustivel($_POST['combustivel']);
+        $carro->setModelo_cambio($_POST['cambio']);
+        $carro->setModelo_direcao($_POST['direcao']);
 
         Sessao::gravaFormulario($_POST);
 

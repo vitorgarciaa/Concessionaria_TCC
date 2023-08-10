@@ -13,7 +13,10 @@
           <a class="nav-link text-white" href="http://<?php echo APP_HOST;?>/carro/cadastro">Cadastro de Carro</a>
         </li>
         <li class="nav-item">
-          <a href="http://<?php echo APP_HOST;?>/carro/listar" class="nav-link text-white">Listar Carros</a>
+          <a href="http://<?php echo APP_HOST;?>/carro/index" class="nav-link text-white">Listar Carros</a>
+        </li>
+        <li class="nav-item">
+          <a href="http://<?php echo APP_HOST;?>/modelo/cadastro" class="nav-link text-white">Cadastro de Modelo</a>
         </li>
       </ul>
     </div>

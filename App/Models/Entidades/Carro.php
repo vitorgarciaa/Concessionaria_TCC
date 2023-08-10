@@ -100,11 +100,11 @@ class Carro{
           $this->disponibilidade = $disponibilidade;
      }
 
-     public function getIdModelo(){
+     public function getId_modelo(){
           return $this->idModelo;
      }
 
-     public function setIdModelo($idModelo){
+     public function setId_modelo($idModelo){
           $this->idModelo = $idModelo;
      }
 
