@@ -36,10 +36,15 @@ class CarroDAO extends BaseDAO{
             $observacores = $carro->getObversacoes();
             $disponibilidade = $carro->getDisponibilidade();
             $id_modelo = $carro->getIdModelo();
+            $tipo_freio = $carro->getTipo_freio();
+            $torque = $carro->getTorque();
+            $motor = $carro->getMotor();
+            $tipo_combustivel = $carro->getTipo_combustivel();
+            $tipo_tracao = $carro->getTipo_tracao();
 
             return $this->insert(
                 'carro',
-                ":ano, :cor, :preco, :id_modelo",
+                ":ano, :cor, :preco, :quilometragem, :modelo_direcao, :modelo_cambio, :placa, :observacores, :disponibilidade, :id_modelo, :tipo_freio, :torque, :motor, :tipo_combustivel, :tipo_tracao",
                 [
                     ':ano' => $ano,
                     ':cor' => $cor,
@@ -72,11 +77,16 @@ class CarroDAO extends BaseDAO{
             $observacores = $carro->getObversacoes();
             $disponibilidade = $carro->getDisponibilidade();
             $id_modelo = $carro->getIdModelo();
+            $tipo_freio = $carro->getTipo_freio();
+            $torque = $carro->getTorque();
+            $motor = $carro->getMotor();
+            $tipo_combustivel = $carro->getTipo_combustivel();
+            $tipo_tracao = $carro->getTipo_tracao();
 
             return $this->update(
                 'carro',
-                "ano = :ano, cor = :cor, preco = :preco, quilometragem = :quilometragem, modelo_direcao = :modelo_direcao, modelo_cambio = :modelo_cambio, placa = :placa, observacores = :observacores, disponibilidade = :disponibilidade, id_modelo = :id_modelo",
-                    [
+                "ano = :ano, cor = :cor, preco = :preco, quilometragem = :quilometragem, modelo_direcao = :modelo_direcao, modelo_cambio = :modelo_cambio, placa = :placa, observacores = :observacores, disponibilidade = :disponibilidade, id_modelo = :id_modelo, tipo_freio = :tipo_freio, torque = :torque, motor = :motor, tipo_combustivel = :tipo_combustivel, tipo_tracao = :tipo_tracao",
+                [
                         ':id' => $id,
                         ':ano' => $ano,
                         ':cor' => $cor,

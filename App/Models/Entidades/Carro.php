@@ -14,6 +14,11 @@ class Carro{
      private $obversacoes;
      private $disponibilidade;
      private $idModelo;
+     private $tipo_freio;
+     private $torque;
+     private $motor;
+     private $tipo_combustivel;
+     private $tipo_tracao;
 
      public function getId(){
           return $this->id;
@@ -101,6 +106,46 @@ class Carro{
 
      public function setIdModelo($idModelo){
           $this->idModelo = $idModelo;
+     }
+
+     public function getTipo_freio(){
+          return $this->tipo_freio;
+     }
+
+     public function setTipo_freio($tipo_freio){
+          $this->tipo_freio = $tipo_freio;
+     }
+
+     public function getTorque(){
+          return $this->torque;
+     }
+
+     public function setTorque($torque){
+          $this->torque = $torque;
+     }
+
+     public function getMotor(){
+          return $this->motor;
+     }
+
+     public function setMotor($motor){
+          $this->motor = $motor;
+     }
+
+     public function getTipo_combustivel(){
+          return $this->tipo_combustivel;
+     }
+
+     public function setTipo_combustivel($tipo_combustivel){
+          $this->tipo_combustivel = $tipo_combustivel;
+     }
+
+     public function getTipo_tracao(){
+          return $this->tipo_tracao;
+     }
+
+     public function setTipo_tracao($tipo_tracao){
+          $this->tipo_tracao = $tipo_tracao;
      }
 }
 ?>

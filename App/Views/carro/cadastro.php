@@ -33,33 +33,59 @@
       <label for="inputCodigo" class="form-label">Código</label>
       <input type="text" class="form-control" id="inputCodigo" disabled>
     </div>
-   
-    <div class="col-md-6">
-      <label for="inputNome" class="form-label">Nome</label>
-      <input type="text" class="form-control" id="inputNome" name="Nome">
+  
+
+    <div class="col-5">
+      <label for="selectMarca" class="form-label">Marca</label>
+        <select class="form-select" aria-label="Selecione a Marca" id="selectMarca" name="marca">
+          <option selected>Selecione a Marca</option>
+        </select>
+    </div>
+    
+    <div class="col-6">
+      <label for="selectModelo" class="form-label">Modelo</label>
+        <select class="form-select" aria-label="Selecione o Modelo" id="selectModelo" name="modelo">
+          <option selected>Selecione o Modelo</option>
+        </select>
     </div>
 
-    <div class="col-md-6">
-      <label for="inputMarca" class="form-label">Marca</label>
-      <input type="text" class="form-control" id="inputMarca" name="Marca">
-    </div>
-
-    <div class="col-md-11">
+    <div class="col-md-2">
       <label for="inputAno" class="form-label">Ano</label>
       <input type="date" class="form-control" id="inputAno" name="ano">
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-4">
       <label for="inputCor" class="form-label">Cor</label>
       <input type="text" class="form-control" id="inputCor" name="cor">
     </div>
 
-    <div class="col-4">
+        <div class="col-6">
+      <label for="selectTracao" class="form-label">Tração</label>
+        <select class="form-select" aria-label="Selecione a Tração" id="selectTracao" name="tracao">
+          <option selected>Selecione a Tração</option>
+        </select>
+    </div>
+
+    <div class="col-6">
+      <label for="selectFreio" class="form-label">Freio</label>
+        <select class="form-select" aria-label="Selecione o Tipo do Freio" id="selectFreio" name="freio">
+          <option selected>Selecione O Tipo do Freio</option>
+        </select>
+    </div>
+
+        <div class="col-5">
+      <label for="selectCombustivel" class="form-label">Combustivel</label>
+        <select class="form-select" aria-label="Tipo do Combustivel" id="selectCombustivel" name="combustivel">
+          <option selected>Tipo Combustivel</option>
+        </select>
+    </div>
+
+    <div class="col-3">
       <label for="selectCambio" class="form-label">Cambio</label>
         <select class="form-select" aria-label="Selecione o Cambio" id="selectCambio" name="cambio">
-          <option selected>Selecione a Direção</option>
-          <option value="manual">Direção manual</option>
-          <option value="hidraulica">Direção automatico</option>
+          <option selected>Selecione o Câmbio</option>
+          <option value="manual">Câmbio Manual</option>
+          <option value="hidraulica">Câmbio Automático</option>
         </select>
     </div>
 
@@ -67,10 +93,10 @@
       <label for="selectDirecao" class="form-label">Direção</label>
         <select class="form-select" aria-label="Selecione a Direção" id="selectDirecao" name="direcao">
           <option selected>Selecione a Direção</option>
-          <option value="manual">Direção manual</option>
-          <option value="hidraulica">Direção hidráulica</option>
-          <option value="eletrica">Direção elétrica</option>
-          <option value="eletro-hidraulica">Direção eletro-hidráulica</option>
+          <option value="manual">Direção Manual</option>
+          <option value="hidraulica">Direção Hidráulica</option>
+          <option value="eletrica">Direção Elétrica</option>
+          <option value="eletro-hidraulica">Direção Eletro-hidráulica</option>
         </select>
     </div>
 
@@ -84,6 +110,21 @@
         </div>
     </div>
     
+    <div class="col-md-12">
+        <label for="inputAno" class="form-label">Opcionais</label>
+        <div class="form-check">
+          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">Ar condicionado
+          <br>
+          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">Vidros Elétricos
+          <br>
+          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">Travas Elétricas
+          <br>
+          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">AirBags
+          <br>
+          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">Som
+        </div>
+    </div>
+
     <div class="col-md-12 d-flex justify-content-end">
       <button type="submit" class="btn btn-success">Cadastrar</button>&nbsp&nbsp
       <button type="button" class="btn btn-danger">Cancelar</button>
