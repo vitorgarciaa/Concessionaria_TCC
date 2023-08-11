@@ -23,6 +23,7 @@ class MarcaDAO extends BaseDAO{
         return false;
     }
 
+
     //FUNÇÃO PARA SALVAR OS CARROS
     public function salvar(Marca $marca){
         try {
@@ -31,7 +32,7 @@ class MarcaDAO extends BaseDAO{
                 'marca',
                 ":nome",
                 [
-                    ':nome' => $nome,
+                    ':nome' => $nome
                 ]
             );
         } catch (\Exception $e) {
@@ -56,6 +57,7 @@ class MarcaDAO extends BaseDAO{
             throw new \Exception("Erro ao atualizar dados!", 500);
         }
     }
+    
 
     //FUNÇÃO PARA EXCLUIR OS CARROS
     public function excluir(Marca $marca)

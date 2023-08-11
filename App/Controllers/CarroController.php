@@ -6,6 +6,8 @@ use App\Lib\Sessao;
 use App\Models\DAO\CarroDAO;
 use App\Models\Entidades\Carro;
 use App\Models\Validacao\CarroValidador;
+use App\Models\DAO\MarcaDAO;
+use App\Models\DAO\ModeloDAO;
 
 class CarroController extends Controller
 {
@@ -17,6 +19,12 @@ class CarroController extends Controller
 
     public function cadastro()
     {
+        $marcaDAO = new MarcaDAO();
+        self::setViewParam('marca', $marcaDAO->listar());
+
+        $modeloDAO = new ModeloDAO();
+        self::setViewParam('modelo', $modeloDAO->listar());
+
         $this->render('carro/cadastro');
         Sessao::limpaFormulario();
         Sessao::limpaMensagem();
@@ -25,7 +33,9 @@ class CarroController extends Controller
 
     public function salvar(){
         $carro = new Carro();
-
+    //echo '<pre>';
+    //print_r($_POST);
+    //echo '</pre>';die;
         $carro->setAno($_POST['ano']);
         $carro->setCor($_POST['cor']);
         $carro->setId_modelo($_POST['modelo']);
@@ -51,7 +61,7 @@ class CarroController extends Controller
 
         $carroDAO = new CarroDAO();
 
-        $carroDAO->salvar($carro);
+        printf($carroDAO->salvar($carro));
 
         Sessao::gravaMensagem("Carro cadastrado com Sucesso!");
         $this->redirect('/carro/cadastro');   

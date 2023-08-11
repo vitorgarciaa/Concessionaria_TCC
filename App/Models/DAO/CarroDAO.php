@@ -33,7 +33,7 @@ class CarroDAO extends BaseDAO{
             $modelo_direcao = $carro->getModelo_direcao();
             $modelo_cambio = $carro->getModelo_cambio();
             $placa = $carro->getPlaca();
-            $observacores = $carro->getObversacoes();
+            $observacoes = $carro->getObversacoes();
             $disponibilidade = $carro->getDisponibilidade();
             $id_modelo = $carro->getIdModelo();
             $tipo_freio = $carro->getTipo_freio();
@@ -44,7 +44,7 @@ class CarroDAO extends BaseDAO{
 
             return $this->insert(
                 'carro',
-                ":ano, :cor, :preco, :quilometragem, :modelo_direcao, :modelo_cambio, :placa, :observacores, :disponibilidade, :id_modelo, :tipo_freio, :torque, :motor, :tipo_combustivel, :tipo_tracao",
+                ":ano, :cor, :preco, :quilometragem, :modelo_direcao, :modelo_cambio, :placa, :observacoes, :disponibilidade, :id_modelo, :tipo_freio, :torque, :motor, :tipo_combustivel, :tipo_tracao",
                 [
                     ':ano' => $ano,
                     ':cor' => $cor,
@@ -53,12 +53,20 @@ class CarroDAO extends BaseDAO{
                     ':modelo_direcao' => $modelo_direcao,
                     ':modelo_cambio' => $modelo_cambio,
                     ':placa' => $placa,
-                    ':observacores' => $observacores,
+                    ':observacoes' => $observacoes,
                     ':disponibilidade' => $disponibilidade,
-                    ':id_modelo' => $id_modelo
+                    ':id_modelo' => $id_modelo,
+                    ':tipo_freio' => $tipo_freio,
+                    ':torque' => $torque,
+                    ':motor' => $motor,
+                    ':tipo_combustivel' => $tipo_combustivel,
+                    ':tipo_tracao' => $tipo_tracao
                 ]
             );
         } catch (\Exception $e) {
+            echo '<pre>';
+            var_dump($e);
+            echo '</pre>';
             throw new \Exception("Erro ao salvar dados! ", 500);      
         }
     }
@@ -74,7 +82,7 @@ class CarroDAO extends BaseDAO{
             $modelo_direcao = $carro->getModelo_direcao();
             $modelo_cambio = $carro->getModelo_cambio();
             $placa = $carro->getPlaca();
-            $observacores = $carro->getObversacoes();
+            $observacoes = $carro->getObversacoes();
             $disponibilidade = $carro->getDisponibilidade();
             $id_modelo = $carro->getIdModelo();
             $tipo_freio = $carro->getTipo_freio();
@@ -85,7 +93,7 @@ class CarroDAO extends BaseDAO{
 
             return $this->update(
                 'carro',
-                "ano = :ano, cor = :cor, preco = :preco, quilometragem = :quilometragem, modelo_direcao = :modelo_direcao, modelo_cambio = :modelo_cambio, placa = :placa, observacores = :observacores, disponibilidade = :disponibilidade, id_modelo = :id_modelo, tipo_freio = :tipo_freio, torque = :torque, motor = :motor, tipo_combustivel = :tipo_combustivel, tipo_tracao = :tipo_tracao",
+                "ano = :ano, cor = :cor, preco = :preco, quilometragem = :quilometragem, modelo_direcao = :modelo_direcao, modelo_cambio = :modelo_cambio, placa = :placa, observacoes = :observacoes, disponibilidade = :disponibilidade, id_modelo = :id_modelo, tipo_freio = :tipo_freio, torque = :torque, motor = :motor, tipo_combustivel = :tipo_combustivel, tipo_tracao = :tipo_tracao",
                 [
                         ':id' => $id,
                         ':ano' => $ano,
@@ -95,9 +103,14 @@ class CarroDAO extends BaseDAO{
                         ':modelo_direcao' => $modelo_direcao,
                         ':modelo_cambio' => $modelo_cambio,
                         ':placa' => $placa,
-                        ':observacores' => $observacores,
+                        ':observacoes' => $observacoes,
                         ':disponibilidade' => $disponibilidade,
-                        ':id_modelo' => $id_modelo
+                        ':id_modelo' => $id_modelo,
+                        ':tipo_freio' => $tipo_freio,
+                        ':torque' => $torque,
+                        ':motor' => $motor,
+                        ':tipo_combustivel' => $tipo_combustivel,
+                        ':tipo_tracao' => $tipo_tracao
                     ],
                     "id = :id"
             );

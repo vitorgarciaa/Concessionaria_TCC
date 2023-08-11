@@ -26,6 +26,7 @@ class ModeloController extends Controller
     public function salvar(){
         $modelo = new Modelo();
 
+        $modelo->setNome($_POST['nome']);
         $modelo->setId_marca($_POST['marca']);
 
         Sessao::gravaFormulario($_POST);
@@ -35,7 +36,7 @@ class ModeloController extends Controller
 
         if ($resultadoValidacao->getErros()) {
             Sessao::gravaErro($resultadoValidacao->getErros());
-            $this->redirect('/modelo/cadastro');
+            $this->redirect('/carro/cadastro');
         }
 
         Sessao::limpaFormulario();
@@ -46,8 +47,8 @@ class ModeloController extends Controller
 
         $modeloDAO->salvar($modelo);
 
-        Sessao::gravaMensagem("Carro cadastrado com Sucesso!");
-        $this->redirect('/modelo/cadastro');   
+        Sessao::gravaMensagem("Modelo cadastrado com Sucesso!");
+        $this->redirect('/carro/cadastro');   
     }
 
     public function edicao()

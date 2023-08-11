@@ -100,11 +100,11 @@ class Carro{
           $this->disponibilidade = $disponibilidade;
      }
 
-     public function getId_modelo(){
+     public function getIdModelo(){
           return $this->idModelo;
      }
 
-     public function setId_modelo($idModelo){
+     public function setIdModelo($idModelo){
           $this->idModelo = $idModelo;
      }
 
@@ -147,5 +147,18 @@ class Carro{
      public function setTipo_tracao($tipo_tracao){
           $this->tipo_tracao = $tipo_tracao;
      }
+
+
+     //variaveis adicionais 
+     private $id_modelo;
+
+     public function getId_modelo(){
+          return $this->id_modelo;
+     }
+
+     public function setId_modelo($id_modelo){
+          $this->id_modelo = $id_modelo;
+     }
+
 }
 ?>

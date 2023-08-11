@@ -73,5 +73,17 @@ class ModeloDAO extends BaseDAO{
             throw new \Exception("Erro ao deletar", 500);
         }
     }
+
+    
+    //FUNÇÃO ADICIONAL
+    public function listar_marca($id_marca){
+
+        $resultado = $this->select(
+            "SELECT * FROM modelo WHERE id_marca = $id_marca"
+        );
+
+        return $resultado->fetchObject(Marca::class);
+
+}
 }
 ?>
