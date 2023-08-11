@@ -38,15 +38,29 @@
     <div class="col-5">
       <label for="selectMarca" class="form-label">Marca</label>
         <select class="form-select" aria-label="Selecione a Marca" id="selectMarca" name="marca">
-          <option selected>Selecione a Marca</option>
+        <option selected>Selecione a Marca</option>
+          <option value="toyota">Toyota</option>
+          <option value="fiat">FIAT</option>
+          <option value="bmw">BMW</option>
+          <option value="volkswagen">Volkswagen</option>
         </select>
     </div>
+
     <div class="col-6">
-      <label for="selectModelo" class="form-label">Modelo</label>
-        <select class="form-select" aria-label="Selecione o Modelo" id="selectModelo" name="modelo">
+    <label for="selectModelo" class="form-label">Modelo</label>
+      <div class="input-group md-3">
+      
+        <select class="form-select" id="inputGroupSelect02">
           <option selected>Selecione o Modelo</option>
+          <option value="1">Civic LX</option>
+          <option value="2">Corolla</option>
+          <option value="3">Toro</option>
         </select>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalModelo" data-bs-whatever="@fat">Cadastrar Modelo</button>
+        <label class="input-group-text btn-primary" for="inputGroupSelect02" data-bs-toggle="modal" data-bs-target="#modalModelo" data-bs-whatever="@fat">Cadastrar Modelo</label>
+      </div>
+    </div>
+
+    <div class="col-6">
           <div class="modal fade" id="modalModelo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
