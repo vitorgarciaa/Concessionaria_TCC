@@ -10,7 +10,7 @@ class CarroValidador{
     public function validar(Carro $carro){
         $resultadoValidacao = new ResultadoValidacao();
 
-        if(empty($carro->getAno())){
+        if(empty($carro->getAno_fabricacao())){
             $resultadoValidacao->addErro('ano', "Ano: Este campo não pode ser vazio");
         }
         if(empty($carro->getCor())){
