@@ -26,7 +26,8 @@ class CarroDAO extends BaseDAO{
     //FUNÇÃO PARA SALVAR OS CARROS
     public function salvar(Carro $carro){
         try {
-            $ano = $carro->getAno();
+            $ano_fabricacao = $carro->getAno_fabricacao();
+            $ano_modelo = $carro->getAno_modelo();
             $cor = $carro->getCor();
             $preco = $carro->getPreco();
             $quilometragem = $carro->getQuilometragem();
@@ -44,9 +45,10 @@ class CarroDAO extends BaseDAO{
 
             return $this->insert(
                 'carro',
-                ":ano, :cor, :preco, :quilometragem, :modelo_direcao, :modelo_cambio, :placa, :observacoes, :disponibilidade, :id_modelo, :tipo_freio, :torque, :motor, :tipo_combustivel, :tipo_tracao",
+                ":ano_fabricacao, :ano_modelo, :cor, :preco, :quilometragem, :modelo_direcao, :modelo_cambio, :placa, :observacoes, :disponibilidade, :id_modelo, :tipo_freio, :torque, :motor, :tipo_combustivel, :tipo_tracao",
                 [
-                    ':ano' => $ano,
+                    ':ano_fabricacao' => $ano_fabricacao,
+                    ':ano_modelo' => $ano_modelo,
                     ':cor' => $cor,
                     ':preco' => $preco,
                     ':quilometragem' => $quilometragem,
@@ -75,7 +77,8 @@ class CarroDAO extends BaseDAO{
     public function atualizar(Carro $carro){
         try {
             $id = $carro->getId();
-            $ano = $carro->getAno();
+            $ano_fabricacao = $carro->getAno_fabricacao();
+            $ano_modelo = $carro->getAno_modelo();
             $cor = $carro->getCor();
             $preco = $carro->getPreco();
             $quilometragem = $carro->getQuilometragem();
@@ -93,10 +96,11 @@ class CarroDAO extends BaseDAO{
 
             return $this->update(
                 'carro',
-                "ano = :ano, cor = :cor, preco = :preco, quilometragem = :quilometragem, modelo_direcao = :modelo_direcao, modelo_cambio = :modelo_cambio, placa = :placa, observacoes = :observacoes, disponibilidade = :disponibilidade, id_modelo = :id_modelo, tipo_freio = :tipo_freio, torque = :torque, motor = :motor, tipo_combustivel = :tipo_combustivel, tipo_tracao = :tipo_tracao",
+                "ano_fabricacao = :ano_fabricacao, ano_modelo = :ano_modelo, cor = :cor, preco = :preco, quilometragem = :quilometragem, modelo_direcao = :modelo_direcao, modelo_cambio = :modelo_cambio, placa = :placa, observacoes = :observacoes, disponibilidade = :disponibilidade, id_modelo = :id_modelo, tipo_freio = :tipo_freio, torque = :torque, motor = :motor, tipo_combustivel = :tipo_combustivel, tipo_tracao = :tipo_tracao",
                 [
                         ':id' => $id,
-                        ':ano' => $ano,
+                        ':ano_fabricacao' => $ano_fabricacao,
+                        ':ano_modelo' => $ano_modelo,
                         ':cor' => $cor,
                         ':preco' => $preco,
                         ':quilometragem' => $quilometragem,

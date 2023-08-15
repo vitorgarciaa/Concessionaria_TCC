@@ -4,7 +4,8 @@ namespace App\Models\Entidades;
 
 class Carro{
      private $id;
-     private $ano;
+     private $ano_fabricacao;
+     private $ano_modelo;
      private $cor;
      private $preco;
      private $quilometragem;
@@ -28,14 +29,21 @@ class Carro{
           $this->id = $id;
      }
 
-     function getAno(){
-          return $this->ano;
+     function getAno_fabricacao(){
+          return $this->ano_fabricacao;
      }
 
-     function setAno($ano){
-          $this->ano = $ano;
+     function setAno_fabricacao($ano_fabricacao){
+          $this->ano_fabricacao = $ano_fabricacao;
      }
 
+     function getAno_modelo(){
+          return $this->ano_modelo;
+     }
+
+     function setAno_modelo($ano_modelo){
+          $this->ano_modelo = $ano_modelo;
+     }
      public function getCor(){
           return $this->cor;
      }

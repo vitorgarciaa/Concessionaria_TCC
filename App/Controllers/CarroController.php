@@ -36,7 +36,8 @@ class CarroController extends Controller
     //echo '<pre>';
     //print_r($_POST);
     //echo '</pre>';die;
-        $carro->setAno($_POST['ano']);
+        $carro->setAno_fabricacao($_POST['ano_fabricacao']);
+        $carro->setAno_modelo($_POST['ano_modelo']);
         $carro->setCor($_POST['cor']);
         $carro->setId_modelo($_POST['modelo']);
         $carro->setTipo_tracao($_POST['tracao']);

@@ -1,4 +1,13 @@
 
+<script>
+      
+      $(document).ready(function(){
+        $('.money').mask('000.000.000.000.000,00', {reverse: true});
+      });
+</script>
+
+
+
 <div class="container">
   <br>
     <h1>Cadastro de Carro</h1>
@@ -84,8 +93,13 @@
 
     <div class="row">
       <div class="col-md-2">
-        <label for="inputAno" class="form-label">Ano</label>
-        <input type="date" class="form-control" id="inputAno" name="ano">
+        <label for="inputAno_modelo" class="form-label">Ano Fabricação</label>
+        <input type="text" class="form-control" id="ano_fabricacao" name="ano_fabricacao">
+      </div>
+
+      <div class="col-md-2">
+        <label for="inputAno_modelo" class="form-label">Ano Modelo</label>
+        <input type="text" class="form-control" id="ano_modelo" name="ano_modelo">
       </div>
 
       <div class="col-md-2">
@@ -93,7 +107,7 @@
         <input type="text" class="form-control" id="inputCor" name="cor">
       </div>
 
-          <div class="col-md-3">
+      <div class="col-md-2">
         <label for="selectTracao" class="form-label">Tração</label>
           <select class="form-select" aria-label="Selecione a Tração" id="selectTracao" name="tracao">
             <option selected>Selecione a Tração</option>
@@ -103,10 +117,10 @@
           </select>
       </div>
 
-      <div class="col-md-3">
+      <div class="col-md-2">
         <label for="selectFreio" class="form-label">Freio</label>
           <select class="form-select" aria-label="Selecione o Tipo do Freio" id="selectFreio" name="freio">
-            <option selected>Selecione O Tipo do Freio</option>
+            <option selected>Selecione O Freio</option>
             <option value="freio_ABS">Freio ABS</option>
             <option value="freio_disco">Freio a Disco</option>
           </select>
@@ -118,10 +132,12 @@
             <option selected>Tipo Combustivel</option>
             <option value="alcool">Álcool</option>
             <option value="disel">Diesel</option>
+            <option value="alcool">Flex</option>
             <option value="gasolina">Gasolina</option>
           </select>
       </div>
     </div>
+
       <div class="col-md-3">
         <label for="selectCambio" class="form-label">Cambio</label>
           <select class="form-select" aria-label="Selecione o Cambio" id="selectCambio" name="cambio">
@@ -145,13 +161,13 @@
       <div class="col-md-2">
           <label for="inputPreco" class="form-label">Preço</label>
           <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text">R$</span>
-            </div>
-            <input type="text" class="form-control" name="preco">
+              <div class="input-group-prepend">
+                  <span class="input-group-text">R$</span>
+              </div>
+              <input type="text" class="form-control money" id="inputPreco" name="preco">
           </div>
       </div>
-    
+
     <div class="col-md-12">
         <label for="inputAno" class="form-label">Opcionais</label>
         <div class="form-check">
@@ -244,3 +260,24 @@
             </div>
           </div>
     </div>
+    <script>
+      
+      $(document).ready(function(){
+        $("#ano_fabricacao").datepicker({
+          format: "yyyy",
+          viewMode: "years", 
+          minViewMode: "years"
+        });
+      });
+
+      $(document).ready(function(){
+        $("#ano_modelo").datepicker({
+          format: "yyyy",
+          viewMode: "years", 
+          minViewMode: "years"
+        });
+      });
+
+
+
+</script>
