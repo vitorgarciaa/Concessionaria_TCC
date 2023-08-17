@@ -34,9 +34,9 @@ class CarroDAO extends BaseDAO{
             $modelo_direcao = $carro->getModelo_direcao();
             $modelo_cambio = $carro->getModelo_cambio();
             $placa = $carro->getPlaca();
-            $observacoes = $carro->getObversacoes();
+            $observacoes = $carro->getObservacoes();
             $disponibilidade = $carro->getDisponibilidade();
-            $id_modelo = $carro->getIdModelo();
+            $id_modelo = $carro->getIdModelo(); 
             $tipo_freio = $carro->getTipo_freio();
             $torque = $carro->getTorque();
             $motor = $carro->getMotor();
@@ -85,7 +85,7 @@ class CarroDAO extends BaseDAO{
             $modelo_direcao = $carro->getModelo_direcao();
             $modelo_cambio = $carro->getModelo_cambio();
             $placa = $carro->getPlaca();
-            $observacoes = $carro->getObversacoes();
+            $observacoes = $carro->getObservacoes();
             $disponibilidade = $carro->getDisponibilidade();
             $id_modelo = $carro->getIdModelo();
             $tipo_freio = $carro->getTipo_freio();

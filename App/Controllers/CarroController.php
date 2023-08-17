@@ -14,6 +14,9 @@ class CarroController extends Controller
 
     public function index()
     {
+        $carroDAO = new CarroDAO();
+        self::setViewParam('carro', $carroDAO->listar());
+
         $this->render('carro/index');
     }
 
@@ -33,13 +36,10 @@ class CarroController extends Controller
 
     public function salvar(){
         $carro = new Carro();
-    //echo '<pre>';
-    //print_r($_POST);
-    //echo '</pre>';die;
         $carro->setAno_fabricacao($_POST['ano_fabricacao']);
         $carro->setAno_modelo($_POST['ano_modelo']);
         $carro->setCor($_POST['cor']);
-        $carro->setId_modelo($_POST['modelo']);
+        $carro->setIdModelo($_POST['modeloId']);
         $carro->setTipo_tracao($_POST['tracao']);
         $carro->setTipo_freio($_POST['freio']);
         $carro->setTipo_combustivel($_POST['combustivel']);

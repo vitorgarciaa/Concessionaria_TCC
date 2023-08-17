@@ -70,7 +70,7 @@
       <div class="col-md-6">
       <label for="selectModelo" class="form-label">Modelo</label>
         <div class="input-group md-3">
-          <select class="form-select" id="inputGroupSelect02" name="modelo">
+          <select class="form-select" id="inputGroupSelect02" name="modeloId">
             <option selected>Selecione o Modelo</option>
 
             <?php if (!count($viewVar['modelo'])) { ?>

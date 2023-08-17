@@ -9,7 +9,7 @@ class ModeloDAO extends BaseDAO{
     public function listar($id = null){
         if($id){
             $resultado = $this->select(
-                "SELECT * FROM marca WHERE id = $id"
+                "SELECT * FROM modelo WHERE id = $id"
             );
 
             return $resultado->fetchObject(Modelo::class);

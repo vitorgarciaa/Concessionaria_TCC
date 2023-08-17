@@ -12,7 +12,7 @@ class Carro{
      private $modelo_direcao;
      private $modelo_cambio;
      private $placa;
-     private $obversacoes;
+     private $observacoes;
      private $disponibilidade;
      private $idModelo;
      private $tipo_freio;
@@ -92,12 +92,13 @@ class Carro{
           $this->placa = $placa;
      }
 
-     public function getObversacoes(){
-          return $this->obversacoes;
+     public function getObservacoes(){
+          return $this->observacoes;
      }
 
-     public function setObversacoes($obversacoes){
-          $this->obversacoes = $obversacoes;
+     public function setObservacoes($observacoes){
+          $this->observacoes = $observacoes;
+     
      }
 
      public function getDisponibilidade(){
@@ -164,9 +165,6 @@ class Carro{
           return $this->id_modelo;
      }
 
-     public function setId_modelo($id_modelo){
-          $this->id_modelo = $id_modelo;
-     }
 
 }
 ?>
