@@ -92,6 +92,67 @@
     </div>
 
     <div class="row">
+        <div class="col-md-2">
+          <label for="selectCambio" class="form-label">Cambio</label>
+            <select class="form-select" aria-label="Selecione o Cambio" id="selectCambio" name="cambio">
+              <option selected>Selecione o Câmbio</option>
+              <option value="manual">Câmbio Manual</option>
+              <option value="hidraulica">Câmbio Automático</option>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+          <label for="selectDirecao" class="form-label">Direção</label>
+            <select class="form-select" aria-label="Selecione a Direção" id="selectDirecao" name="direcao">
+              <option selected>Selecione a Direção</option>
+              <option value="manual">Direção Manual</option>
+              <option value="hidraulica">Direção Hidráulica</option>
+              <option value="eletrica">Direção Elétrica</option>
+              <option value="eletro-hidraulica">Direção Eletro-hidráulica</option>
+            </select>
+        </div>
+        
+        <div class="col-md-2">
+          <label for="selectTracao" class="form-label">Tração</label>
+            <select class="form-select" aria-label="Selecione a Tração" id="selectTracao" name="tracao">
+              <option selected>Selecione a Tração</option>
+              <option value="traseira">Traseira</option>
+              <option value="dianteira">Dianteira</option>
+              <option value="4x4">4x4</option>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+          <label for="selectFreio" class="form-label">Freio</label>
+            <select class="form-select" aria-label="Selecione o Tipo do Freio" id="selectFreio" name="freio">
+              <option selected>Selecione O Freio</option>
+              <option value="freio_ABS">Freio ABS</option>
+              <option value="freio_disco">Freio a Disco</option>
+            </select>
+        </div>
+      
+        <div class="col-md-2">
+          <label for="selectCombustivel" class="form-label">Combustivel</label>
+            <select class="form-select" aria-label="Tipo do Combustivel" id="selectCombustivel" name="combustivel">
+              <option selected>Tipo Combustivel</option>
+              <option value="alcool">Álcool</option>
+              <option value="disel">Diesel</option>
+              <option value="alcool">Flex</option>
+              <option value="gasolina">Gasolina</option>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+          <label for="selectDisponibilidade" class="form-label">Disponibilidade</label>
+            <select class="form-select" aria-label="Disponibildiade" id="selectDisponibilidade" name="disponibilidade">
+              <option selected>Selecione a Disponibiliade</option>
+              <option value="Disponivel">Disponivel</option>
+              <option value="Reservado">Reservado</option>
+            </select>
+        </div>
+      </div>
+
+    <div class="row">
       <div class="col-md-2">
         <label for="inputAno_modelo" class="form-label">Ano Fabricação</label>
         <input type="text" class="form-control" id="ano_fabricacao" name="ano_fabricacao">
@@ -107,56 +168,13 @@
         <input type="text" class="form-control" id="inputCor" name="cor">
       </div>
 
-      <div class="col-md-2">
-        <label for="selectTracao" class="form-label">Tração</label>
-          <select class="form-select" aria-label="Selecione a Tração" id="selectTracao" name="tracao">
-            <option selected>Selecione a Tração</option>
-            <option value="traseira">Traseira</option>
-            <option value="dianteira">Dianteira</option>
-            <option value="4x4">4x4</option>
-          </select>
-      </div>
+
 
       <div class="col-md-2">
-        <label for="selectFreio" class="form-label">Freio</label>
-          <select class="form-select" aria-label="Selecione o Tipo do Freio" id="selectFreio" name="freio">
-            <option selected>Selecione O Freio</option>
-            <option value="freio_ABS">Freio ABS</option>
-            <option value="freio_disco">Freio a Disco</option>
-          </select>
-      </div>
-      
-      <div class="col-md-2">
-        <label for="selectCombustivel" class="form-label">Combustivel</label>
-          <select class="form-select" aria-label="Tipo do Combustivel" id="selectCombustivel" name="combustivel">
-            <option selected>Tipo Combustivel</option>
-            <option value="alcool">Álcool</option>
-            <option value="disel">Diesel</option>
-            <option value="alcool">Flex</option>
-            <option value="gasolina">Gasolina</option>
-          </select>
-      </div>
-    </div>
-
-      <div class="col-md-3">
-        <label for="selectCambio" class="form-label">Cambio</label>
-          <select class="form-select" aria-label="Selecione o Cambio" id="selectCambio" name="cambio">
-            <option selected>Selecione o Câmbio</option>
-            <option value="manual">Câmbio Manual</option>
-            <option value="hidraulica">Câmbio Automático</option>
-          </select>
+        <label for="inputMotor" class="form-label">Motor</label>
+        <input type="text" class="form-control" id="inputMotor" name="motor">
       </div>
 
-      <div class="col-md-4">
-        <label for="selectDirecao" class="form-label">Direção</label>
-          <select class="form-select" aria-label="Selecione a Direção" id="selectDirecao" name="direcao">
-            <option selected>Selecione a Direção</option>
-            <option value="manual">Direção Manual</option>
-            <option value="hidraulica">Direção Hidráulica</option>
-            <option value="eletrica">Direção Elétrica</option>
-            <option value="eletro-hidraulica">Direção Eletro-hidráulica</option>
-          </select>
-      </div>
 
       <div class="col-md-2">
           <label for="inputPreco" class="form-label">Preço</label>
@@ -168,6 +186,11 @@
           </div>
       </div>
 
+      <div class="col-md-6">
+        <label for="inputObservacao" class="form-label">Observaoces</label>
+        <textarea type="textarea" class="form-control" id="inputObservacao" name="observacao"></textarea>
+      </div>
+    </div>
     <div class="col-md-12">
         <label for="inputAno" class="form-label">Opcionais</label>
         <div class="form-check">
@@ -189,8 +212,7 @@
     </div>
 
   </form>
-
-  <br>
+    <br>
 </div> 
 
       <div class="col-md-6">

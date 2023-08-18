@@ -38,14 +38,13 @@ class CarroDAO extends BaseDAO{
             $disponibilidade = $carro->getDisponibilidade();
             $id_modelo = $carro->getIdModelo(); 
             $tipo_freio = $carro->getTipo_freio();
-            $torque = $carro->getTorque();
             $motor = $carro->getMotor();
             $tipo_combustivel = $carro->getTipo_combustivel();
             $tipo_tracao = $carro->getTipo_tracao();
 
             return $this->insert(
                 'carro',
-                ":ano_fabricacao, :ano_modelo, :cor, :preco, :quilometragem, :modelo_direcao, :modelo_cambio, :placa, :observacoes, :disponibilidade, :id_modelo, :tipo_freio, :torque, :motor, :tipo_combustivel, :tipo_tracao",
+                ":ano_fabricacao, :ano_modelo, :cor, :preco, :quilometragem, :modelo_direcao, :modelo_cambio, :placa, :observacoes, :disponibilidade, :id_modelo, :tipo_freio, :motor, :tipo_combustivel, :tipo_tracao",
                 [
                     ':ano_fabricacao' => $ano_fabricacao,
                     ':ano_modelo' => $ano_modelo,
@@ -59,7 +58,6 @@ class CarroDAO extends BaseDAO{
                     ':disponibilidade' => $disponibilidade,
                     ':id_modelo' => $id_modelo,
                     ':tipo_freio' => $tipo_freio,
-                    ':torque' => $torque,
                     ':motor' => $motor,
                     ':tipo_combustivel' => $tipo_combustivel,
                     ':tipo_tracao' => $tipo_tracao
@@ -89,14 +87,13 @@ class CarroDAO extends BaseDAO{
             $disponibilidade = $carro->getDisponibilidade();
             $id_modelo = $carro->getIdModelo();
             $tipo_freio = $carro->getTipo_freio();
-            $torque = $carro->getTorque();
             $motor = $carro->getMotor();
             $tipo_combustivel = $carro->getTipo_combustivel();
             $tipo_tracao = $carro->getTipo_tracao();
 
             return $this->update(
                 'carro',
-                "ano_fabricacao = :ano_fabricacao, ano_modelo = :ano_modelo, cor = :cor, preco = :preco, quilometragem = :quilometragem, modelo_direcao = :modelo_direcao, modelo_cambio = :modelo_cambio, placa = :placa, observacoes = :observacoes, disponibilidade = :disponibilidade, id_modelo = :id_modelo, tipo_freio = :tipo_freio, torque = :torque, motor = :motor, tipo_combustivel = :tipo_combustivel, tipo_tracao = :tipo_tracao",
+                "ano_fabricacao = :ano_fabricacao, ano_modelo = :ano_modelo, cor = :cor, preco = :preco, quilometragem = :quilometragem, modelo_direcao = :modelo_direcao, modelo_cambio = :modelo_cambio, placa = :placa, observacoes = :observacoes, disponibilidade = :disponibilidade, id_modelo = :id_modelo, tipo_freio = :tipo_freio, motor = :motor, tipo_combustivel = :tipo_combustivel, tipo_tracao = :tipo_tracao",
                 [
                         ':id' => $id,
                         ':ano_fabricacao' => $ano_fabricacao,
@@ -111,7 +108,6 @@ class CarroDAO extends BaseDAO{
                         ':disponibilidade' => $disponibilidade,
                         ':id_modelo' => $id_modelo,
                         ':tipo_freio' => $tipo_freio,
-                        ':torque' => $torque,
                         ':motor' => $motor,
                         ':tipo_combustivel' => $tipo_combustivel,
                         ':tipo_tracao' => $tipo_tracao

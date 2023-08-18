@@ -35,16 +35,25 @@ class CarroController extends Controller
     }
 
     public function salvar(){
+
+        $preco = preg_replace('/[^0-9]/', '', $_POST['preco']);    
+        $preco = bcdiv($preco, 100, 2);
+        $preco = strtr($preco, ',', '.');
+
         $carro = new Carro();
         $carro->setAno_fabricacao($_POST['ano_fabricacao']);
         $carro->setAno_modelo($_POST['ano_modelo']);
         $carro->setCor($_POST['cor']);
+        $carro->setPreco($preco);
         $carro->setIdModelo($_POST['modeloId']);
         $carro->setTipo_tracao($_POST['tracao']);
         $carro->setTipo_freio($_POST['freio']);
         $carro->setTipo_combustivel($_POST['combustivel']);
         $carro->setModelo_cambio($_POST['cambio']);
         $carro->setModelo_direcao($_POST['direcao']);
+        $carro->setObservacoes($_POST['observacao']);
+        $carro->setDisponibilidade($_POST['disponibilidade']);
+        $carro->setMotor($_POST['motor']);
 
         Sessao::gravaFormulario($_POST);
 
@@ -62,7 +71,9 @@ class CarroController extends Controller
 
         $carroDAO = new CarroDAO();
 
-        printf($carroDAO->salvar($carro));
+        //print_r($carro);die;
+
+        $carroDAO->salvar($carro);
 
         Sessao::gravaMensagem("Carro cadastrado com Sucesso!");
         $this->redirect('/carro/cadastro');   
