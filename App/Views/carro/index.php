@@ -34,7 +34,11 @@ use App\Models\DAO\MarcaDAO;
                             ?>
                         </h5>
                         <p class="card-text"><?php echo $carro->getObservacoes(); ?></p>
-                        <p class="card-text"><?php echo "R$ " . $carro->getPreco(); ?></p>
+                        <p class="card-text"><?php echo "R$ " . number_format($carro->getPreco(), 2, ',', '.'); ?></p>
+                        <button type="button" class="btn btn-primary">
+                        Launch demo modal
+                        </button>
+
                     </div>
                 </div>
             </div>
@@ -46,5 +50,6 @@ use App\Models\DAO\MarcaDAO;
             ?>
 
     </div>
+
 </div>
 <br>

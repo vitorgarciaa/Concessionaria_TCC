@@ -168,13 +168,10 @@
         <input type="text" class="form-control" id="inputCor" name="cor">
       </div>
 
-
-
       <div class="col-md-2">
         <label for="inputMotor" class="form-label">Motor</label>
         <input type="text" class="form-control" id="inputMotor" name="motor">
       </div>
-
 
       <div class="col-md-2">
           <label for="inputPreco" class="form-label">Preço</label>
@@ -209,11 +206,11 @@
     <div class="col-md-12 d-flex justify-content-end">
       <button type="submit" class="btn btn-success">Cadastrar</button>&nbsp&nbsp
       <button type="button" class="btn btn-danger">Cancelar</button>
-    </div>
+   </div>
 
-  </form>
-    <br>
-</div> 
+      </form>
+        <br>
+    </div> 
 
       <div class="col-md-6">
           <div class="modal fade" id="modalModelo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
