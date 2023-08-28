@@ -208,7 +208,7 @@ class CarroController extends Controller
                         <select class="form-select" id="inputGroupSelect02" name="modeloId">
                         <option selected>Selecione o Modelo</option>';
                         foreach($listaModelos as $modelo){
-                            echo '<option value="Teste">' . $modelo->getNome() . '</option>';
+                            echo '<option value="'. $modelo->getId() .'">' . $modelo->getNome() . '</option>';
                         }
                 echo '</select>
                 <label class="input-group-text btn-primary" for="inputGroupSelect02" data-bs-toggle="modal" data-bs-target="#modalModelo" data-bs-whatever="@fat">Cadastrar Modelo</label>
