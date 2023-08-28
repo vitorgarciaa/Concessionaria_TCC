@@ -1,13 +1,14 @@
+<?php 
+use App\Models\DAO\ModeloDAO;
+$modeloDAO = new ModeloDAO;
 
+?>
 <script>
       
       $(document).ready(function(){
         $('.money').mask('000.000.000.000.000,00', {reverse: true});
       });
 </script>
-
-
-
 <div class="container">
   <br>
     <h1>Cadastro de Carro</h1>
@@ -47,7 +48,7 @@
       <div class="col-md-5">
       <label for="selectMarca" class="form-label">Marca</label>
         <div class="input-group md-3">
-          <select class="form-select" id="inputGroupSelect02">
+          <select class="form-select" name="marcaId" id="marca" onchange="funcaoMarca()">
           <option selected>Selecione a Marca</option>
 
           <?php if (!count($viewVar['marca'])) { ?>
@@ -63,41 +64,41 @@
             ?>
 
           </select>
-          <label class="input-group-text btn-primary" for="inputGroupSelect02" data-bs-toggle="modal" data-bs-target="#modalMarca" data-bs-whatever="@fat">Cadastrar Marca</label>
+          <label class="input-group-text btn-primary" for="marca" data-bs-toggle="modal" data-bs-target="#modalMarca" data-bs-whatever="@fat">Cadastrar Marca</label>
         </div>
+        
       </div>
-
-      <div class="col-md-6">
-      <label for="selectModelo" class="form-label">Modelo</label>
-        <div class="input-group md-3">
-          <select class="form-select" id="inputGroupSelect02" name="modeloId">
-            <option selected>Selecione o Modelo</option>
-
-            <?php if (!count($viewVar['modelo'])) { ?>
-                <div class="alert alert-info" role="alert">Nenhum modelo encontrado!</div>
-            <?php 
-                }else{
-              foreach($viewVar['modelo'] as $modelo){
-            ?>
-            <option value="<?php echo $modelo->getId(); ?>"><?= $modelo->getNome(); ?></option>
-            <?php 
-                }
-              }
-            ?>
-
-          </select>
-          <label class="input-group-text btn-primary" for="inputGroupSelect02" data-bs-toggle="modal" data-bs-target="#modalModelo" data-bs-whatever="@fat">Cadastrar Modelo</label>
-        </div>
+      <div id="divModelo" class="col-md-6">
       </div>
     </div>
+    
+    <script>
+      function funcaoMarca(){
+        var marca = document.getElementById("marca").value;
+            $.ajax({
+                url: 'http://<?php echo APP_HOST; ?>/carro/listarPorMarca',
+                type: 'POST',
+                data: {
+                  marcaId: marca
+                },
+                success: function(data) {
+                    $("#divModelo").html(data);
+
+                },
+                error: function(data) {
+                    alert("Houve um erro ao carregar");
+                }
+            });
+      }
+    </script>
 
     <div class="row">
         <div class="col-md-2">
-          <label for="selectCambio" class="form-label">Cambio</label>
-            <select class="form-select" aria-label="Selecione o Cambio" id="selectCambio" name="cambio">
-              <option selected>Selecione o Câmbio</option>
-              <option value="manual">Câmbio Manual</option>
-              <option value="hidraulica">Câmbio Automático</option>
+          <label for="selectTransmissao" class="form-label">Transmissão</label>
+            <select class="form-select" aria-label="Selecione a Transmissão" id="selectTransmissao" name="transmissao">
+              <option selected>Selecione a Transmissão</option>
+              <option value="Transmissão Manual">Transmissão Manual</option>
+              <option value="Transmissão Automático">Transmissão Automático</option>
             </select>
         </div>
 
@@ -105,10 +106,10 @@
           <label for="selectDirecao" class="form-label">Direção</label>
             <select class="form-select" aria-label="Selecione a Direção" id="selectDirecao" name="direcao">
               <option selected>Selecione a Direção</option>
-              <option value="manual">Direção Manual</option>
-              <option value="hidraulica">Direção Hidráulica</option>
-              <option value="eletrica">Direção Elétrica</option>
-              <option value="eletro-hidraulica">Direção Eletro-hidráulica</option>
+              <option value="Manual">Direção Manual</option>
+              <option value="Hidráulica">Direção Hidráulica</option>
+              <option value="Elétrica">Direção Elétrica</option>
+              <option value="Eletro-hidráulica">Direção Eletro-hidráulica</option>
             </select>
         </div>
         
@@ -116,8 +117,8 @@
           <label for="selectTracao" class="form-label">Tração</label>
             <select class="form-select" aria-label="Selecione a Tração" id="selectTracao" name="tracao">
               <option selected>Selecione a Tração</option>
-              <option value="traseira">Traseira</option>
-              <option value="dianteira">Dianteira</option>
+              <option value="Traseira">Traseira</option>
+              <option value="Dianteira">Dianteira</option>
               <option value="4x4">4x4</option>
             </select>
         </div>
@@ -126,8 +127,8 @@
           <label for="selectFreio" class="form-label">Freio</label>
             <select class="form-select" aria-label="Selecione o Tipo do Freio" id="selectFreio" name="freio">
               <option selected>Selecione O Freio</option>
-              <option value="freio_ABS">Freio ABS</option>
-              <option value="freio_disco">Freio a Disco</option>
+              <option value="ABS">Freio ABS</option>
+              <option value="a Disco">Freio a Disco</option>
             </select>
         </div>
       
@@ -135,10 +136,10 @@
           <label for="selectCombustivel" class="form-label">Combustivel</label>
             <select class="form-select" aria-label="Tipo do Combustivel" id="selectCombustivel" name="combustivel">
               <option selected>Tipo Combustivel</option>
-              <option value="alcool">Álcool</option>
-              <option value="disel">Diesel</option>
-              <option value="alcool">Flex</option>
-              <option value="gasolina">Gasolina</option>
+              <option value="Álcool">Álcool</option>
+              <option value="Diesel">Diesel</option>
+              <option value="Flex">Flex</option>
+              <option value="Gasolina">Gasolina</option>
             </select>
         </div>
 
@@ -146,8 +147,9 @@
           <label for="selectDisponibilidade" class="form-label">Disponibilidade</label>
             <select class="form-select" aria-label="Disponibildiade" id="selectDisponibilidade" name="disponibilidade">
               <option selected>Selecione a Disponibiliade</option>
-              <option value="Disponivel">Disponivel</option>
+              <option value="Disponível">Disponivel</option>
               <option value="Reservado">Reservado</option>
+              <option value="Indisponível">Indisponível</option>
             </select>
         </div>
       </div>

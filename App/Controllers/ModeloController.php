@@ -12,7 +12,10 @@ class ModeloController extends Controller
 
     public function index()
     {
-        $this->render('modelo/cadastro');
+        $modeloDAO = new ModeloDAO();
+
+        self::setViewParam('modelo', $modeloDAO->listar());
+        $this->render('modelo/index');
     }
 
     public function cadastro()

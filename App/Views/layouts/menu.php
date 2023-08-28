@@ -18,6 +18,12 @@
         <li class="nav-item">
           <a href="http://<?php echo APP_HOST;?>/modelo/cadastro" class="nav-link text-white">Cadastro de Modelo</a>
         </li>
+        <li class="nav-item">
+          <a href="http://<?php echo APP_HOST;?>/vendedor/cadastro" class="nav-link text-white">Cadastro de Vendedor</a>
+        </li>
+        <li class="nav-item">
+          <a href="http://<?php echo APP_HOST;?>/cliente/cadastro" class="nav-link text-white">Cadastro de Cliente</a>
+        </li>
       </ul>
     </div>
   </div>

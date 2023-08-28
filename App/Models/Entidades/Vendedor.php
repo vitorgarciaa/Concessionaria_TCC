@@ -1,15 +1,20 @@
 <?php 
 
 namespace App\Models\Entidades;
-
 class Vendedor{
      private $id;
      private $nome;
      private $telefone;
      private $email;
      private $cpf;
-     private $endereco;
      private $status;
+     private $cep;
+     private $uf;
+     private $cidade;
+     private $bairro;
+     private $logradouro;
+     private $complemento;
+     private $numero;
 
      public function getId(){
         return $this->id;
@@ -51,21 +56,68 @@ class Vendedor{
         $this->cpf = $cpf;
    }
 
-   public function getEndereco(){
-        return $this->endereco;
-   }
-
-   public function setEndereco($endereco){
-        $this->endereco = $endereco;
-   }
-
-   
    public function getStatus(){
         return $this->status;
    }
 
    public function setStatus($status){
         $this->status = $status;
+   }
+
+   public function getCep(){
+     return $this->cep;
+   }
+   
+   public function setCep($cep){
+       $this->cep = $cep;
+   }
+   
+   public function getUf(){
+       return $this->uf;
+   }
+   
+   public function setUf($uf){
+       $this->uf = $uf;
+   }
+   
+   public function getCidade(){
+       return $this->cidade;
+   }
+   
+   public function setCidade($cidade){
+       $this->cidade = $cidade;
+   }
+   
+   public function getBairro(){
+       return $this->bairro;
+   }
+   
+   public function setBairro($bairro){
+       $this->bairro = $bairro;
+   }
+   
+   public function getLogradouro(){
+       return $this->logradouro;
+   }
+   
+   public function setLogradouro($logradouro){
+       $this->logradouro = $logradouro;
+   }
+   
+   public function getComplemento(){
+       return $this->complemento;
+   }
+   
+   public function setComplemento($complemento){
+       $this->complemento = $complemento;
+   }
+   
+   public function getNumero(){
+       return $this->numero;
+   }
+   
+   public function setNumero($numero){
+       $this->numero = $numero;
    }
 }
 ?>

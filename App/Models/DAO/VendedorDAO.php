@@ -30,18 +30,31 @@ class VendedorDAO extends BaseDAO{
             $telefone = $vendedor->getTelefone();
             $email = $vendedor->getEmail();
             $cpf = $vendedor->getCpf();
-            $endereco = $vendedor->getEndereco();
             $status = $vendedor->getStatus();
+            $cep = $vendedor->getCep();
+            $uf = $vendedor->getUf();
+            $cidade = $vendedor->getCidade();
+            $bairro = $vendedor->getbairro();
+            $logradouro  = $vendedor->getLogradouro();
+            $complemento  = $vendedor->getComplemento();
+            $numero  = $vendedor->getNumero();
             return $this->insert(
                 'vendedor',
-                ":nome, :telefone, :email, :cpf, :endereco, :status",
+                ":nome, :telefone, :email, :cpf, :status, :cep, :uf, :cidade, :bairro, :logradouro, :complemento, :numero",
                 [
                     ':nome' => $nome,
                     ':telefone' => $telefone,
                     ':email' => $email,
                     ':cpf' => $cpf,
-                    ':endereco' => $endereco,
                     ':status' => $status,
+                    ':cep' => $cep,
+                    ':uf' => $uf,
+                    ':cidade' => $cidade,
+                    ':bairro' => $bairro,
+                    ':logradouro' => $logradouro,
+                    ':complemento' => $complemento,
+                    ':numero' => $numero,
+
                 ]
             );
         } catch (\Exception $e) {
@@ -57,18 +70,30 @@ class VendedorDAO extends BaseDAO{
             $telefone = $vendedor->getTelefone();
             $email = $vendedor->getEmail();
             $cpf = $vendedor->getCpf();
-            $endereco = $vendedor->getEndereco();
             $status = $vendedor->getStatus();
+            $cep = $vendedor->getCep();
+            $uf = $vendedor->getUf();
+            $cidade = $vendedor->getCidade();
+            $bairro = $vendedor->getBairro();
+            $logradouro  = $vendedor->getLogradouro();
+            $complemento  = $vendedor->getComplemento();
+            $numero  = $vendedor->getNumero();
             return $this->update(
                 'vendedor',
-                "nome = :nome, telefone = :telefone, email = :email, cpf = :cpf, endereco = :endereco, status = :status",
+                "nome = :nome, telefone = :telefone, email = :email, cpf = :cpf, status = :status cep = :cep, uf = :uf, cidade = :cidade, bairro = :bairro, logradouro = :logradouro,complemento = :complemento,numero = :numero",
                     [
                         ':nome' => $nome,
                         ':telefone' => $telefone,
                         ':email' => $email,
                         ':cpf' => $cpf,
-                        ':endereco' => $endereco,
                         ':status' => $status,
+                        ':cep' => $cep,
+                        ':uf' => $uf,
+                        ':cidade' => $cidade,
+                        ':bairro' => $bairro,
+                        ':logradouro' => $logradouro,
+                        ':complemento' => $complemento,
+                        ':numero' => $numero,
                     ],
                     "id = :id"
             );

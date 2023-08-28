@@ -32,7 +32,7 @@ class CarroDAO extends BaseDAO{
             $preco = $carro->getPreco();
             $quilometragem = $carro->getQuilometragem();
             $modelo_direcao = $carro->getModelo_direcao();
-            $modelo_cambio = $carro->getModelo_cambio();
+            $modelo_transmissao = $carro->getModelo_transmissao();
             $placa = $carro->getPlaca();
             $observacoes = $carro->getObservacoes();
             $disponibilidade = $carro->getDisponibilidade();
@@ -44,7 +44,7 @@ class CarroDAO extends BaseDAO{
 
             return $this->insert(
                 'carro',
-                ":ano_fabricacao, :ano_modelo, :cor, :preco, :quilometragem, :modelo_direcao, :modelo_cambio, :placa, :observacoes, :disponibilidade, :id_modelo, :tipo_freio, :motor, :tipo_combustivel, :tipo_tracao",
+                ":ano_fabricacao, :ano_modelo, :cor, :preco, :quilometragem, :modelo_direcao, :modelo_transmissao, :placa, :observacoes, :disponibilidade, :id_modelo, :tipo_freio, :motor, :tipo_combustivel, :tipo_tracao",
                 [
                     ':ano_fabricacao' => $ano_fabricacao,
                     ':ano_modelo' => $ano_modelo,
@@ -52,7 +52,7 @@ class CarroDAO extends BaseDAO{
                     ':preco' => $preco,
                     ':quilometragem' => $quilometragem,
                     ':modelo_direcao' => $modelo_direcao,
-                    ':modelo_cambio' => $modelo_cambio,
+                    ':modelo_transmissao' => $modelo_transmissao,
                     ':placa' => $placa,
                     ':observacoes' => $observacoes,
                     ':disponibilidade' => $disponibilidade,
@@ -81,7 +81,7 @@ class CarroDAO extends BaseDAO{
             $preco = $carro->getPreco();
             $quilometragem = $carro->getQuilometragem();
             $modelo_direcao = $carro->getModelo_direcao();
-            $modelo_cambio = $carro->getModelo_cambio();
+            $modelo_transmissao = $carro->getModelo_transmissao();
             $placa = $carro->getPlaca();
             $observacoes = $carro->getObservacoes();
             $disponibilidade = $carro->getDisponibilidade();
@@ -93,7 +93,7 @@ class CarroDAO extends BaseDAO{
 
             return $this->update(
                 'carro',
-                "ano_fabricacao = :ano_fabricacao, ano_modelo = :ano_modelo, cor = :cor, preco = :preco, quilometragem = :quilometragem, modelo_direcao = :modelo_direcao, modelo_cambio = :modelo_cambio, placa = :placa, observacoes = :observacoes, disponibilidade = :disponibilidade, id_modelo = :id_modelo, tipo_freio = :tipo_freio, motor = :motor, tipo_combustivel = :tipo_combustivel, tipo_tracao = :tipo_tracao",
+                "ano_fabricacao = :ano_fabricacao, ano_modelo = :ano_modelo, cor = :cor, preco = :preco, quilometragem = :quilometragem, modelo_direcao = :modelo_direcao, modelo_transmissao = :modelo_transmissao, placa = :placa, observacoes = :observacoes, disponibilidade = :disponibilidade, id_modelo = :id_modelo, tipo_freio = :tipo_freio, motor = :motor, tipo_combustivel = :tipo_combustivel, tipo_tracao = :tipo_tracao",
                 [
                         ':id' => $id,
                         ':ano_fabricacao' => $ano_fabricacao,
@@ -102,7 +102,7 @@ class CarroDAO extends BaseDAO{
                         ':preco' => $preco,
                         ':quilometragem' => $quilometragem,
                         ':modelo_direcao' => $modelo_direcao,
-                        ':modelo_cambio' => $modelo_cambio,
+                        ':modelo_transmissao' => $modelo_transmissao,
                         ':placa' => $placa,
                         ':observacoes' => $observacoes,
                         ':disponibilidade' => $disponibilidade,

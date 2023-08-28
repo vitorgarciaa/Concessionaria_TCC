@@ -10,7 +10,7 @@ class Carro{
      private $preco;
      private $quilometragem;
      private $modelo_direcao;
-     private $modelo_cambio;
+     private $modelo_transmissao;
      private $placa;
      private $observacoes;
      private $disponibilidade;
@@ -76,12 +76,12 @@ class Carro{
           $this->modelo_direcao = $modelo_direcao;
      }
 
-     public function getModelo_cambio(){
-          return $this->modelo_cambio;
+     public function getModelo_transmissao(){
+          return $this->modelo_transmissao;
      }
 
-     public function setModelo_cambio($modelo_cambio){
-          $this->modelo_cambio = $modelo_cambio;
+     public function setModelo_transmissao($modelo_transmissao){
+          $this->modelo_transmissao = $modelo_transmissao;
      }
 
      public function getPlaca(){

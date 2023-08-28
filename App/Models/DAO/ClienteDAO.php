@@ -30,18 +30,31 @@ class ClienteDAO extends BaseDAO{
             $telefone = $cliente->getTelefone();
             $email = $cliente->getEmail();
             $cpf = $cliente->getCpf();
-            $endereco = $cliente->getEndereco();
             $status = $cliente->getStatus();
+            $cep = $cliente->getCep();
+            $uf = $cliente->getUf();
+            $cidade = $cliente->getCidade();
+            $bairro = $cliente->getbairro();
+            $logradouro  = $cliente->getLogradouro();
+            $complemento  = $cliente->getComplemento();
+            $numero  = $cliente->getNumero();
             return $this->insert(
                 'cliente',
-                ":nome, :telefone, :email, :cpf, :endereco, :status",
+                ":nome, :telefone, :email, :cpf, :status, :cep, :uf, :cidade, :bairro, :logradouro, :complemento, :numero",
                 [
                     ':nome' => $nome,
                     ':telefone' => $telefone,
                     ':email' => $email,
                     ':cpf' => $cpf,
-                    ':endereco' => $endereco,
                     ':status' => $status,
+                    ':cep' => $cep,
+                    ':uf' => $uf,
+                    ':cidade' => $cidade,
+                    ':bairro' => $bairro,
+                    ':logradouro' => $logradouro,
+                    ':complemento' => $complemento,
+                    ':numero' => $numero,
+
                 ]
             );
         } catch (\Exception $e) {
@@ -57,18 +70,30 @@ class ClienteDAO extends BaseDAO{
             $telefone = $cliente->getTelefone();
             $email = $cliente->getEmail();
             $cpf = $cliente->getCpf();
-            $endereco = $cliente->getEndereco();
             $status = $cliente->getStatus();
+            $cep = $cliente->getCep();
+            $uf = $cliente->getUf();
+            $cidade = $cliente->getCidade();
+            $bairro = $cliente->getBairro();
+            $logradouro  = $cliente->getLogradouro();
+            $complemento  = $cliente->getComplemento();
+            $numero  = $cliente->getNumero();
             return $this->update(
                 'cliente',
-                "nome = :nome, telefone = :telefone, email = :email, cpf = :cpf, endereco = :endereco, status = :status",
+                "nome = :nome, telefone = :telefone, email = :email, cpf = :cpf, status = :status cep = :cep, uf = :uf, cidade = :cidade, bairro = :bairro, logradouro = :logradouro,complemento = :complemento,numero = :numero",
                     [
                         ':nome' => $nome,
                         ':telefone' => $telefone,
                         ':email' => $email,
                         ':cpf' => $cpf,
-                        ':endereco' => $endereco,
                         ':status' => $status,
+                        ':cep' => $cep,
+                        ':uf' => $uf,
+                        ':cidade' => $cidade,
+                        ':bairro' => $bairro,
+                        ':logradouro' => $logradouro,
+                        ':complemento' => $complemento,
+                        ':numero' => $numero,
                     ],
                     "id = :id"
             );

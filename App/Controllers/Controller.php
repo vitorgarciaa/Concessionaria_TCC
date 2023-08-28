@@ -26,10 +26,17 @@ abstract class Controller
         require_once PATH . '/App/Views/layouts/rodape.php';
     }
 
+    
     public function redirect($view)
     {
         header('Location: http://' . APP_HOST . $view);
         exit;
+    }
+
+    public function ajaxResponse(string $param, array $values): string {
+
+        return json_encode([$param => $values]);
+
     }
 
     public function getViewVar()

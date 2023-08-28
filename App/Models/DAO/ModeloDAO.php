@@ -76,14 +76,13 @@ class ModeloDAO extends BaseDAO{
 
     
     //FUNÇÃO ADICIONAL
-    public function listar_marca($id_marca){
+    public function listarPorMarca($id_marca){
 
         $resultado = $this->select(
             "SELECT * FROM modelo WHERE id_marca = $id_marca"
         );
 
-        return $resultado->fetchObject(Marca::class);
-
-}
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Modelo::class);
+    }
 }
 ?>

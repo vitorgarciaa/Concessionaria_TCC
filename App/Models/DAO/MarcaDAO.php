@@ -24,7 +24,7 @@ class MarcaDAO extends BaseDAO{
     }
 
 
-    //FUNÇÃO PARA SALVAR OS CARROS
+    //FUNÇÃO PARA SALVAR OS 6ARROS
     public function salvar(Marca $marca){
         try {
             $nome = $marca->getNome();
