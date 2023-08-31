@@ -4,10 +4,12 @@ namespace App\Controllers;
 
 use App\Lib\Sessao;
 use App\Models\DAO\CarroDAO;
+use App\Models\DAO\ImagemDAO;
 use App\Models\Entidades\Carro;
 use App\Models\Validacao\CarroValidador;
 use App\Models\DAO\MarcaDAO;
 use App\Models\DAO\ModeloDAO;
+use App\Models\Entidades\Imagem;
 
 class CarroController extends Controller
 {
@@ -72,6 +74,30 @@ class CarroController extends Controller
         $carroDAO = new CarroDAO();
 
         $carroDAO->salvar($carro);
+
+        $imagens = $_FILES['imagens'];
+        if (isset($imagens)) {
+        
+        $qtdImagens = count($imagens['name']); 
+
+            for ($cont=0; $cont < $qtdImagens; $cont++) { 
+                $extensao = strtolower(substr($imagens['name'][$cont], -4)); // PEGA A EXTENSÃO E DEIXA TUDO MINUSCULO
+                $novoNome = md5(time()) . $extensao; //CRIPTOGRAFA PARA NÃO TER NOMES IGUAIS
+                $diretorio =  "C:\\xampp\htdocs\\concessionaria_mvc\App\Views\imagens\uploads\\";
+                
+                move_uploaded_file($imagens['tmp_name'][$cont], $diretorio . $novoNome); //FAZ O UPLOAD
+                
+                $imagemDAO = new ImagemDAO();
+                $imagem = new Imagem();
+
+                $carro = $carroDAO->listarUltimoCadastrado();
+
+                $imagem->setNome($novoNome);
+                $imagem->setId_carro($carro[0]->getId());
+               
+                $imagemDAO->salvar($imagem);
+            }
+        }
 
         Sessao::gravaMensagem("Carro cadastrado com Sucesso!");
         $this->redirect('/carro/cadastro');   
@@ -201,7 +227,7 @@ class CarroController extends Controller
 
         $listaModelos = $modeloDAO->listarPorMarca($marcaId);
         if(empty($listaModelos)){
-            echo '<div class="alert alert-info col-md-12" role="alert">Nenhuma marca encontrada.</div>';
+            echo '<div class="alert alert-info col-md-12" role="alert">Nenhuma modelo encontrado. <label class="input-group-text btn-primary" for="inputGroupSelect02" data-bs-toggle="modal" data-bs-target="#modalModelo" data-bs-whatever="@fat">Cadastrar Modelo</label></div>';
         }else{
                 echo '<label for="selectModelo" class="form-label">Modelo</label>
                     <div class="input-group md-3">

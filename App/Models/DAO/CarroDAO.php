@@ -132,5 +132,13 @@ class CarroDAO extends BaseDAO{
             throw new \Exception("Erro ao deletar", 500);
         }
     }
+    
+    //FUNÇÃO AUXILIARES
+    public function listarUltimoCadastrado(){
+        $resultado = $this->select(   
+            "SELECT id FROM carro ORDER BY id DESC LIMIT 1"
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Carro::class);
+    }
 }
 ?>

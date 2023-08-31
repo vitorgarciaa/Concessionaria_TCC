@@ -4,6 +4,8 @@ namespace App\Models\Entidades;
 class Vendedor{
      private $id;
      private $nome;
+     private $usuario;
+     private $senha;
      private $telefone;
      private $email;
      private $cpf;
@@ -31,6 +33,22 @@ class Vendedor{
    function setNome($nome){
         $this->nome = $nome;
    }
+
+   function getUsuario(){
+    return $this->usuario;
+    }
+
+    function setUsuario($usuario){
+        $this->usuario = $usuario;
+    }
+
+    function getSenha(){
+        return $this->senha;
+    }
+
+    function setSenha($senha){
+        $this->senha = $senha;
+    }
 
    public function getTelefone(){
         return $this->telefone;

@@ -37,7 +37,7 @@ $modeloDAO = new ModeloDAO;
                 </div> 
         <?php } ?>
 
-  <form action="http://<?php echo APP_HOST; ?>/carro/salvar" method="post" class="row g-3">
+  <form action="http://<?php echo APP_HOST; ?>/carro/salvar" enctype="multipart/form-data" method="post" class="row g-3">
 
     <div class="row">
       <div class="col-md-1">
@@ -95,7 +95,7 @@ $modeloDAO = new ModeloDAO;
     <div class="row">
         <div class="col-md-2">
           <label for="selectTransmissao" class="form-label">Transmissão</label>
-            <select class="form-select" aria-label="Selecione a Transmissão" id="selectTransmissao" name="transmissao">
+            <select class="form-select" aria-label="Selecione o Transmissao" id="selectTransmissao" name="transmissao">
               <option selected>Selecione a Transmissão</option>
               <option value="Transmissão Manual">Transmissão Manual</option>
               <option value="Transmissão Automático">Transmissão Automático</option>
@@ -186,10 +186,26 @@ $modeloDAO = new ModeloDAO;
       </div>
 
       <div class="col-md-6">
-        <label for="inputObservacao" class="form-label">Observaoces</label>
+        <label for="inputObservacao" class="form-label">Observações</label>
         <textarea type="textarea" class="form-control" id="inputObservacao" name="observacao"></textarea>
       </div>
+
+      <div class="col-md-6">
+          <label for="inputImagem" class="form-label">Imagens</label>    
+          <input type="file" class="form-control " id="inputImagem" accept="image/*" name="imagens[]" multiple>
+      </div>
     </div>
+    <div id="imagePreview" class="d-flex mt-3"></div>
+      <div id="imageModal" class="modal fade" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body">
+                <img id="modalImage" src="" alt="Imagem Ampliada" class="w-100">
+              </div>
+            </div>
+          </div>
+      </div>
+      
     <div class="col-md-12">
         <label for="inputAno" class="form-label">Opcionais</label>
         <div class="form-check">
@@ -299,6 +315,29 @@ $modeloDAO = new ModeloDAO;
         });
       });
 
+    const imagePreview = document.getElementById('imagePreview');
+    const modalImage = document.getElementById('modalImage');
 
+    document.getElementById('inputImagem').addEventListener('change', function(e) {
+      imagePreview.innerHTML = '';
+
+      if (e.target.files.length === 3) {
+        for (const file of e.target.files) {
+          const img = document.createElement('img');
+          img.src = URL.createObjectURL(file);
+          img.className = 'm-2';
+          img.style = 'width: 200px; height: 200px; object-fit: cover; cursor: pointer;'
+          img.alt = 'Imagem';
+          img.addEventListener('click', function() {
+            modalImage.src = img.src;
+            $('#imageModal').modal('show');
+          });
+          imagePreview.appendChild(img);
+        }
+      } else {
+        alert('Por favor, selecione exatamente 3 imagens.');
+        e.target.value = ''; // Limpar a seleção de imagens
+      }
+    });
 
 </script>

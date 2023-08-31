@@ -71,7 +71,7 @@ $marca = $marcaDAO->listar($modelo->getId_marca());
             <div class="card info-card">
                 <div class="card-body">
                     <h1 class="card-title"><i class="bi bi-sliders2-vertical"></i></h1>
-                    <h5 class="card-text">Câmbio: <?php echo $carro->getModelo_cambio(); ?></h5>
+                    <h5 class="card-text">Transmissão: <?php echo $carro->getModelo_transmissao(); ?></h5>
                 </div>
             </div>
         </div>

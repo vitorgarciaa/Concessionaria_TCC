@@ -79,7 +79,7 @@ use App\Models\DAO\MarcaDAO;
       <td><?php echo $carro->getCor(); ?></td>
       <td><?php echo $carro->getQuilometragem(); ?></td>
       <td><?php echo $carro->getModelo_direcao(); ?></td>
-      <td><?php echo $carro->getModelo_cambio(); ?></td>
+      <td><?php echo $carro->getModelo_transmissao(); ?></td>
       <td><?php echo $carro->getTipo_freio(); ?></td>
       <td><?php echo $carro->getMotor(); ?></td>
       <td><?php echo $carro->getTipo_combustivel(); ?></td>

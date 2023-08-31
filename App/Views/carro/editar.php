@@ -85,10 +85,10 @@ $marca = $marcaDAO->listar($modelo->getId_marca());
 
     <div class="row">
         <div class="col-md-2">
-          <label for="selectCambio" class="form-label">Cambio</label>
-            <select class="form-select" aria-label="Selecione o Cambio" id="selectCambio" name="cambio">
-              <option <?php echo ($carro->getModelo_cambio() == "Câmbio Manual" ) ? "selected" : null ; ?> value="Câmbio Manual">Câmbio Manual</option>
-              <option <?php echo ($carro->getModelo_cambio() == "Câmbio Automático" ) ? "selected" : null ; ?> value="Câmbio Automático">Câmbio Automático</option>
+          <label for="selectTransmissaos" class="form-label">Transmissão</label>
+            <select class="form-select" aria-label="Selecione o Cambio" id="selectTransmissao" name="transmissao">
+              <option <?php echo ($carro->getModelo_transmissao() == "Transmissão Manual" ) ? "selected" : null ; ?> value="Transmissão Manual">Transmissão Manual</option>
+              <option <?php echo ($carro->getModelo_transmissao() == "Transmissão Automático" ) ? "selected" : null ; ?> value="Transmissão Automático">Transmissão Automático</option>
             </select>
         </div>
 

@@ -17,6 +17,15 @@ class VendedorController extends Controller
         $this->render('carro/index');
     }
 
+    public function pesquisar()
+    {
+        $vendedorDAO = new VendedorDAO();
+        self::setViewParam('vendedor', $vendedorDAO->listar());
+
+        $this->render('vendedor/pesquisar');
+    }
+
+
     public function cadastro()
     {
 
