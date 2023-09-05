@@ -1,10 +1,10 @@
 <?php
-use App\Models\DAO\VendedorDAO;
+use App\Models\DAO\ClienteDAO;
 ?>
 
 <div class="container-fluid">
 <br>
-<h3>Lista de Vendedores</h3>
+<h3>Lista de Clientes</h3>
 <br>
 
 <?php
@@ -42,7 +42,6 @@ if($Sessao::retornaErro()){?>
             <th scope="col">ID</th>
             <th scope="col">Nome</th>
             <th scope="col">E-mail</th>
-            <th scope="col">Usuario</th>
             <th scope="col">Telefone</th>
             <th scope="col">CEP</th>
             <th scope="col">UF</th>
@@ -57,29 +56,28 @@ if($Sessao::retornaErro()){?>
     </thead>
     <tbody>
         <?php
-        if (!count($viewVar['vendedor'])) { ?>
-            <div class="alert alert-info" role="alert">Nenhum vendedor encontrado!</div>
+        if (!count($viewVar['cliente'])) { ?>
+            <div class="alert alert-info" role="alert">Nenhum cliente encontrado!</div>
         <?php } else {
-            $vendedorDAO = new VendedorDAO();
-            foreach ($viewVar['vendedor'] as $vendedor) {
+            $clienteDAO = new ClienteDAO();
+            foreach ($viewVar['cliente'] as $cliente) {
         ?>
                 <tr>
-                    <th scope="row"><?php echo $vendedor->getId(); ?></th>
-                    <td><?php echo $vendedor->getNome(); ?></td>
-                    <td><?php echo $vendedor->getEmail(); ?></td>
-                    <td><?php echo $vendedor->getUsuario(); ?></td>
-                    <td><?php echo $vendedor->getTelefone(); ?></td>
-                    <td><?php echo $vendedor->getCEP(); ?></td>
-                    <td><?php echo $vendedor->getUF(); ?></td>
-                    <td><?php echo $vendedor->getCidade(); ?></td>
-                    <td><?php echo $vendedor->getBairro(); ?></td>
-                    <td><?php echo $vendedor->getLogradouro(); ?></td>
-                    <td><?php echo $vendedor->getComplemento(); ?></td>
-                    <td><?php echo $vendedor->getNumero(); ?></td>
-                    <td><?php echo $vendedor->getStatus(); ?></td>
+                    <th scope="row"><?php echo $cliente->getId(); ?></th>
+                    <td><?php echo $cliente->getNome(); ?></td>
+                    <td><?php echo $cliente->getEmail(); ?></td>
+                    <td><?php echo $cliente->getTelefone(); ?></td>
+                    <td><?php echo $cliente->getCEP(); ?></td>
+                    <td><?php echo $cliente->getUF(); ?></td>
+                    <td><?php echo $cliente->getCidade(); ?></td>
+                    <td><?php echo $cliente->getBairro(); ?></td>
+                    <td><?php echo $cliente->getLogradouro(); ?></td>
+                    <td><?php echo $cliente->getComplemento(); ?></td>
+                    <td><?php echo $cliente->getNumero(); ?></td>
+                    <td><?php echo $cliente->getStatus(); ?></td>
                     <td>
-                        <a href="http://<?php echo APP_HOST; ?>/vendedor/edicao/<?php echo $vendedor->getId(); ?>" class="btn btn-info btn-sm">Editar</a>
-                        <a href="http://<?php echo APP_HOST; ?>/vendedor/exclusao/<?php echo $vendedor->getId(); ?>" class="btn btn-danger btn-sm">Excluir</a>
+                        <a href="http://<?php echo APP_HOST; ?>/cliente/edicao/<?php echo $cliente->getId(); ?>" class="btn btn-info btn-sm">Editar</a>
+                        <a href="http://<?php echo APP_HOST; ?>/cliente/exclusao/<?php echo $cliente->getId(); ?>" class="btn btn-danger btn-sm">Excluir</a>
                     </td>
                 </tr>
         <?php

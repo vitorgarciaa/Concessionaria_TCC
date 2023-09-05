@@ -82,9 +82,9 @@ class CarroController extends Controller
 
             for ($cont=0; $cont < $qtdImagens; $cont++) { 
                 $extensao = strtolower(substr($imagens['name'][$cont], -4)); // PEGA A EXTENSÃO E DEIXA TUDO MINUSCULO
-                $novoNome = md5(time()) . $extensao; //CRIPTOGRAFA PARA NÃO TER NOMES IGUAIS
+                $novoNome = md5(time()) . $imagens['size'][$cont] . $extensao; //CRIPTOGRAFA PARA NÃO TER NOMES IGUAIS
                 $diretorio =  "C:\\xampp\htdocs\\concessionaria_mvc\App\Views\imagens\uploads\\";
-                
+
                 move_uploaded_file($imagens['tmp_name'][$cont], $diretorio . $novoNome); //FAZ O UPLOAD
                 
                 $imagemDAO = new ImagemDAO();
@@ -94,7 +94,7 @@ class CarroController extends Controller
 
                 $imagem->setNome($novoNome);
                 $imagem->setId_carro($carro[0]->getId());
-               
+
                 $imagemDAO->salvar($imagem);
             }
         }

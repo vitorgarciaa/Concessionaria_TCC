@@ -23,7 +23,7 @@ class ClienteDAO extends BaseDAO{
         return false;
     }
 
-    //FUNÇÃO PARA SALVAR OS CARROS
+    //FUNÇÃO PARA SALVAR OS CLIENTES
     public function salvar(Cliente $cliente){
         try {
             $nome = $cliente->getNome();
@@ -103,7 +103,7 @@ class ClienteDAO extends BaseDAO{
         }
     }
 
-    //FUNÇÃO PARA EXCLUIR OS CARROS
+    //FUNÇÃO PARA EXCLUIR OS CLIENTES
     public function excluir(Cliente $cliente)
     {
         try {

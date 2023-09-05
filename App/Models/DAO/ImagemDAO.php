@@ -78,5 +78,14 @@ class ImagemDAO extends BaseDAO{
             throw new \Exception("Erro ao deletar", 500);
         }
     }
+
+    //FUNÇÃO ADICIONAL
+    public function listarPorCarro($id_carro){
+        $resultado = $this->select(
+            "SELECT * FROM imagem WHERE id_carro = $id_carro"
+        );
+
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Imagem::class);
+    }
 }
 ?>

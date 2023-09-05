@@ -5,7 +5,7 @@ use App\Models\Entidades\Vendedor;
 
 class VendedorDAO extends BaseDAO{
 
-    //FUNÇÃO PARA LISTAR OS CLIENTES
+    //FUNÇÃO PARA LISTAR OS VENDEDORES
     public function listar($id = null){
         if($id){
             $resultado = $this->select(
@@ -23,7 +23,7 @@ class VendedorDAO extends BaseDAO{
         return false;
     }
 
-    //FUNÇÃO PARA SALVAR OS CARROS
+    //FUNÇÃO PARA SALVAR OS VENDEDORES
     public function salvar(Vendedor $vendedor){
         try {
             $nome = $vendedor->getNome();
@@ -38,9 +38,11 @@ class VendedorDAO extends BaseDAO{
             $logradouro  = $vendedor->getLogradouro();
             $complemento  = $vendedor->getComplemento();
             $numero  = $vendedor->getNumero();
+            $usuario  = $vendedor->getUsuario();
+            $senha  = $vendedor->getSenha();
             return $this->insert(
                 'vendedor',
-                ":nome, :telefone, :email, :cpf, :status, :cep, :uf, :cidade, :bairro, :logradouro, :complemento, :numero",
+                ":nome, :senha, :usuario, :telefone, :email, :cpf, :status, :cep, :uf, :cidade, :bairro, :logradouro, :complemento, :numero",
                 [
                     ':nome' => $nome,
                     ':telefone' => $telefone,
@@ -54,6 +56,8 @@ class VendedorDAO extends BaseDAO{
                     ':logradouro' => $logradouro,
                     ':complemento' => $complemento,
                     ':numero' => $numero,
+                    ':usuario' =>$usuario,
+                    ':senha' =>$senha,
 
                 ]
             );
@@ -62,7 +66,7 @@ class VendedorDAO extends BaseDAO{
         }
     }
 
-    //FUNÇÃO PARA ATUALIZAR OS CLIENTES
+    //FUNÇÃO PARA ATUALIZAR OS VENDEDOR
     public function atualizar(Vendedor $vendedor){
         try {
             $id = $vendedor->getId();
@@ -78,10 +82,13 @@ class VendedorDAO extends BaseDAO{
             $logradouro  = $vendedor->getLogradouro();
             $complemento  = $vendedor->getComplemento();
             $numero  = $vendedor->getNumero();
+            $usuario  = $vendedor->getUsuario();
+            $senha  = $vendedor->getSenha();
             return $this->update(
                 'vendedor',
-                "nome = :nome, telefone = :telefone, email = :email, cpf = :cpf, status = :status cep = :cep, uf = :uf, cidade = :cidade, bairro = :bairro, logradouro = :logradouro,complemento = :complemento,numero = :numero",
+                "id = :id, nome = :nome, usuario = :usuario, senha = :senha, telefone = :telefone, email = :email, cpf = :cpf, status = :status, cep = :cep, uf = :uf, cidade = :cidade, bairro = :bairro, logradouro = :logradouro,complemento = :complemento,numero = :numero",
                     [
+                        ':id' => $id,
                         ':nome' => $nome,
                         ':telefone' => $telefone,
                         ':email' => $email,
@@ -94,6 +101,8 @@ class VendedorDAO extends BaseDAO{
                         ':logradouro' => $logradouro,
                         ':complemento' => $complemento,
                         ':numero' => $numero,
+                        ':usuario' =>$usuario,
+                        ':senha' =>$senha,
                     ],
                     "id = :id"
             );
@@ -103,13 +112,13 @@ class VendedorDAO extends BaseDAO{
         }
     }
 
-    //FUNÇÃO PARA EXCLUIR OS CARROS
+    //FUNÇÃO PARA EXCLUIR OS VENDEDORES
     public function excluir(Vendedor $vendedor)
     {
         try {
             $id = $vendedor->getId();
 
-            return $this->delete('cliente', $id);
+            return $this->delete('vendedor', $id);
 
         } catch (\Exception $e) {
             throw new \Exception("Erro ao deletar", 500);

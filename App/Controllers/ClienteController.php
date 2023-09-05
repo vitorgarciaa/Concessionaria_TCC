@@ -65,4 +65,109 @@ class ClienteController extends Controller
         $this->redirect('/cliente/cadastro');   
     }
 
+    public function edicao($params){
+        $idCliente = $params[0];
+
+        $clienteDAO = new ClienteDAO();
+
+        $cliente = $clienteDAO->listar($idCliente);
+
+        if (!$cliente) {
+            Sessao::gravaMensagem("Cliente Inexistente!");
+            $this->redirect('/cliente/pesquisar');
+        }
+
+        self::setViewParam('cliente', $cliente);
+
+        $this->render('/cliente/editar');
+
+        Sessao::limpaMensagem();
+    }
+
+    public function pesquisar()
+    {
+        $clienteDAO = new ClienteDAO();
+        self::setViewParam('cliente', $clienteDAO->listar());
+
+        $this->render('cliente/pesquisar');
+    }
+
+    public function atualizar(){
+        
+        $senha = $_POST['senha'];
+        $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
+
+        $cliente = new Cliente();
+        $cliente->setId($_POST['id']);
+        $cliente->setNome($_POST['nome']);
+        $cliente->setEmail($_POST['email']);
+        $cliente->setTelefone($_POST['telefone']);
+        $cliente->setStatus($_POST['status']);
+        $cliente->setCpf($_POST['cpf']);
+        $cliente->setCep($_POST['cep']);
+        $cliente->setUf($_POST['uf']);
+        $cliente->setCidade($_POST['cidade']);
+        $cliente->setBairro($_POST['bairro']);
+        $cliente->setLogradouro($_POST['logradouro']);
+        $cliente->setComplemento($_POST['complemento']);
+        $cliente->setNumero($_POST['numero']);
+        Sessao::gravaFormulario($_POST);
+
+        $ClienteValidador = new ClienteValidador();
+        $resultadoValidacao = $ClienteValidador->validar($cliente);
+
+        if ($resultadoValidacao->getErros()) {
+            Sessao::gravaErro($resultadoValidacao->getErros());
+            $this->redirect('/cliente/edicao/'. $_POST['id']);
+        }
+
+        $clienteDAO = new ClienteDAO();
+
+        $clienteDAO->atualizar($cliente);
+
+        Sessao::limpaFormulario();
+        Sessao::limpaMensagem();
+        Sessao::limpaErro();
+
+        Sessao::gravaMensagem("Informações atualizadas com sucesso!");
+        $this->redirect('/cliente/edicao/' . $_POST['id']);
+    }
+
+    public function exclusao($params)
+    {
+        $idCliente = $params[0];
+
+        $clienteDAO = new ClienteDAO();
+
+        $cliente = $clienteDAO->listar($idCliente);
+
+        if (!$cliente) {
+            Sessao::gravaMensagem("Cliente inexistente");
+            $this->redirect('/cliente/pesquisar');
+        }
+
+        self::setViewParam('cliente', $cliente);
+
+        $this->render('/cliente/exclusao');
+
+        Sessao::limpaMensagem();
+    }
+
+    public function excluir(){
+        $cliente = new Cliente();
+        $cliente->setId($_POST['id']);
+
+        $clienteDAO = new ClienteDAO();
+
+        if (!$clienteDAO->excluir($cliente)) {
+            Sessao::gravaMensagem("Cliente inexistente");
+            $this->redirect('/cliente/pesquisar');
+        }
+
+        Sessao::gravaMensagem("Cliente excluído com sucesso!");
+
+        $this->redirect('/cliente/pesquisar');
+    }
+
+
 }
