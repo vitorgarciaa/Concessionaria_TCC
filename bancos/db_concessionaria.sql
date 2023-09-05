@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 09/08/2023 às 18:26
+-- Tempo de geração: 31/08/2023 às 21:54
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -30,16 +30,37 @@ SET time_zone = "+00:00";
 CREATE TABLE `carro` (
   `id` int(11) NOT NULL,
   `id_modelo` int(11) NOT NULL,
-  `ano` int(11) NOT NULL,
+  `ano_fabricacao` year(4) NOT NULL,
   `cor` varchar(50) NOT NULL,
   `preco` decimal(10,2) NOT NULL,
   `quilometragem` int(11) NOT NULL,
   `modelo_direcao` varchar(50) NOT NULL,
-  `modelo_cambio` varchar(50) NOT NULL,
+  `modelo_transmissao` varchar(50) NOT NULL,
   `placa` varchar(12) NOT NULL,
   `observacoes` varchar(255) NOT NULL,
-  `disponibilidade` varchar(50) NOT NULL
+  `disponibilidade` varchar(50) NOT NULL,
+  `tipo_freio` varchar(15) NOT NULL,
+  `motor` varchar(15) NOT NULL,
+  `tipo_combustivel` varchar(15) NOT NULL,
+  `tipo_tracao` varchar(15) NOT NULL,
+  `ano_modelo` year(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `carro`
+--
+
+INSERT INTO `carro` (`id`, `id_modelo`, `ano_fabricacao`, `cor`, `preco`, `quilometragem`, `modelo_direcao`, `modelo_transmissao`, `placa`, `observacoes`, `disponibilidade`, `tipo_freio`, `motor`, `tipo_combustivel`, `tipo_tracao`, `ano_modelo`) VALUES
+(1, 1, '1994', 'Branco', 22000.00, 0, 'Manual', 'Transmissão Manual', '', 'Carro japonês do gabriel', 'Disponível', 'ABS', 'VTEC - 1.6', 'Álcool', 'Dianteira', '1995'),
+(2, 1, '2023', 'Vermelha', 25000.00, 0, 'Manual', 'Câmbio Manual', '', 'carro muito bom ', 'Indisponível', 'ABS', '2.0 Turbo', 'Álcool', 'Dianteira', '2024'),
+(3, 2, '2023', 'Branco', 95000.00, 0, 'Elétrica', 'Câmbio Automático', '', '', 'Reservado', 'ABS', '2.0 Turbo', 'Flex', 'Dianteira', '2023'),
+(6, 2, '2023', 'Branco', 12541.24, 0, 'Manual', 'Transmissão Manual', '', 'Top! ', 'Disponível', 'ABS', '2.0 Turbo', 'Álcool', 'Traseira', '2023'),
+(7, 2, '2023', 'Branco', 0.00, 0, 'Manual', 'Transmissão Automático', '', '', 'Disponível', 'ABS', '2', 'Álcool', 'Traseira', '2023'),
+(8, 1, '2023', 'Branco', 22102.55, 0, 'Elétrica', 'Transmissão Manual', '', 'Carro Japonês muito foda', 'Disponível', 'a Disco', 'VTEC - 1.6', 'Diesel', 'Dianteira', '2023'),
+(10, 3, '2023', 'Branco', 250000.00, 0, 'Hidráulica', 'Transmissão Manual', '', 'Carro top, novim', 'Disponível', 'ABS', 'VTEC - 1.6', 'Flex', '4x4', '2023'),
+(11, 6, '2023', 'Branco', 190800.00, 0, 'Hidráulica', 'Transmissão Automático', '', '', 'Disponível', 'ABS', '2.8 Bi-Turbo', 'Flex', 'Dianteira', '2024'),
+(12, 1, '2027', 'vermelho', 1111.11, 0, 'Manual', '', '', '111111', 'Disponível', 'ABS', 'VTEC - 1.6', 'Álcool', 'Dianteira', '2027'),
+(13, 1, '2023', 'Branco', 111111.11, 0, 'Manual', 'Transmissão Manual', '', '12313123', 'Disponível', 'ABS', '2.0 Turbo', 'Álcool', 'Traseira', '2023');
 
 -- --------------------------------------------------------
 
@@ -52,9 +73,24 @@ CREATE TABLE `cliente` (
   `nome` varchar(100) NOT NULL,
   `telefone` varchar(20) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `cpf` int(11) NOT NULL,
-  `endereco` varchar(255) NOT NULL
+  `cpf` char(15) NOT NULL,
+  `status` varchar(12) NOT NULL,
+  `cep` varchar(10) DEFAULT NULL,
+  `uf` varchar(2) DEFAULT NULL,
+  `cidade` varchar(255) DEFAULT NULL,
+  `bairro` varchar(255) DEFAULT NULL,
+  `logradouro` varchar(255) DEFAULT NULL,
+  `complemento` varchar(255) DEFAULT NULL,
+  `numero` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `cliente`
+--
+
+INSERT INTO `cliente` (`id`, `nome`, `telefone`, `email`, `cpf`, `status`, `cep`, `uf`, `cidade`, `bairro`, `logradouro`, `complemento`, `numero`) VALUES
+(1, 'Milenio Rocha', '(44) 99809-8945', 'milenio.rocha@gazin.com.br', '127.984.059-55', 'Ativo', '79100580', 'MS', 'Campo Grande', 'Santo Antônio', 'Rua Ministro Azevedo', 'apartamento 04', '69'),
+(2, 'Milenio da Rocha Marques', '(44) 99829-7095', 'milenio.rocha@gazin.com.br', '078.042.089-60', 'Ativo', '87485000', 'PR', 'Douradina', 'Centro', 'Rua Joao Ramalho', 'Casa', '245');
 
 -- --------------------------------------------------------
 
@@ -64,12 +100,33 @@ CREATE TABLE `cliente` (
 
 CREATE TABLE `compra` (
   `id` int(11) NOT NULL,
-  `id_carro` int(11) DEFAULT NULL,
-  `id_cliente` int(11) DEFAULT NULL,
-  `id_vendedor` int(11) DEFAULT NULL,
-  `data_compra` date DEFAULT NULL,
-  `preco_compra` decimal(10,2) DEFAULT NULL
+  `id_carro` int(11) NOT NULL,
+  `id_cliente` int(11) NOT NULL,
+  `id_vendedor` int(11) NOT NULL,
+  `data_compra` datetime NOT NULL DEFAULT current_timestamp(),
+  `preco_compra` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `imagem`
+--
+
+CREATE TABLE `imagem` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(50) NOT NULL,
+  `id_carro` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `imagem`
+--
+
+INSERT INTO `imagem` (`id`, `nome`, `id_carro`) VALUES
+(1, 'a283f014382e64531a9f330a555d8eefjpeg', 13),
+(2, 'a283f014382e64531a9f330a555d8eef.jpg', 13),
+(3, 'a283f014382e64531a9f330a555d8eefjpeg', 13);
 
 -- --------------------------------------------------------
 
@@ -81,6 +138,17 @@ CREATE TABLE `marca` (
   `id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `marca`
+--
+
+INSERT INTO `marca` (`id`, `nome`) VALUES
+(1, 'Honda'),
+(2, 'Nissan'),
+(3, 'Chevrolet'),
+(4, 'Chevrolet'),
+(5, 'Volkswagem');
 
 -- --------------------------------------------------------
 
@@ -94,6 +162,18 @@ CREATE TABLE `modelo` (
   `id_marca` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `modelo`
+--
+
+INSERT INTO `modelo` (`id`, `nome`, `id_marca`) VALUES
+(1, 'Civic', 1),
+(2, 'Sentra', 2),
+(3, 'Type R', 1),
+(4, '350z', 2),
+(5, '370z', 2),
+(6, 'Golf MK 7.5R', 5);
+
 -- --------------------------------------------------------
 
 --
@@ -105,7 +185,7 @@ CREATE TABLE `venda` (
   `id_carro` int(11) DEFAULT NULL,
   `id_cliente` int(11) DEFAULT NULL,
   `id_vendedor` int(11) DEFAULT NULL,
-  `data_venda` date DEFAULT NULL,
+  `data_venda` datetime NOT NULL DEFAULT current_timestamp(),
   `preco_venda` decimal(10,2) DEFAULT NULL,
   `desconto` decimal(10,2) NOT NULL,
   `valor_total` decimal(10,2) NOT NULL,
@@ -122,8 +202,32 @@ CREATE TABLE `vendedor` (
   `id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `telefone` varchar(20) NOT NULL,
-  `email` varchar(100) NOT NULL
+  `email` varchar(100) NOT NULL,
+  `cpf` char(15) NOT NULL,
+  `status` varchar(12) NOT NULL,
+  `cep` varchar(10) DEFAULT NULL,
+  `uf` varchar(2) DEFAULT NULL,
+  `cidade` varchar(255) DEFAULT NULL,
+  `bairro` varchar(255) DEFAULT NULL,
+  `logradouro` varchar(255) DEFAULT NULL,
+  `complemento` varchar(255) DEFAULT NULL,
+  `numero` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `vendedor`
+--
+
+INSERT INTO `vendedor` (`id`, `nome`, `telefone`, `email`, `cpf`, `status`, `cep`, `uf`, `cidade`, `bairro`, `logradouro`, `complemento`, `numero`) VALUES
+(2, 'Vitor Garcia', '(44) 99803-5394', 'vitor.garcia@gazin.com.br', '127984', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 'Vitor Garcia', '(44) 99803-5394', 'vitor.garcia@gazin.com.br', '127.984.059-55', 'Selecione o ', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'Vitor Garcia', '(44) 99803-5394', 'vitor.garcia@gazin.com.br', '127.984.059-55', 'Ativo', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 'Vitor Garcia', '(44) 99803-5394', 'vitor.garcia@gazin.com.br', '127.984.059-55', 'Ativo', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 'Vitor Garcia', '(44) 99803-5394', 'vitor.garcia@gazin.com.br', '127.984.059-55', 'Ativo', '04027060', '', '', 'Indianópolis', NULL, 'apartamento 04', '69'),
+(7, 'Vitor Garcia', '(44) 99803-5394', 'vitor.garcia@gazin.com.br', '127.984.059-55', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', NULL, 'apartamento 04', '69'),
+(8, 'Vitor Emanuel Longhi Garcia', '(44) 99803-5394', 'vitor.garcia@gazin.com.br', '127.984.059-55', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'undefined', 'apartamento 04', '69'),
+(9, 'Vitor Emanuel Longhi Garcia', '(44) 99803-5394', 'vitor.garcia@gazin.com.br', '127.984.059-55', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '69'),
+(10, 'Vitor Garcia', '(44) 99803-5394', 'gazin@gazin.com.br', '127.984.059-55', 'Ativo', '79100580', 'MS', 'Campo Grande', 'Santo Antônio', 'Rua Ministro Azevedo', 'Casa', '696');
 
 --
 -- Índices para tabelas despejadas
@@ -133,8 +237,7 @@ CREATE TABLE `vendedor` (
 -- Índices de tabela `carro`
 --
 ALTER TABLE `carro`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_modelo` (`id_modelo`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices de tabela `cliente`
@@ -150,6 +253,13 @@ ALTER TABLE `compra`
   ADD KEY `id_carro` (`id_carro`),
   ADD KEY `id_cliente` (`id_cliente`),
   ADD KEY `id_vendedor` (`id_vendedor`);
+
+--
+-- Índices de tabela `imagem`
+--
+ALTER TABLE `imagem`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_carro` (`id_carro`);
 
 --
 -- Índices de tabela `marca`
@@ -180,14 +290,60 @@ ALTER TABLE `vendedor`
   ADD PRIMARY KEY (`id`);
 
 --
--- Restrições para tabelas despejadas
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
--- Restrições para tabelas `carro`
+-- AUTO_INCREMENT de tabela `carro`
 --
 ALTER TABLE `carro`
-  ADD CONSTRAINT `carro_ibfk_1` FOREIGN KEY (`id_modelo`) REFERENCES `modelo` (`id`);
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de tabela `cliente`
+--
+ALTER TABLE `cliente`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `compra`
+--
+ALTER TABLE `compra`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `imagem`
+--
+ALTER TABLE `imagem`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `marca`
+--
+ALTER TABLE `marca`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de tabela `modelo`
+--
+ALTER TABLE `modelo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de tabela `venda`
+--
+ALTER TABLE `venda`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `vendedor`
+--
+ALTER TABLE `vendedor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- Restrições para tabelas despejadas
+--
 
 --
 -- Restrições para tabelas `compra`
@@ -196,6 +352,12 @@ ALTER TABLE `compra`
   ADD CONSTRAINT `compra_ibfk_1` FOREIGN KEY (`id_carro`) REFERENCES `carro` (`id`),
   ADD CONSTRAINT `compra_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id`),
   ADD CONSTRAINT `compra_ibfk_3` FOREIGN KEY (`id_vendedor`) REFERENCES `vendedor` (`id`);
+
+--
+-- Restrições para tabelas `imagem`
+--
+ALTER TABLE `imagem`
+  ADD CONSTRAINT `imagem_ibfk_1` FOREIGN KEY (`id_carro`) REFERENCES `carro` (`id`);
 
 --
 -- Restrições para tabelas `modelo`
