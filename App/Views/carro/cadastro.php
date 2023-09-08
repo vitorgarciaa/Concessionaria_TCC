@@ -2,6 +2,10 @@
 use App\Models\DAO\ModeloDAO;
 $modeloDAO = new ModeloDAO;
 
+session_start();
+
+if (isset($_SESSION['login'])) {
+
 ?>
 <script>
       
@@ -176,6 +180,28 @@ $modeloDAO = new ModeloDAO;
       </div>
 
       <div class="col-md-2">
+        <label for="inputQuilometragem" class="form-label">Quilometragem</label>
+        <select class="form-select" aria-label="Quilometragem" id="selectQuilometragem" name="quilometragem" onchange="toggleQuilometragemInput()">
+            <option value="0">Novo</option>
+            <option>Semi-Novo</option>
+        </select>
+        <input type="number" class="form-control" id="inputQuilometragem" name="quilometragem" style="display: none;" placeholder="Digite a Quilometragem">
+    </div>
+
+    <script>
+        function toggleQuilometragemInput() {
+            var selectElement = document.getElementById("selectQuilometragem");
+            var inputElement = document.getElementById("inputQuilometragem");
+
+            if (selectElement.value === "0") {
+                inputElement.style.display = "none";
+            } else {
+                inputElement.style.display = "block";
+            }
+        }
+    </script>
+
+      <div class="col-md-2">
           <label for="inputPreco" class="form-label">Preço</label>
           <div class="input-group mb-3">
               <div class="input-group-prepend">
@@ -341,3 +367,19 @@ $modeloDAO = new ModeloDAO;
     });
 
 </script>
+
+<?php
+
+} else { ?>
+<br>
+    <div class="container">
+        <h2> FAÇA LOGIN PARA CONTINUAR! </h2>
+        <a href="http://<?php echo APP_HOST; ?>/login/index" class="btn btn-dark">FAZER LOGIN</a>
+            <p>
+                ou <a href="http://<?php echo APP_HOST;?>/">Voltar para Página Inicial</a>
+            </p>
+    </div>
+<br>
+<?php
+    }
+?>

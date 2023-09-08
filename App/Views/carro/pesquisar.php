@@ -1,6 +1,10 @@
 <?php
 use App\Models\DAO\ModeloDAO;
 use App\Models\DAO\MarcaDAO;
+
+session_start();
+
+if (isset($_SESSION['login'])) {
 ?>
 
 <div class="container-fluid">
@@ -101,4 +105,20 @@ use App\Models\DAO\MarcaDAO;
 
 
 </div>
+
+<?php
+
+} else { ?>
+<br>
+    <div class="container">
+        <h2> FAÇA LOGIN PARA CONTINUAR! </h2>
+        <a href="http://<?php echo APP_HOST; ?>/login/index" class="btn btn-dark">FAZER LOGIN</a>
+            <p>
+                ou <a href="http://<?php echo APP_HOST;?>/">Voltar para Página Inicial</a>
+            </p>
+    </div>
+<br>
+<?php
+    }
+?>
 <br>

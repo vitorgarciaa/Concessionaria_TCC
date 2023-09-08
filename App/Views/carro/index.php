@@ -2,8 +2,6 @@
 use App\Models\DAO\ModeloDAO;
 use App\Models\DAO\MarcaDAO;
 use App\Models\DAO\ImagemDAO;
-
-
 ?>
 
 <div class="container">
@@ -58,3 +56,6 @@ use App\Models\DAO\ImagemDAO;
 
 </div>
 <br>
+<?php
+
+?>

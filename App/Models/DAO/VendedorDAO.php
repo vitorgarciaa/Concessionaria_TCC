@@ -124,5 +124,33 @@ class VendedorDAO extends BaseDAO{
             throw new \Exception("Erro ao deletar", 500);
         }
     }
+
+    public function logar($email, $senha){
+        try {
+            $resultado = $this->select(
+            "SELECT * FROM vendedor WHERE email = '{$email}' AND senha = '{$senha}' OR usuario = '{$email}' AND senha = '{$senha}'"
+            );
+
+            $resultado = $resultado->fetchAll(\PDO::FETCH_ASSOC);
+
+            if (count($resultado) > 0) {
+                $arrayVendedor = $resultado[0];
+                $idVendedor = $arrayVendedor['id'];
+                $nomeVendedor = $arrayVendedor['nome'];
+                session_start();
+                $_SESSION['login'] = $idVendedor;
+                $_SESSION['nome'] = $nomeVendedor;
+
+            }else{
+                echo "
+                    <div class='alert alert-danger' role='alert'>
+                        Usuário ou senha incorreto!
+                    </div>
+                ";
+            }
+        } catch (\Exception $e) {
+            throw new \Exception("Erro ao logar ", 500);
+        }
+    }
 }
 ?>

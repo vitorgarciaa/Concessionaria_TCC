@@ -6,6 +6,10 @@ $cliente = $viewVar['cliente'];
 $clienteDAO = new ClienteDAO();
 $cliente = $clienteDAO->listar($cliente->getId());
 
+session_start();
+
+if (isset($_SESSION['login'])) {
+
 ?>
 <div class="container">
     <br>
@@ -44,3 +48,19 @@ $cliente = $clienteDAO->listar($cliente->getId());
     <br>
     <br>
 </div>
+
+<?php
+
+} else { ?>
+<br>
+    <div class="container">
+        <h2> FAÇA LOGIN PARA CONTINUAR! </h2>
+        <a href="http://<?php echo APP_HOST; ?>/login/index" class="btn btn-dark">FAZER LOGIN</a>
+            <p>
+                ou <a href="http://<?php echo APP_HOST;?>/">Voltar para Página Inicial</a>
+            </p>
+    </div>
+<br>
+<?php
+    }
+?>

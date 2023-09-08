@@ -64,6 +64,19 @@
           </div>
     </div>
     </li>
+    <li class="nav-item">
+        <?php 
+              if(!isset($_SESSION['login'])){
+                ?>
+                  <a class="nav-link text-white" href="http://<?php echo APP_HOST; ?>/login/index">Entrar</a>
+                <?php 
+              }else{ 
+            ?>
+                  <a href="http://<?php echo APP_HOST; ?>/login/sair"class="nav-link text-white">Sair</a>
+                <?php 
+              } 
+            ?>
+        </li>
     </ul>
 
     <script>
@@ -83,6 +96,7 @@
         });
       });
     </script>
+    
 
   </div>
 </nav>
