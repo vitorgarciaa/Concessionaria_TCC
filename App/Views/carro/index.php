@@ -4,12 +4,12 @@ use App\Models\DAO\MarcaDAO;
 use App\Models\DAO\ImagemDAO;
 ?>
 
-<div class="container">
+<div class="container" style="margin-bottom: 60px;">
 <br>
 <h3>Lista de Carros</h3>
 <br>
 
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4" >
     <?php if (!count($viewVar['carro'])) { ?>
                 <div class="alert alert-info" role="alert">Nenhum carro encontrado!</div>
             <?php 
@@ -56,6 +56,3 @@ use App\Models\DAO\ImagemDAO;
 
 </div>
 <br>
-<?php
-
-?>

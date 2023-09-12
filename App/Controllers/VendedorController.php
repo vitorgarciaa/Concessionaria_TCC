@@ -105,7 +105,7 @@ class VendedorController extends Controller
 
         $vendedor = $vendedorDAO->listar($idVendedor);
 
-        
+
         if (!$vendedor) {
             Sessao::gravaMensagem("Vendedor inexistente");
             $this->redirect('/vendedor/pesquisar');
@@ -180,5 +180,6 @@ class VendedorController extends Controller
         $this->redirect('/vendedor/cadastro');   
         
     }
+    
 
 }

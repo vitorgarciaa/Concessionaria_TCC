@@ -5,7 +5,6 @@ session_start();
 if (isset($_SESSION['login'])) {
 ?>
 
-
 <script>
       
       $(document).ready(function(){

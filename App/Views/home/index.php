@@ -72,16 +72,21 @@ use App\Models\DAO\MarcaDAO;
 .carousel-control-prev,
 .carousel-control-next {
     opacity: 0.5;
-    color: red;
+
 }
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
     position: relative;
+    background-color: black;
 }
 
 .carousel-control-prev {
     left: -190px;
+}
+
+#carCarousel{
+    height: 500px;
 }
 
 .carousel-control-next {

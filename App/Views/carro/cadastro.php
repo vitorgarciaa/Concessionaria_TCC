@@ -2,10 +2,6 @@
 use App\Models\DAO\ModeloDAO;
 $modeloDAO = new ModeloDAO;
 
-session_start();
-
-if (isset($_SESSION['login'])) {
-
 ?>
 <script>
       
@@ -185,7 +181,7 @@ if (isset($_SESSION['login'])) {
             <option value="0">Novo</option>
             <option>Semi-Novo</option>
         </select>
-        <input type="number" class="form-control" id="inputQuilometragem" name="quilometragem" style="display: none;" placeholder="Digite a Quilometragem">
+        <input type="text" class="form-control" id="inputQuilometragem" name="quilometragem" style="display: none;" placeholder="Digite a Quilometragem">
     </div>
 
     <script>
@@ -367,19 +363,3 @@ if (isset($_SESSION['login'])) {
     });
 
 </script>
-
-<?php
-
-} else { ?>
-<br>
-    <div class="container">
-        <h2> FAÇA LOGIN PARA CONTINUAR! </h2>
-        <a href="http://<?php echo APP_HOST; ?>/login/index" class="btn btn-dark">FAZER LOGIN</a>
-            <p>
-                ou <a href="http://<?php echo APP_HOST;?>/">Voltar para Página Inicial</a>
-            </p>
-    </div>
-<br>
-<?php
-    }
-?>

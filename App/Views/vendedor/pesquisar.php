@@ -7,7 +7,7 @@ if (isset($_SESSION['login'])) {
 
 ?>
 
-<div class="container-fluid">
+<div class="container-fluid" style="margin-bottom: 60px;">
 <br>
 <h3>Lista de Vendedores</h3>
 <br>

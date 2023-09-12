@@ -56,6 +56,8 @@ class CarroController extends Controller
         $carro->setObservacoes($_POST['observacao']);
         $carro->setDisponibilidade($_POST['disponibilidade']);
         $carro->setMotor($_POST['motor']);
+        $carro->setQuilometragem($_POST['quilometragem']);
+        $carro->setPlaca($_POST['placa']);
 
         Sessao::gravaFormulario($_POST);
 
@@ -142,6 +144,8 @@ class CarroController extends Controller
         $carro->setObservacoes($_POST['observacao']);
         $carro->setDisponibilidade($_POST['disponibilidade']);
         $carro->setMotor($_POST['motor']);
+        $carro->setQuilometragem($_POST['quilometragem']);
+        $carro->setPlaca($_POST['placa']);
 
         Sessao::gravaFormulario($_POST);
 

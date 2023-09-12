@@ -6,6 +6,10 @@ $vendedor = $viewVar['vendedor'];
 $vendedorDAO = new VendedorDAO();
 $vendedor = $vendedorDAO->listar($vendedor->getId());
 
+session_start();
+
+if (isset($_SESSION['login'])) {
+
 ?>
 <div class="container">
     <br>
@@ -44,3 +48,19 @@ $vendedor = $vendedorDAO->listar($vendedor->getId());
     <br>
     <br>
 </div>
+
+<?php
+
+} else { ?>
+<br>
+    <div class="container">
+        <h2> FAÇA LOGIN PARA CONTINUAR! </h2>
+        <a href="http://<?php echo APP_HOST; ?>/login/index" class="btn btn-dark">FAZER LOGIN</a>
+            <p>
+                ou <a href="http://<?php echo APP_HOST;?>/">Voltar para Página Inicial</a>
+            </p>
+    </div>
+<br>
+<?php
+    }
+?>
