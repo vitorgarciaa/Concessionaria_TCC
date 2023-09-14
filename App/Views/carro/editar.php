@@ -174,6 +174,25 @@ if (isset($_SESSION['login'])) {
           </div>
       </div>
 
+      <?php
+
+      if ($carro->getQuilometragem() != 0) {
+      ?>
+      <div class="col-md-2">
+        <label for="inputQuilometragem" class="form-label">Quilometragem</label>
+        
+        <input type="text" class="form-control" id="inputQuilometragem" name="quilometragem"  value="<?php echo $carro->getQuilometragem(); ?>">
+    </div>
+    <div class="col-md-2">
+        <label for="inputPlaca" class="form-label">Placa</label>
+        
+        <input type="text" class="form-control" id="inputPlaca" name="placa" value="<?php echo $carro->getPlaca(); ?>">
+    </div>
+
+
+<?php    }
+            ?>  
+
       <div class="col-md-6">
         <label for="inputObservacao" class="form-label">Observaoces</label>
         <textarea type="textarea" class="form-control" id="inputObservacao" name="observacao"><?php echo $carro->getObservacoes(); ?></textarea>
@@ -196,7 +215,7 @@ if (isset($_SESSION['login'])) {
 
     <div class="col-md-12 d-flex justify-content-end">
       <button type="submit" class="btn btn-success">Atualizar</button>&nbsp&nbsp
-      <button type="button" class="btn btn-danger">Cancelar</button>
+      <a href="http://<?php echo APP_HOST; ?>/carro/pesquisar" class="btn btn-danger btn-sm">Cancelar</a>
    </div>
 
       </form>

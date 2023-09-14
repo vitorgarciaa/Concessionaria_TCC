@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 31/08/2023 às 21:54
+-- Tempo de geração: 14/09/2023 às 21:36
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -51,16 +51,8 @@ CREATE TABLE `carro` (
 --
 
 INSERT INTO `carro` (`id`, `id_modelo`, `ano_fabricacao`, `cor`, `preco`, `quilometragem`, `modelo_direcao`, `modelo_transmissao`, `placa`, `observacoes`, `disponibilidade`, `tipo_freio`, `motor`, `tipo_combustivel`, `tipo_tracao`, `ano_modelo`) VALUES
-(1, 1, '1994', 'Branco', 22000.00, 0, 'Manual', 'Transmissão Manual', '', 'Carro japonês do gabriel', 'Disponível', 'ABS', 'VTEC - 1.6', 'Álcool', 'Dianteira', '1995'),
-(2, 1, '2023', 'Vermelha', 25000.00, 0, 'Manual', 'Câmbio Manual', '', 'carro muito bom ', 'Indisponível', 'ABS', '2.0 Turbo', 'Álcool', 'Dianteira', '2024'),
-(3, 2, '2023', 'Branco', 95000.00, 0, 'Elétrica', 'Câmbio Automático', '', '', 'Reservado', 'ABS', '2.0 Turbo', 'Flex', 'Dianteira', '2023'),
-(6, 2, '2023', 'Branco', 12541.24, 0, 'Manual', 'Transmissão Manual', '', 'Top! ', 'Disponível', 'ABS', '2.0 Turbo', 'Álcool', 'Traseira', '2023'),
-(7, 2, '2023', 'Branco', 0.00, 0, 'Manual', 'Transmissão Automático', '', '', 'Disponível', 'ABS', '2', 'Álcool', 'Traseira', '2023'),
-(8, 1, '2023', 'Branco', 22102.55, 0, 'Elétrica', 'Transmissão Manual', '', 'Carro Japonês muito foda', 'Disponível', 'a Disco', 'VTEC - 1.6', 'Diesel', 'Dianteira', '2023'),
-(10, 3, '2023', 'Branco', 250000.00, 0, 'Hidráulica', 'Transmissão Manual', '', 'Carro top, novim', 'Disponível', 'ABS', 'VTEC - 1.6', 'Flex', '4x4', '2023'),
-(11, 6, '2023', 'Branco', 190800.00, 0, 'Hidráulica', 'Transmissão Automático', '', '', 'Disponível', 'ABS', '2.8 Bi-Turbo', 'Flex', 'Dianteira', '2024'),
-(12, 1, '2027', 'vermelho', 1111.11, 0, 'Manual', '', '', '111111', 'Disponível', 'ABS', 'VTEC - 1.6', 'Álcool', 'Dianteira', '2027'),
-(13, 1, '2023', 'Branco', 111111.11, 0, 'Manual', 'Transmissão Manual', '', '12313123', 'Disponível', 'ABS', '2.0 Turbo', 'Álcool', 'Traseira', '2023');
+(1, 1, '2023', 'Branco', 175444.44, 150, 'Manual', 'Transmissão Manual', 'AAA8A54', 'top', 'Disponível', 'ABS', 'VTEC - 1.6', 'Álcool', 'Traseira', '2023'),
+(2, 2, '2023', 'Preto', 250000.00, 0, 'Manual', 'Transmissão Manual', '', 'Melhor honda civic do mercado atual', 'Disponível', 'ABS', '2.0 Turbo', 'Álcool', 'Traseira', '2023');
 
 -- --------------------------------------------------------
 
@@ -89,8 +81,7 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`id`, `nome`, `telefone`, `email`, `cpf`, `status`, `cep`, `uf`, `cidade`, `bairro`, `logradouro`, `complemento`, `numero`) VALUES
-(1, 'Milenio Rocha', '(44) 99809-8945', 'milenio.rocha@gazin.com.br', '127.984.059-55', 'Ativo', '79100580', 'MS', 'Campo Grande', 'Santo Antônio', 'Rua Ministro Azevedo', 'apartamento 04', '69'),
-(2, 'Milenio da Rocha Marques', '(44) 99829-7095', 'milenio.rocha@gazin.com.br', '078.042.089-60', 'Ativo', '87485000', 'PR', 'Douradina', 'Centro', 'Rua Joao Ramalho', 'Casa', '245');
+(5, 'Vitor Garcia', '(44) 99803-5394', 'lvitor2424@gmail.com', '127.984.059-55', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'Casa', '212');
 
 -- --------------------------------------------------------
 
@@ -124,9 +115,12 @@ CREATE TABLE `imagem` (
 --
 
 INSERT INTO `imagem` (`id`, `nome`, `id_carro`) VALUES
-(1, 'a283f014382e64531a9f330a555d8eefjpeg', 13),
-(2, 'a283f014382e64531a9f330a555d8eef.jpg', 13),
-(3, 'a283f014382e64531a9f330a555d8eefjpeg', 13);
+(1, '63ea04b22fadbd8ed7a9bb8eb86c1fab192961.jpg', 1),
+(2, '63ea04b22fadbd8ed7a9bb8eb86c1fab203483.jpg', 1),
+(3, '63ea04b22fadbd8ed7a9bb8eb86c1fab203483.jpg', 1),
+(4, '3162987ce5f1fb392e138513af70cf2f38558.jpg', 2),
+(5, '3162987ce5f1fb392e138513af70cf2f39072.jpg', 2),
+(6, '3162987ce5f1fb392e138513af70cf2f41016.jpg', 2);
 
 -- --------------------------------------------------------
 
@@ -144,11 +138,8 @@ CREATE TABLE `marca` (
 --
 
 INSERT INTO `marca` (`id`, `nome`) VALUES
-(1, 'Honda'),
-(2, 'Nissan'),
-(3, 'Chevrolet'),
-(4, 'Chevrolet'),
-(5, 'Volkswagem');
+(1, 'Volkswagem'),
+(2, 'Honda');
 
 -- --------------------------------------------------------
 
@@ -167,12 +158,8 @@ CREATE TABLE `modelo` (
 --
 
 INSERT INTO `modelo` (`id`, `nome`, `id_marca`) VALUES
-(1, 'Civic', 1),
-(2, 'Sentra', 2),
-(3, 'Type R', 1),
-(4, '350z', 2),
-(5, '370z', 2),
-(6, 'Golf MK 7.5R', 5);
+(1, 'Golf MK 7.5R', 1),
+(2, 'Civic', 2);
 
 -- --------------------------------------------------------
 
@@ -211,23 +198,35 @@ CREATE TABLE `vendedor` (
   `bairro` varchar(255) DEFAULT NULL,
   `logradouro` varchar(255) DEFAULT NULL,
   `complemento` varchar(255) DEFAULT NULL,
-  `numero` varchar(10) DEFAULT NULL
+  `numero` varchar(10) DEFAULT NULL,
+  `usuario` varchar(50) NOT NULL,
+  `senha` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `vendedor`
 --
 
-INSERT INTO `vendedor` (`id`, `nome`, `telefone`, `email`, `cpf`, `status`, `cep`, `uf`, `cidade`, `bairro`, `logradouro`, `complemento`, `numero`) VALUES
-(2, 'Vitor Garcia', '(44) 99803-5394', 'vitor.garcia@gazin.com.br', '127984', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'Vitor Garcia', '(44) 99803-5394', 'vitor.garcia@gazin.com.br', '127.984.059-55', 'Selecione o ', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'Vitor Garcia', '(44) 99803-5394', 'vitor.garcia@gazin.com.br', '127.984.059-55', 'Ativo', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 'Vitor Garcia', '(44) 99803-5394', 'vitor.garcia@gazin.com.br', '127.984.059-55', 'Ativo', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(6, 'Vitor Garcia', '(44) 99803-5394', 'vitor.garcia@gazin.com.br', '127.984.059-55', 'Ativo', '04027060', '', '', 'Indianópolis', NULL, 'apartamento 04', '69'),
-(7, 'Vitor Garcia', '(44) 99803-5394', 'vitor.garcia@gazin.com.br', '127.984.059-55', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', NULL, 'apartamento 04', '69'),
-(8, 'Vitor Emanuel Longhi Garcia', '(44) 99803-5394', 'vitor.garcia@gazin.com.br', '127.984.059-55', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'undefined', 'apartamento 04', '69'),
-(9, 'Vitor Emanuel Longhi Garcia', '(44) 99803-5394', 'vitor.garcia@gazin.com.br', '127.984.059-55', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '69'),
-(10, 'Vitor Garcia', '(44) 99803-5394', 'gazin@gazin.com.br', '127.984.059-55', 'Ativo', '79100580', 'MS', 'Campo Grande', 'Santo Antônio', 'Rua Ministro Azevedo', 'Casa', '696');
+INSERT INTO `vendedor` (`id`, `nome`, `telefone`, `email`, `cpf`, `status`, `cep`, `uf`, `cidade`, `bairro`, `logradouro`, `complemento`, `numero`, `usuario`, `senha`) VALUES
+(9, 'Vitor Emanuel Longhi Garcia', '(44) 99803-5394', 'vitor.garcia@gazin.com.br', '127.984.059-55', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '69', '', ''),
+(10, 'Vitor Garcia', '(44) 99803-5394', 'gazin@gazin.com.br', '127.984.059-55', 'Ativo', '79100580', 'MS', 'Campo Grande', 'Santo Antônio', 'Rua Ministro Azevedo', 'Casa', '696', '', ''),
+(11, 'Jubileu', '(44) 98055-394', 'jubileo@gazin.com.br', '127.984.059-55', 'Ativo', '87485000', 'PR', 'Douradina', 'aa', 'aa', 'aa', '222', '', ''),
+(12, 'milenio', '(44) 98055-394', 'milenio.rocha@gazin.com.br', '127.984.059-55', 'Ativo', '87485000', '', '', 'aa', 'aa', 'aa', '222', '', ''),
+(13, 'milenio', '(44) 98055-394', 'milenio.rocha@gazin.com.br', '127.984.059-55', 'Ativo', '87485000', 'PR', 'Douradina', 'aaa', 'aa', 'aa', '222', 'milenio', ''),
+(14, 'milenio', '(44) 98055-394', 'milenio.rocha@gazin.com.br', '127.984.059-55', 'Ativo', '87485000', '', '', 'aaa', 'aa', 'aa', '222', 'aaa', '123asd'),
+(15, 'milenio', '(44) 98055-394', 'milenio.rocha@gazin.com.br', '127.984.059-55', 'Ativo', '87485000', '', '', 'aaa', 'aa', 'aa', '222', '1111', '123'),
+(16, 'Ariane', '(44) 99803-5394', 'ariane@gazin.com.br', '490.688.659-00', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '222', 'ariane', '123'),
+(17, 'Ariane', '(44) 99803-5394', 'ariane@gazin.com.br', '490.688.659-00', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '222', 'ariane', '123'),
+(18, 'joao', '(44) 99803-5394', 'joao@gazin.com.br', '127.984.059-55', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '666', 'joao', '1234'),
+(19, 'joao', '(44) 99803-5394', 'joao@gazin.com.br', '127.984.059-55', 'Ativo', '04027060', '', '', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '666', 'asdasd', '$2y$10$seepqaB1OLQYUoYKFYEoVu9f4dlYvUULdugFJWDNAzQrVBV/F4sr6'),
+(20, 'Cristiano de Sá', '(44) 99803-5394', 'cristiano.sa@gazin.com.br', '047.526.489-46', 'Ativo', '87485000', '', '', '', '', '', '', 'cristiano', '$2y$10$AZRzEwnRnmPkoVwqUG47GeKiPZIdulC18jH02hgTNKW2NTXpbxHLq'),
+(21, 'Cristiano de Sá', '(44) 99803-5394', 'cristiano.sa@gazin.com.br', '047.526.489-46', 'Ativo', '87485000', 'PR', 'Douradina', 'Santo Antônio', 'Rua Rubens Cardoso Vieira', 'Casa', '666', 'cristiano', '$2y$10$uOutRkR6gEanLWIwv2.HzuUae/gr5dOaw5XICaJ/VAH36iGjdT6oK'),
+(22, 'Ariane', '(44) 99803-5394', 'ariane@gazin.com.br', '490.688.659-00', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '222', 'ariane', '$2y$10$6xb3lUmM3ggnFiwmia/Nje4AtDUv5/4GddUv//YL7fK/.9gPU4jlq'),
+(23, 'Ariane````', '(44) 99803-5394', 'ariane@gazin.com.br', '490.688.659-00', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '222', 'ariane````', '$2y$10$zDpcLryMj5gHBX5lINuKSe.Mu/q8kTF6.UM8zbCJAY9kZE/PK2NL2'),
+(24, 'Ariane````', '(44) 99803-5394', 'ariane@gazin.com.br', '490.688.659-00', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '222', 'ariane````485', '$2y$10$4kuBM6M7BpDJfguvEig5q.5jfVRpCZj54arBF6TXLcDJ9NMh14E5.'),
+(25, 'Ariane````', '(44) 99803-5394', 'ariane@gazin.com.br', '490.688.659-00', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '222', 'ariane````485234234', '$2y$10$GuroZ8l3PTh2h9iM/tVqE.THHVZ6lt4WxrdcaBEo9Bim1smTOk5Nu'),
+(26, 'Ariane````', '(44) 99803-5394', 'ariane@gazin.com.br', '490.688.659-00', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '222', 'ariane````485234234rewr', '$2y$10$J.qiKzhh4kAe1FHNNoNZgeHj1fRMKL4bt3XeUzywdf2YqahfcHVry'),
+(27, 'Ariane````', '(44) 99803-5394', 'ariane@gazin.com.br', '490.688.659-00', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '222', 'ariane', '$2y$10$wxKBnU7jC7lLOrP0Ife2V.WX9tdawbxRQa8ZfdoCnRsnJngiiTd3K');
 
 --
 -- Índices para tabelas despejadas
@@ -297,13 +296,13 @@ ALTER TABLE `vendedor`
 -- AUTO_INCREMENT de tabela `carro`
 --
 ALTER TABLE `carro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `compra`
@@ -315,19 +314,19 @@ ALTER TABLE `compra`
 -- AUTO_INCREMENT de tabela `imagem`
 --
 ALTER TABLE `imagem`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `modelo`
 --
 ALTER TABLE `modelo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `venda`
@@ -339,7 +338,7 @@ ALTER TABLE `venda`
 -- AUTO_INCREMENT de tabela `vendedor`
 --
 ALTER TABLE `vendedor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Restrições para tabelas despejadas

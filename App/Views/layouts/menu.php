@@ -17,7 +17,7 @@
     margin-right: .1rem;
   }
 
-  .manutencao{
+  .manutencao {
     margin-top: 8px;
     text-decoration: none;
     margin-left: 3px;
@@ -39,6 +39,12 @@
           <a href="http://<?php echo APP_HOST; ?>/carro/index" class="nav-link text-white">Listar Carros</a>
         </li>
         <li class="nav-item">
+          <a href="http://<?php echo APP_HOST; ?>/compra/index" class="nav-link text-white">Painel de Compra</a>
+        </li>
+        <li class="nav-item">
+          <a href="http://<?php echo APP_HOST; ?>/venda/index" class="nav-link text-white">Painel de Vendas</a>
+        </li>
+        <li class="nav-item">
           <div class="dropdown">
             <a class="nav-item dropdown-toggle text-white manutencao" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Manutencao
@@ -52,33 +58,36 @@
                   <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/carro/pesquisar">Pesquisar Carro</a>
                 </div>
                 <div class="dropdown-submenu dropright">
-                <a class="dropdown-item dropdown-toggle" href="#">Pessoa</a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/cliente/cadastro">Cadastrar Cliente</a>
-                  <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/cliente/pesquisar">Pesquisar Cliente</a>
-                  <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/vendedor/cadastro">Cadastrar Vendedor</a>
-                  <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/vendedor/pesquisar">Pesquisar Vendedor</a>
+                  <a class="dropdown-item dropdown-toggle" href="#">Pessoa</a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/cliente/cadastro">Cadastrar Cliente</a>
+                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/cliente/pesquisar">Pesquisar Cliente</a>
+                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/vendedor/cadastro">Cadastrar Vendedor</a>
+                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/vendedor/pesquisar">Pesquisar Vendedor</a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-    </div>
-    </li>
-    <li class="nav-item">
-        <?php 
-              if(!isset($_SESSION['login'])){
-                ?>
-                  <a class="nav-link text-white" href="http://<?php echo APP_HOST; ?>/login/index">Entrar</a>
-                <?php 
-              }else{ 
-            ?>
-                  <a href="http://<?php echo APP_HOST; ?>/login/sair"class="nav-link text-white">Sair</a>
-                <?php 
-              } 
-            ?>
         </li>
-    </ul>
+    </div>
+    <div>
 
+      <li class="nav-item">
+        <?php
+        if (!isset($_SESSION['login'])) {
+        ?>
+          <a class="nav-link text-white" href="http://<?php echo APP_HOST; ?>/login/index">Entrar</a>
+        <?php
+        } else {
+        ?>
+          <a href="http://<?php echo APP_HOST; ?>/login/sair" class="nav-link text-white">Sair</a>
+        <?php
+        }
+        ?>
+      </li>
+      </ul>
+    </div>
     <script>
       $(document).ready(function() {
         $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
@@ -96,8 +105,4 @@
         });
       });
     </script>
-    
-
-  </div>
 </nav>
-

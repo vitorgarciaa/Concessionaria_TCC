@@ -182,17 +182,21 @@ $modeloDAO = new ModeloDAO;
             <option>Semi-Novo</option>
         </select>
         <input type="text" class="form-control" id="inputQuilometragem" name="quilometragem" style="display: none;" placeholder="Digite a Quilometragem">
+        <input type="text" class="form-control" id="inputPlaca" name="placa" style="display: none;" placeholder="Digite a Placa">
     </div>
 
     <script>
         function toggleQuilometragemInput() {
             var selectElement = document.getElementById("selectQuilometragem");
             var inputElement = document.getElementById("inputQuilometragem");
+            var inputElementplaca = document.getElementById("inputPlaca");
 
             if (selectElement.value === "0") {
                 inputElement.style.display = "none";
+                inputElementplaca.style.display = "none";
             } else {
                 inputElement.style.display = "block";
+                inputElementplaca.style.display = "block";
             }
         }
     </script>
@@ -363,3 +367,7 @@ $modeloDAO = new ModeloDAO;
     });
 
 </script>
+
+<br>
+<br>
+

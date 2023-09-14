@@ -1,4 +1,6 @@
 <?php
+
+use App\Models\DAO\ImagemDAO;
 use App\Models\DAO\ModeloDAO;
 use App\Models\DAO\MarcaDAO;
 
@@ -10,7 +12,12 @@ $modelo = $modeloDAO->listar($carro->getId_modelo());
 $marcaDAO = new MarcaDAO();
 $marca = $marcaDAO->listar($modelo->getId_marca());
 
+$imagemDAO = new ImagemDAO();
+$imagem = $imagemDAO->listarPorCarro($carro->getId());
+
 ?>
+
+<br>
 
 <div class="container">
     <br>
@@ -25,7 +32,18 @@ $marca = $marcaDAO->listar($modelo->getId_marca());
             </div>
         </div>
     </div>
-    
+    <div class="card-group">
+  <div class="card">
+    <img src="<?php echo PATH_IMAGENS . 'uploads/' . $imagem[0]->getNome()?>" class="card-img-top" alt="...">
+  </div>
+  <div class="card">
+    <img src="<?php echo PATH_IMAGENS . 'uploads/' . $imagem[1]->getNome()?>" class="card-img-top" alt="...">
+  </div>
+  <div class="card">
+    <img src="<?php echo PATH_IMAGENS . 'uploads/' . $imagem[2]->getNome()?>" class="card-img-top" alt="...">
+  </div>
+</div>
+<br>
     <div class="row">
         <div class="col-md-3 col-sm-6 mb-4">
             <div class="card info-card">
@@ -51,6 +69,11 @@ $marca = $marcaDAO->listar($modelo->getId_marca());
                 </div>
             </div>
         </div>
+        <?php
+
+        if ($carro->getQuilometragem() != 0) {
+        ?>
+
         <div class="col-md-3 col-sm-6 mb-4">
             <div class="card info-card">
                 <div class="card-body">
@@ -59,6 +82,34 @@ $marca = $marcaDAO->listar($modelo->getId_marca());
                 </div>
             </div>
         </div>
+
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="card info-card">
+                <div class="card-body">
+                    <h1 class="card-title"><i class="bi bi-speedometer"></i></h1>
+                    <h5 class="card-text">Placa: <?php echo $carro->getPlaca(); ?></h5>
+                </div>
+            </div>
+        </div>
+        <?php    }else {
+            ?>  
+
+        <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="card info-card">
+                        <div class="card-body">
+                            <h1 class="card-title"><i class="bi bi-speedometer"></i></h1>
+                            <h5 class="card-text">Carro Novo</h5>
+                        </div>
+                    </div>
+                </div>
+                    
+
+                    <?php
+                }
+
+
+                ?>
+
         <div class="col-md-3 col-sm-6 mb-4">
             <div class="card info-card">
                 <div class="card-body">
@@ -70,11 +121,12 @@ $marca = $marcaDAO->listar($modelo->getId_marca());
         <div class="col-md-3 col-sm-6 mb-4">
             <div class="card info-card">
                 <div class="card-body">
-                    <h1 class="card-title"><i class="bi bi-sliders2-vertical"></i></h1>
-                    <h5 class="card-text">Transmissão: <?php echo $carro->getModelo_transmissao(); ?></h5>
+                    <h1 class="card-title"><i class="bi bi-check-lg"></i></h1>
+                    <h5 class="card-text">Disponibilidade: <?php echo $carro->getDisponibilidade(); ?></h5>
                 </div>
             </div>
         </div>
+       
         <div class="col-md-3 col-sm-6 mb-4">
             <div class="card info-card">
                 <div class="card-body">
@@ -83,14 +135,16 @@ $marca = $marcaDAO->listar($modelo->getId_marca());
                 </div>
             </div>
         </div>
+
         <div class="col-md-3 col-sm-6 mb-4">
             <div class="card info-card">
                 <div class="card-body">
-                    <h1 class="card-title"><i class="bi bi-check-lg"></i></h1>
-                    <h5 class="card-text">Disponibilidade: <?php echo $carro->getDisponibilidade(); ?></h5>
+                    <h1 class="card-title"><i class="bi bi-sliders2-vertical"></i></h1>
+                    <h5 class="card-text">Transmissão: <?php echo $carro->getModelo_transmissao(); ?></h5>
                 </div>
             </div>
         </div>
+
         <div class="col-md-3 col-sm-6 mb-4">
             <div class="card info-card">
                 <div class="card-body">
@@ -136,4 +190,7 @@ $marca = $marcaDAO->listar($modelo->getId_marca());
         </div>
     <a href="http://<?php echo APP_HOST; ?>/carro" class="btn btn-primary">Voltar</a>
     </div>
+<br>
+<br>
+<br>
 <br>

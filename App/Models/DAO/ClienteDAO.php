@@ -80,8 +80,9 @@ class ClienteDAO extends BaseDAO{
             $numero  = $cliente->getNumero();
             return $this->update(
                 'cliente',
-                "nome = :nome, telefone = :telefone, email = :email, cpf = :cpf, status = :status cep = :cep, uf = :uf, cidade = :cidade, bairro = :bairro, logradouro = :logradouro,complemento = :complemento,numero = :numero",
+                "id = :id, nome = :nome, telefone = :telefone, email = :email, cpf = :cpf, status = :status, cep = :cep, uf = :uf, cidade = :cidade, bairro = :bairro, logradouro = :logradouro,complemento = :complemento,numero = :numero",
                     [
+                        ':id' => $id,
                         ':nome' => $nome,
                         ':telefone' => $telefone,
                         ':email' => $email,
@@ -99,7 +100,7 @@ class ClienteDAO extends BaseDAO{
             );
 
         } catch (\Exception $e) {
-            throw new \Exception("Erro ao atualizar dados!", 500);
+            throw new \Exception("Erro ao atualizar dados!".$e, 500);
         }
     }
 

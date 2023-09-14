@@ -125,11 +125,13 @@ class CarroDAO extends BaseDAO{
     {
         try {
             $id = $carro->getId();
+            
+            $this->deleteImagemPorCarro('imagem', $id);
 
             return $this->delete('carro', $id);
 
         } catch (\Exception $e) {
-            throw new \Exception("Erro ao deletar", 500);
+            throw new \Exception("Erro ao deletar".$e, 500);
         }
     }
     

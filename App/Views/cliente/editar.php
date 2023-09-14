@@ -196,6 +196,7 @@ if (isset($_SESSION['login'])) {
         <?php } ?>
 
   <form action="http://<?php echo APP_HOST; ?>/cliente/atualizar" method="post" class="row g-3">
+    <input type="text" class="form-control" name="id" value="<?php echo $cliente->getId();?>" hidden>
 
     <div class="row">
         <div class="col-md-3">
@@ -276,7 +277,7 @@ if (isset($_SESSION['login'])) {
 
     <div class="col-md-12 d-flex justify-content-end">
       <button type="submit" class="btn btn-success">Atualizar</button>&nbsp&nbsp
-      <button type="button" class="btn btn-danger">Cancelar</button>
+      <a href="http://<?php echo APP_HOST; ?>/cliente/pesquisar" class="btn btn-danger btn-sm">Cancelar</a>
    </div>
 
   </form>

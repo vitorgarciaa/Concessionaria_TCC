@@ -62,4 +62,16 @@ abstract class BaseDAO
             return false;
         }
     }
+
+    public function deleteImagemPorCarro($table, $id_carro)
+    { 
+        if (!empty($table)) {
+            $stmt = $this->conexao->prepare("DELETE FROM $table WHERE id_carro = {$id_carro}");
+            $stmt->execute();
+
+            return $stmt->rowCount();
+        } else {
+            return false;
+        }
+    }
 }

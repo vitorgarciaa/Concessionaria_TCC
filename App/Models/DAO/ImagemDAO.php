@@ -79,6 +79,18 @@ class ImagemDAO extends BaseDAO{
         }
     }
 
+    public function excluirImagemPorCarro(Imagem $imagem)
+    {
+        try {
+            $id_carro = $imagem->getId();
+
+            return $this->deleteImagemPorCarro('imagem', $id_carro);
+
+        } catch (\Exception $e) {
+            throw new \Exception("Erro ao deletar", 500);
+        }
+    }
+
     //FUNÇÃO ADICIONAL
     public function listarPorCarro($id_carro){
         $resultado = $this->select(

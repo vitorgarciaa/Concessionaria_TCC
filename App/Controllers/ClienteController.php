@@ -93,9 +93,6 @@ class ClienteController extends Controller
     }
 
     public function atualizar(){
-        
-        $senha = $_POST['senha'];
-        $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
 
         $cliente = new Cliente();
         $cliente->setId($_POST['id']);
@@ -130,7 +127,7 @@ class ClienteController extends Controller
         Sessao::limpaErro();
 
         Sessao::gravaMensagem("Informações atualizadas com sucesso!");
-        $this->redirect('/cliente/edicao/' . $_POST['id']);
+        $this->redirect('/cliente/pesquisar');
     }
 
     public function exclusao($params)
