@@ -7,7 +7,9 @@ $modeloDAO = new ModeloDAO;
       
       $(document).ready(function(){
         $('.money').mask('000.000.000.000.000,00', {reverse: true});
+        $('.inputData_compra').mask('##/##/####');
       });
+      
 </script>
 <div class="container">
   <br>
@@ -38,6 +40,32 @@ $modeloDAO = new ModeloDAO;
         <?php } ?>
 
   <form action="http://<?php echo APP_HOST; ?>/carro/salvar" enctype="multipart/form-data" method="post" class="row g-3">
+
+
+    <br>
+    <h5 class="text-center">Dados Fornecedor</h5>
+    <br>
+
+    <div class="row">
+
+        <div class="col-md-2">
+                <label for="inputCpf" class="form-label">CPF / CNPJ</label>
+                <input type="text" name="cpf_fornecedor" id="cpf_fornecedor" class="form-control" value="<?php echo $Sessao::retornaValorFormulario('cpf');?>" onkeyup="cpfCheck(this)" maxlength="14" onkeydown="javascript: fMasc( this, mCPF );" required><span id="cpfResponse"></span>
+        </div>
+
+      <div class="col-md-5">
+      <label for="inputNome" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="inputNome" name="nome_fornecedor" required>
+      </div>
+
+      <input type="hidden" name="id_fornecedor" value="4">
+
+      </div>
+
+
+    <br>
+    <h5 class="text-center">Dados Carro</h5>
+    <br>
 
     <div class="row">
       <div class="col-md-1">
@@ -202,16 +230,31 @@ $modeloDAO = new ModeloDAO;
     </script>
 
       <div class="col-md-2">
-          <label for="inputPreco" class="form-label">Preço</label>
+          <label for="inputPreco_custo" class="form-label">Preço de Custo</label>
           <div class="input-group mb-3">
               <div class="input-group-prepend">
                   <span class="input-group-text">R$</span>
               </div>
-              <input type="text" class="form-control money" id="inputPreco" name="preco">
+              <input type="text" class="form-control money" id="inputPreco_custo" name="preco_custo">
           </div>
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-2">
+          <label for="inputPreco_venda" class="form-label">Preço Venda</label>
+          <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                  <span class="input-group-text">R$</span>
+              </div>
+              <input type="text" class="form-control money" id="inputPreco_venda" name="preco_venda">
+          </div>
+      </div>
+
+      <div class="col-md-2">
+        <label for="inputData_compra" class="form-label">Data Compra</label>
+        <input type="text" class="form-control inputData_compra" id=".inputData_compra" name="data_compra">
+      </div>
+
+      <div class="col-md-9">
         <label for="inputObservacao" class="form-label">Observações</label>
         <textarea type="textarea" class="form-control" id="inputObservacao" name="observacao"></textarea>
       </div>

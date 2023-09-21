@@ -29,7 +29,7 @@ class CarroDAO extends BaseDAO{
             $ano_fabricacao = $carro->getAno_fabricacao();
             $ano_modelo = $carro->getAno_modelo();
             $cor = $carro->getCor();
-            $preco = $carro->getPreco();
+            $preco_venda = $carro->getPreco_venda();
             $quilometragem = $carro->getQuilometragem();
             $modelo_direcao = $carro->getModelo_direcao();
             $modelo_transmissao = $carro->getModelo_transmissao();
@@ -44,12 +44,12 @@ class CarroDAO extends BaseDAO{
 
             return $this->insert(
                 'carro',
-                ":ano_fabricacao, :ano_modelo, :cor, :preco, :quilometragem, :modelo_direcao, :modelo_transmissao, :placa, :observacoes, :disponibilidade, :id_modelo, :tipo_freio, :motor, :tipo_combustivel, :tipo_tracao",
+                ":ano_fabricacao, :ano_modelo, :cor, :preco_venda, :quilometragem, :modelo_direcao, :modelo_transmissao, :placa, :observacoes, :disponibilidade, :id_modelo, :tipo_freio, :motor, :tipo_combustivel, :tipo_tracao",
                 [
                     ':ano_fabricacao' => $ano_fabricacao,
                     ':ano_modelo' => $ano_modelo,
                     ':cor' => $cor,
-                    ':preco' => $preco,
+                    ':preco_venda' => $preco_venda,
                     ':quilometragem' => $quilometragem,
                     ':modelo_direcao' => $modelo_direcao,
                     ':modelo_transmissao' => $modelo_transmissao,
@@ -60,7 +60,7 @@ class CarroDAO extends BaseDAO{
                     ':tipo_freio' => $tipo_freio,
                     ':motor' => $motor,
                     ':tipo_combustivel' => $tipo_combustivel,
-                    ':tipo_tracao' => $tipo_tracao
+                    ':tipo_tracao' => $tipo_tracao,
                 ]
             );
         } catch (\Exception $e) {
@@ -78,7 +78,7 @@ class CarroDAO extends BaseDAO{
             $ano_fabricacao = $carro->getAno_fabricacao();
             $ano_modelo = $carro->getAno_modelo();
             $cor = $carro->getCor();
-            $preco = $carro->getPreco();
+            $preco_venda = $carro->getPreco_venda();
             $quilometragem = $carro->getQuilometragem();
             $modelo_direcao = $carro->getModelo_direcao();
             $modelo_transmissao = $carro->getModelo_transmissao();
@@ -93,13 +93,13 @@ class CarroDAO extends BaseDAO{
 
             return $this->update(
                 'carro',
-                "ano_fabricacao = :ano_fabricacao, ano_modelo = :ano_modelo, cor = :cor, preco = :preco, quilometragem = :quilometragem, modelo_direcao = :modelo_direcao, modelo_transmissao = :modelo_transmissao, placa = :placa, observacoes = :observacoes, disponibilidade = :disponibilidade, id_modelo = :id_modelo, tipo_freio = :tipo_freio, motor = :motor, tipo_combustivel = :tipo_combustivel, tipo_tracao = :tipo_tracao",
+                "ano_fabricacao = :ano_fabricacao, ano_modelo = :ano_modelo, cor = :cor, preco_venda = :preco_venda, quilometragem = :quilometragem, modelo_direcao = :modelo_direcao, modelo_transmissao = :modelo_transmissao, placa = :placa, observacoes = :observacoes, disponibilidade = :disponibilidade, id_modelo = :id_modelo, tipo_freio = :tipo_freio, motor = :motor, tipo_combustivel = :tipo_combustivel, tipo_tracao = :tipo_tracao",
                 [
                         ':id' => $id,
                         ':ano_fabricacao' => $ano_fabricacao,
                         ':ano_modelo' => $ano_modelo,
                         ':cor' => $cor,
-                        ':preco' => $preco,
+                        ':preco_venda' => $preco_venda,
                         ':quilometragem' => $quilometragem,
                         ':modelo_direcao' => $modelo_direcao,
                         ':modelo_transmissao' => $modelo_transmissao,
@@ -110,7 +110,7 @@ class CarroDAO extends BaseDAO{
                         ':tipo_freio' => $tipo_freio,
                         ':motor' => $motor,
                         ':tipo_combustivel' => $tipo_combustivel,
-                        ':tipo_tracao' => $tipo_tracao
+                        ':tipo_tracao' => $tipo_tracao,
                     ],
                     "id = :id"
             );

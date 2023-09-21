@@ -90,7 +90,7 @@ if (isset($_SESSION['login'])) {
       <td><?php echo $carro->getTipo_tracao(); ?></td>
       <td><?php echo $carro->getObservacoes(); ?></td>
       <td><?php echo $carro->getDisponibilidade(); ?></td>
-      <td><?php echo "R$ " . number_format($carro->getPreco(), 2, ',', '.'); ?></td>
+      <td><?php echo "R$ " . number_format($carro->getPreco_venda(), 2, ',', '.'); ?></td>
       <td>
         <a href="http://<?php echo APP_HOST; ?>/carro/edicao/<?php echo $carro->getId(); ?>" class="btn btn-info btn-sm">Editar</a>
         <a href="http://<?php echo APP_HOST; ?>/carro/exclusao/<?php echo $carro->getId(); ?>" class="btn btn-danger btn-sm">Excluir</a>

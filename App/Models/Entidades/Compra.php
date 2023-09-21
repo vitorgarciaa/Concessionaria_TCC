@@ -5,10 +5,11 @@ namespace App\Models\Entidades;
 class Compra {
     private $id;
     private $id_carro;
-    private $id_cliente;
+    private $id_fornecedor;
     private $id_vendedor;
     private $data_compra;
-    private $preco_compra;
+    private $preco_custo;
+    private $tipo_pagamento;
 
 
     public function getId() {
@@ -27,12 +28,12 @@ class Compra {
         $this->id_carro = $id_carro;
     }
 
-    public function getId_cliente() {
-        return $this->id_cliente;
+    public function getId_fornecedor() {
+        return $this->id_fornecedor;
     }
 
-    public function setId_cliente($id_cliente) {
-        $this->id_cliente = $id_cliente;
+    public function setId_fornecedor($id_fornecedor) {
+        $this->id_fornecedor = $id_fornecedor;
     }
 
     public function getId_vendedor() {
@@ -51,12 +52,20 @@ class Compra {
         $this->data_compra = $data_compra;
     }
 
-    public function getPreco_compra() {
-        return $this->preco_compra;
+    public function getPreco_custo() {
+        return $this->preco_custo;
     }
 
-    public function setPreco_compra($preco_compra) {
-        $this->preco_compra = $preco_compra;
+    public function setPreco_custo($preco_custo) {
+        $this->preco_custo = $preco_custo;
+    }
+    
+    public function getTipo_pagamento() {
+        return $this->tipo_pagamento;
+    }
+
+    public function setTipo_pagamento($tipo_pagamento) {
+        $this->tipo_pagamento = $tipo_pagamento;
     }
 }
 ?>

@@ -22,9 +22,19 @@ abstract class BaseDAO
 
     public function insert($table, $cols, $values)
     {
+
+      /*  echo '<pre>';
+        print_r([
+            'table' => $table,
+            'cols' => $cols,
+            'values' => $values
+        ]);
+        die; 
+        */
         if (!empty($table) && !empty($cols) && !empty($values)) {
             $parametros = $cols;
             $colunas = str_replace(":", "", $cols);
+            
 
             $stmt = $this->conexao->prepare("INSERT IGNORE INTO $table ($colunas) VALUES ($parametros)");
             $stmt->execute($values);

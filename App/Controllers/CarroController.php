@@ -4,11 +4,13 @@ namespace App\Controllers;
 
 use App\Lib\Sessao;
 use App\Models\DAO\CarroDAO;
+use App\Models\DAO\CompraDAO;
 use App\Models\DAO\ImagemDAO;
 use App\Models\Entidades\Carro;
 use App\Models\Validacao\CarroValidador;
 use App\Models\DAO\MarcaDAO;
 use App\Models\DAO\ModeloDAO;
+use App\Models\Entidades\Compra;
 use App\Models\Entidades\Imagem;
 
 class CarroController extends Controller
@@ -38,15 +40,15 @@ class CarroController extends Controller
 
     public function salvar(){
 
-        $preco = preg_replace('/[^0-9]/', '', $_POST['preco']);    
-        $preco = bcdiv($preco, 100, 2);
-        $preco = strtr($preco, ',', '.');
+        $preco_venda = preg_replace('/[^0-9]/', '', $_POST['preco_venda']);    
+        $preco_venda = bcdiv($preco_venda, 100, 2);
+        $preco_venda = strtr($preco_venda, ',', '.');
 
         $carro = new Carro();
         $carro->setAno_fabricacao($_POST['ano_fabricacao']);
         $carro->setAno_modelo($_POST['ano_modelo']);
         $carro->setCor($_POST['cor']);
-        $carro->setPreco($preco);
+        $carro->setPreco_venda($preco_venda);
         $carro->setIdModelo($_POST['modeloId']);
         $carro->setTipo_tracao($_POST['tracao']);
         $carro->setTipo_freio($_POST['freio']);
@@ -100,6 +102,17 @@ class CarroController extends Controller
                 $imagemDAO->salvar($imagem);
             }
         }
+        $carro = $carroDAO->listarUltimoCadastrado();
+
+        $compra = new Compra();
+        $compraDAO = new CompraDAO();
+
+        $compra->setId_carro($carro[0]->getId());
+        $compra->setId_fornecedor($_POST['id_fornecedor']);
+        $compra->setId_vendedor($_SESSION['login']);
+        $compra->setPreco_custo($_POST['preco_custo']);
+        $compraDAO->salvar($compra);
+
 
         Sessao::gravaMensagem("Carro cadastrado com Sucesso!");
         $this->redirect('/carro/cadastro');   
@@ -125,16 +138,16 @@ class CarroController extends Controller
     }
 
     public function atualizar(){
-        $preco = preg_replace('/[^0-9]/', '', $_POST['preco']);    
-        $preco = bcdiv($preco, 100, 2);
-        $preco = strtr($preco, ',', '.');
+        $preco_venda = preg_replace('/[^0-9]/', '', $_POST['preco_venda']);    
+        $preco_venda = bcdiv($preco_venda, 100, 2);
+        $preco_venda = strtr($preco_venda, ',', '.');
         
         $carro = new Carro();
         $carro->setId($_POST['id']);
         $carro->setAno_fabricacao($_POST['ano_fabricacao']);
         $carro->setAno_modelo($_POST['ano_modelo']);
         $carro->setCor($_POST['cor']);
-        $carro->setPreco($preco);
+        $carro->setPreco_venda($_POST['preco_venda']);
         $carro->setIdModelo($_POST['modeloId']);
         $carro->setTipo_tracao($_POST['tracao']);
         $carro->setTipo_freio($_POST['freio']);

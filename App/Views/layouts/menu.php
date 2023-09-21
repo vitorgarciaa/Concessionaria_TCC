@@ -62,8 +62,13 @@
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/cliente/cadastro">Cadastrar Cliente</a>
                     <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/cliente/pesquisar">Pesquisar Cliente</a>
+                    <br>
+                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/fornecedor/cadastro">Cadastrar Fornecedor</a>
+                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/fornecedor/pesquisar">Pesquisar Fornecedor</a>
+                    <br>
                     <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/vendedor/cadastro">Cadastrar Vendedor</a>
                     <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/vendedor/pesquisar">Pesquisar Vendedor</a>
+
                   </div>
                 </div>
               </div>

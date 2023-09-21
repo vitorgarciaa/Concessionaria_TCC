@@ -27,19 +27,21 @@ class CompraDAO extends BaseDAO{
     public function salvar(Compra $compra){
         try {
             $id_carro = $compra->getId_carro();
-            $id_cliente = $compra->getId_cliente();
+            $id_fornecedor = $compra->getId_fornecedor();
             $id_vendedor = $compra->getId_vendedor();
             $data_compra = $compra->getData_compra();
-            $preco_compra = $compra->getPreco_compra();
+            $preco_custo = $compra->getPreco_custo();
+            $tipo_pagamento = $compra->getTipo_pagamento();
             return $this->insert(
                 'cliente',
-                ":id_carro, :id_cliente, :id_vendedor, :data_compra, :preco_compra",
+                ":id_carro, :id_fornecedor, :id_vendedor, :data_compra, :preco_custo, :tipo_pagamento",
                 [
                     ':id_carro' => $id_carro,
-                    ':id_cliente' => $id_cliente,
+                    ':id_fornecedor' => $id_fornecedor,
                     ':id_vendedor' => $id_vendedor,
                     ':data_compra' => $data_compra,
-                    ':preco_compra' => $preco_compra,
+                    ':preco_custo' => $preco_custo,
+                    ':tipo_pagamento' => $tipo_pagamento,
                 ]
             );
         } catch (\Exception $e) {
@@ -52,19 +54,21 @@ class CompraDAO extends BaseDAO{
         try {
             $id = $compra->getId();
             $id_carro = $compra->getId_carro();
-            $id_cliente = $compra->getId_cliente();
+            $id_fornecedor = $compra->getId_fornecedor();
             $id_vendedor = $compra->getId_vendedor();
             $data_compra = $compra->getData_compra();
-            $preco_compra = $compra->getPreco_compra();
+            $preco_custo = $compra->getPreco_custo();
+            $tipo_pagamento = $compra->getTipo_pagamento();
             return $this->update(
                 'compra',
-                "id_carro = :id_carro, id_cliente = :id_cliente, id_vendedor = :id_vendedor, data_compra = :data_compra, preco_compra = :preco_compra",
+                "id_carro = :id_carro, id_fornecedor = :id_fornecedor, id_vendedor = :id_vendedor, data_compra = :data_compra, preco_compra = :preco_compra, tipo_pagamento = :tipo_pagamento",
                     [
                         ':id_carro' => $id_carro,
-                        ':id_cliente' => $id_cliente,
+                        ':id_fornecedor' => $id_fornecedor,
                         ':id_vendedor' => $id_vendedor,
                         ':data_compra' => $data_compra,
-                        ':preco_compra' => $preco_compra,
+                        ':preco_custo' => $preco_custo,
+                        ':tipo_pagamento' => $tipo_pagamento,
                     ],
                     "id = :id"
             );

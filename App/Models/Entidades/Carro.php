@@ -7,7 +7,7 @@ class Carro{
      private $ano_fabricacao;
      private $ano_modelo;
      private $cor;
-     private $preco;
+     private $preco_venda;
      private $quilometragem;
      private $modelo_direcao;
      private $modelo_transmissao;
@@ -52,12 +52,12 @@ class Carro{
           $this->cor = $cor;
      }
 
-     public function getPreco(){
-          return $this->preco;
+     public function getPreco_venda(){
+          return $this->preco_venda;
      }
 
-     public function setPreco($preco){
-          $this->preco = $preco;
+     public function setPreco_venda($preco_venda){
+          $this->preco_venda = $preco_venda;
      }
 
      public function getQuilometragem(){
@@ -156,7 +156,6 @@ class Carro{
      public function setTipo_tracao($tipo_tracao){
           $this->tipo_tracao = $tipo_tracao;
      }
-
 
      //variaveis adicionais 
      private $id_modelo;
