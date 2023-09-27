@@ -5,8 +5,6 @@ namespace App\Controllers;
 use App\Lib\Sessao;
 use App\Models\DAO\CompraDAO;
 use App\Models\Entidades\Compra;
-use App\Models\Validacao\CompraValidador;
-
 
 class CompraController extends Controller
 { 
@@ -38,44 +36,7 @@ class CompraController extends Controller
         $this->render('compra/pesquisar');
     }
 
-    public function atualizar(){
-
-        $compra = new Compra();
-        $compra->setId($_POST['id']);
-        $compra->setCpnj($_POST['cnpj']);
-        $compra->setNome_fornecedor($_POST['nome_fornecedor']);
-        $compra->setTelefone($_POST['telefone']);
-        $compra->setStatus($_POST['status']);
-        $compra->setCpf($_POST['cpf']);
-        $compra->setCep($_POST['cep']);
-        $compra->setUf($_POST['uf']);
-        $compra->setCidade($_POST['cidade']);
-        $compra->setBairro($_POST['bairro']);
-        $compra->setLogradouro($_POST['logradouro']);
-        $compra->setComplemento($_POST['complemento']);
-        $compra->setNumero($_POST['numero']);
-        Sessao::gravaFormulario($_POST);
-
-        $CompraValidador = new CompraValidador();
-        $resultadoValidacao = $CompraValidador->validar($compra);
-
-        if ($resultadoValidacao->getErros()) {
-            Sessao::gravaErro($resultadoValidacao->getErros());
-            $this->redirect('/compra/edicao/'. $_POST['id']);
-        }
-
-        $compraDAO = new CompraDAO();
-
-        $compraDAO->atualizar($compra);
-
-        Sessao::limpaFormulario();
-        Sessao::limpaMensagem();
-        Sessao::limpaErro();
-
-        Sessao::gravaMensagem("Informações atualizadas com sucesso!");
-        $this->redirect('/compra/pesquisar');
-    }
-
+    
     public function exclusao($params)
     {
 

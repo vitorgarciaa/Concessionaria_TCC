@@ -76,9 +76,8 @@ if (isset($_SESSION['login'])) {
                 $marcaDAO = new MarcaDAO();
                 $marca = $marcaDAO->listar($modelo->getId_marca());
 
-                $compraDAO = new CompraDAO();
-                $compra = $compraDAO->listarPorCarro($carro->getId());
-                var_dump($compra);            
+                $compraDAO = new CompraDAO(); 
+                $compra = $compraDAO->listarPorCarro($carro->getId());           
             ?>
     <tr>
       <th scope="row"><?php echo $carro->getId(); ?></th>

@@ -39,8 +39,12 @@
           <a href="http://<?php echo APP_HOST; ?>/carro/index" class="nav-link text-white">Listar Carros</a>
         </li>
         <li class="nav-item">
-          <a href="http://<?php echo APP_HOST; ?>/venda/index" class="nav-link text-white">Painel de Vendas</a>
+          <a href="http://<?php echo APP_HOST; ?>/sobre/index" class="nav-link text-white">Sobre Nós</a>
         </li>
+
+        <?php
+        if (isset($_SESSION['login'])) {
+        ?>
         <li class="nav-item">
           <div class="dropdown">
             <a class="nav-item dropdown-toggle text-white manutencao" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -62,6 +66,7 @@
                 <div class="dropdown-submenu dropright">
                 <a class="dropdown-item dropdown-toggle" href="#">Venda</a>
                 <div class="dropdown-menu">
+                  <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/venda/index">Painel de Venda</a>
                   <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/venda/pesquisar">Pesquisar Venda</a>
                 </div>
                 <div class="dropdown-submenu dropright">
@@ -83,6 +88,9 @@
             </div>
           </div>
         </li>
+        <?php
+        }
+        ?>
     </div>
     <div>
 
