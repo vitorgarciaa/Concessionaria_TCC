@@ -10,6 +10,9 @@ $modeloDAO = new ModeloDAO;
         $('.inputData_compra').mask('##/##/####');
       });
       
+
+
+
 </script>
 <div class="container">
   <br>
@@ -41,28 +44,50 @@ $modeloDAO = new ModeloDAO;
 
   <form action="http://<?php echo APP_HOST; ?>/carro/salvar" enctype="multipart/form-data" method="post" class="row g-3">
 
-
     <br>
     <h5 class="text-center">Dados Fornecedor</h5>
     <br>
 
     <div class="row">
-
-        <div class="col-md-2">
-                <label for="inputCpf" class="form-label">CPF / CNPJ</label>
-                <input type="text" name="cpf_fornecedor" id="cpf_fornecedor" class="form-control" value="<?php echo $Sessao::retornaValorFormulario('cpf');?>" onkeyup="cpfCheck(this)" maxlength="14" onkeydown="javascript: fMasc( this, mCPF );" required><span id="cpfResponse"></span>
+      <div class="col-md-8">
+        <label for="input_fornecedor">Digite para buscar um fornecedor:</label>
+        <input list="fornecedores" name="input_fornecedor" class="form-control" id="input_fornecedor" onkeyup="funcaoFornecedor()">
+          <datalist id="fornecedores">
+            <div id="divFornecedor" class="col-md-6">
+          </datalist>
         </div>
-
-      <div class="col-md-5">
-      <label for="inputNome" class="form-label">Nome</label>
-        <input type="text" class="form-control" id="inputNome" name="nome_fornecedor" required>
+        
       </div>
+    </div>
+    <input type="hidden" name="id_fornecedor" id="id_fornecedor">
 
-      <input type="hidden" name="id_fornecedor" value="4">
+  <script>
+    var fornecedorId_input = null;
+        function funcaoFornecedor(){
+        var fornecedor = document.getElementById("input_fornecedor").value;
+            $.ajax({
+              url: 'http://<?php echo APP_HOST; ?>/fornecedor/listarPorNome',
+                type: 'POST',
+                data: {
+                  fornecedorId: fornecedor
+                },
+                success: function(data) {
+                    $("#divFornecedor").html(data);
+                    fornecedorId_input = document.getElementById("input_fornecedor").value.split('|')[0].split(' ')[1];
+                    
+                    document.getElementById("id_fornecedor").value = fornecedorId_input;
+                },
+                error: function(data) {
+                    alert("Houve um erro ao carregar");
+                }
+            });
+      }
 
-      </div>
+      
+  </script>
 
-
+      
+    
     <br>
     <h5 class="text-center">Dados Carro</h5>
     <br>
@@ -240,6 +265,16 @@ $modeloDAO = new ModeloDAO;
       </div>
 
       <div class="col-md-2">
+        <label for="inputTipo_pagamento" class="form-label">Tipo de Pagamento</label>
+          <select class="form-control" id="inputTipo_pagamento" name="tipo_pagamento">
+              <option value="dinheiro">Dinheiro</option>
+              <option value="cartao">Cartão</option>
+              <option value="dinheiro">Cheque</option>
+              <option value="vale">Vale</option>
+          </select>
+      </div>
+
+      <div class="col-md-2">
           <label for="inputPreco_venda" class="form-label">Preço Venda</label>
           <div class="input-group mb-3">
               <div class="input-group-prepend">
@@ -247,11 +282,6 @@ $modeloDAO = new ModeloDAO;
               </div>
               <input type="text" class="form-control money" id="inputPreco_venda" name="preco_venda">
           </div>
-      </div>
-
-      <div class="col-md-2">
-        <label for="inputData_compra" class="form-label">Data Compra</label>
-        <input type="text" class="form-control inputData_compra" id=".inputData_compra" name="data_compra">
       </div>
 
       <div class="col-md-9">
@@ -413,4 +443,3 @@ $modeloDAO = new ModeloDAO;
 
 <br>
 <br>
-

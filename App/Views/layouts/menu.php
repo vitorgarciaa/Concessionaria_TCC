@@ -39,15 +39,12 @@
           <a href="http://<?php echo APP_HOST; ?>/carro/index" class="nav-link text-white">Listar Carros</a>
         </li>
         <li class="nav-item">
-          <a href="http://<?php echo APP_HOST; ?>/compra/index" class="nav-link text-white">Painel de Compra</a>
-        </li>
-        <li class="nav-item">
           <a href="http://<?php echo APP_HOST; ?>/venda/index" class="nav-link text-white">Painel de Vendas</a>
         </li>
         <li class="nav-item">
           <div class="dropdown">
             <a class="nav-item dropdown-toggle text-white manutencao" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Manutencao
+              Gerenciar
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
@@ -58,6 +55,17 @@
                   <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/carro/pesquisar">Pesquisar Carro</a>
                 </div>
                 <div class="dropdown-submenu dropright">
+                <a class="dropdown-item dropdown-toggle" href="#">Compra</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/compra/pesquisar">Pesquisar Compra</a>
+                </div>
+                <div class="dropdown-submenu dropright">
+                <a class="dropdown-item dropdown-toggle" href="#">Venda</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/venda/pesquisar">Pesquisar Venda</a>
+                </div>
+                <div class="dropdown-submenu dropright">
+                
                   <a class="dropdown-item dropdown-toggle" href="#">Pessoa</a>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/cliente/cadastro">Cadastrar Cliente</a>

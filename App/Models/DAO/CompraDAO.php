@@ -29,22 +29,23 @@ class CompraDAO extends BaseDAO{
             $id_carro = $compra->getId_carro();
             $id_fornecedor = $compra->getId_fornecedor();
             $id_vendedor = $compra->getId_vendedor();
-            $data_compra = $compra->getData_compra();
             $preco_custo = $compra->getPreco_custo();
             $tipo_pagamento = $compra->getTipo_pagamento();
             return $this->insert(
-                'cliente',
-                ":id_carro, :id_fornecedor, :id_vendedor, :data_compra, :preco_custo, :tipo_pagamento",
+                'compra',
+                ":id_carro, :id_fornecedor, :id_vendedor, :preco_custo, :tipo_pagamento",
                 [
                     ':id_carro' => $id_carro,
                     ':id_fornecedor' => $id_fornecedor,
                     ':id_vendedor' => $id_vendedor,
-                    ':data_compra' => $data_compra,
                     ':preco_custo' => $preco_custo,
                     ':tipo_pagamento' => $tipo_pagamento,
                 ]
             );
         } catch (\Exception $e) {
+                echo '<pre>';
+                var_dump($e);
+                echo '</pre>';
             throw new \Exception("Erro ao salvar dados! ", 500);      
         }
     }
@@ -89,6 +90,14 @@ class CompraDAO extends BaseDAO{
         } catch (\Exception $e) {
             throw new \Exception("Erro ao deletar", 500);
         }
+    }
+
+    public function listarPorCarro($id_carro){
+            $resultado = $this->select(
+                "SELECT * FROM compra WHERE id_carro = $id_carro"
+            );
+
+            return $resultado->fetchObject(Compra::class);
     }
 }
 ?>

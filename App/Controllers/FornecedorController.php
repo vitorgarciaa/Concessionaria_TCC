@@ -162,6 +162,7 @@ class FornecedorController extends Controller
             Sessao::gravaErro($resultadoValidacao->getErros());
             $this->redirect('/fornecedor/cadastro');
         }
+        
 
         Sessao::limpaFormulario();
         Sessao::limpaMensagem();
@@ -173,7 +174,24 @@ class FornecedorController extends Controller
 
         Sessao::gravaMensagem("Fornecedor cadastrado com Sucesso!");
         $this->redirect('/fornecedor/cadastro');   
+
         
+    }
+
+    public function listarPorNome()
+    {
+        $fornecedorDAO = new FornecedorDAO();
+
+        $resultados = $fornecedorDAO->listar();
+
+        if(empty($resultados)){
+            echo '<div class="alert alert-info col-md-12" role="alert">Nenhuma fornecedor encontrado. <label class="input-group-text btn-primary" for="inputGroupSelect02" data-bs-toggle="modal" data-bs-target="#modalModelo" data-bs-whatever="@fat">Cadastrar Modelo</label></div>';
+        }else{
+                foreach($resultados as $fornecedor){
+                    echo '<option value="' . 'ID: ' . $fornecedor->getId() . ' | CPF: ' . $fornecedor->getCpf() .  ' | ' . $fornecedor->getNome() . '">' . $fornecedor->getCpf() .  ' | ' . $fornecedor->getNome() . '</option>';
+                };
+        }
+
     }
     
 

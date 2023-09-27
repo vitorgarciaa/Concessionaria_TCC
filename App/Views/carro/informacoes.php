@@ -182,7 +182,7 @@ $imagem = $imagemDAO->listarPorCarro($carro->getId());
             <div class="card info-card">
                 <div class="card-body">
                     <h1 class="card-title"><i class="bi bi-cash-coin"></i></h1>
-                    <h5 class="card-text">Valor: <?php echo "R$ " . number_format($carro->getPreco(), 2, ',', '.'); ?></h5>
+                    <h5 class="card-text">Valor: <?php echo "R$ " . number_format($carro->getPreco_venda(), 2, ',', '.'); ?></h5>
                 </div>
             </div>
         </div>

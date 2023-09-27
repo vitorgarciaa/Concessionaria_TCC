@@ -44,6 +44,10 @@ class CarroController extends Controller
         $preco_venda = bcdiv($preco_venda, 100, 2);
         $preco_venda = strtr($preco_venda, ',', '.');
 
+        $preco_custo = preg_replace('/[^0-9]/', '', $_POST['preco_custo']);    
+        $preco_custo = bcdiv($preco_custo, 100, 2);
+        $preco_custo = strtr($preco_custo, ',', '.');
+
         $carro = new Carro();
         $carro->setAno_fabricacao($_POST['ano_fabricacao']);
         $carro->setAno_modelo($_POST['ano_modelo']);
@@ -79,6 +83,19 @@ class CarroController extends Controller
 
         $carroDAO->salvar($carro);
 
+        $carro = $carroDAO->listarUltimoCadastrado();
+
+        $compra = new Compra();
+        $compraDAO = new CompraDAO();
+
+        $compra->setId_carro($carro[0]->getId());
+        $compra->setId_fornecedor($_POST['id_fornecedor']);
+        $compra->setId_vendedor($_SESSION['login']);
+        $compra->setPreco_custo($preco_custo);
+        $compra->setTipo_pagamento($_POST['tipo_pagamento']);
+
+        var_dump($compraDAO->salvar($compra));
+
         $imagens = $_FILES['imagens'];
         if (isset($imagens)) {
         
@@ -102,20 +119,9 @@ class CarroController extends Controller
                 $imagemDAO->salvar($imagem);
             }
         }
-        $carro = $carroDAO->listarUltimoCadastrado();
-
-        $compra = new Compra();
-        $compraDAO = new CompraDAO();
-
-        $compra->setId_carro($carro[0]->getId());
-        $compra->setId_fornecedor($_POST['id_fornecedor']);
-        $compra->setId_vendedor($_SESSION['login']);
-        $compra->setPreco_custo($_POST['preco_custo']);
-        $compraDAO->salvar($compra);
-
 
         Sessao::gravaMensagem("Carro cadastrado com Sucesso!");
-        $this->redirect('/carro/cadastro');   
+        $this->redirect('/carro/cadastro');
     }
 
     public function edicao($params){

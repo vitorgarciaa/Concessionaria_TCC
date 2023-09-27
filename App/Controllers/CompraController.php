@@ -9,160 +9,108 @@ use App\Models\Validacao\CompraValidador;
 
 
 class CompraController extends Controller
-{
-
-    public function index()
-    {
-        
-        $this->render('compra/index');
-    }
-
-    public function cadastro()
-    {
-
-        $this->render('cliente/cadastro');
-        Sessao::limpaFormulario();
-        Sessao::limpaMensagem();
-        Sessao::limpaErro();
-    }
-
-    public function salvar(){
-        $cliente = new Compra();
-
-        $cliente->setNome($_POST['nome']);
-        $cliente->setEmail($_POST['email']);
-        $cliente->setTelefone($_POST['telefone']);
-        $cliente->setStatus($_POST['status']);
-        $cliente->setCpf($_POST['cpf']);
-        $cliente->setCep($_POST['cep']);
-        $cliente->setUf($_POST['uf']);
-        $cliente->setCidade($_POST['cidade']);
-        $cliente->setBairro($_POST['bairro']);
-        $cliente->setLogradouro($_POST['logradouro']);
-        $cliente->setComplemento($_POST['complemento']);
-        $cliente->setNumero($_POST['numero']);
-        
-        Sessao::gravaFormulario($_POST);
-
-        $clienteValidador = new ClienteValidador();
-        $resultadoValidacao = $clienteValidador->validar($cliente);
-
-        if ($resultadoValidacao->getErros()) {
-            Sessao::gravaErro($resultadoValidacao->getErros());
-            $this->redirect('/cliente/cadastro');
-        }
-
-        Sessao::limpaFormulario();
-        Sessao::limpaMensagem();
-        Sessao::limpaErro();
-
-        $clienteDAO = new ClienteDAO();
-
-        $clienteDAO->salvar($cliente);
-
-        Sessao::gravaMensagem("Cliente cadastrado com Sucesso!");
-        $this->redirect('/cliente/cadastro');   
-    }
+{ 
 
     public function edicao($params){
-        $idCliente = $params[0];
+        $idCompra = $params[0];
 
-        $clienteDAO = new ClienteDAO();
+        $compraDAO = new CompraDAO();
 
-        $cliente = $clienteDAO->listar($idCliente);
+        $compra = $compraDAO->listar($idCompra);
 
-        if (!$cliente) {
-            Sessao::gravaMensagem("Cliente Inexistente!");
-            $this->redirect('/cliente/pesquisar');
+        if (!$compra) {
+            Sessao::gravaMensagem("Compra Inexistente!");
+            $this->redirect('/compra/pesquisar');
         }
 
-        self::setViewParam('cliente', $cliente);
+        self::setViewParam('compra', $compra);
 
-        $this->render('/cliente/editar');
+        $this->render('/compra/editar');
 
         Sessao::limpaMensagem();
     }
 
     public function pesquisar()
     {
-        $clienteDAO = new ClienteDAO();
-        self::setViewParam('cliente', $clienteDAO->listar());
+        $compraDAO = new CompraDAO();
+        self::setViewParam('compra', $compraDAO->listar());
 
-        $this->render('cliente/pesquisar');
+        $this->render('compra/pesquisar');
     }
 
     public function atualizar(){
 
-        $cliente = new Cliente();
-        $cliente->setId($_POST['id']);
-        $cliente->setNome($_POST['nome']);
-        $cliente->setEmail($_POST['email']);
-        $cliente->setTelefone($_POST['telefone']);
-        $cliente->setStatus($_POST['status']);
-        $cliente->setCpf($_POST['cpf']);
-        $cliente->setCep($_POST['cep']);
-        $cliente->setUf($_POST['uf']);
-        $cliente->setCidade($_POST['cidade']);
-        $cliente->setBairro($_POST['bairro']);
-        $cliente->setLogradouro($_POST['logradouro']);
-        $cliente->setComplemento($_POST['complemento']);
-        $cliente->setNumero($_POST['numero']);
+        $compra = new Compra();
+        $compra->setId($_POST['id']);
+        $compra->setCpnj($_POST['cnpj']);
+        $compra->setNome_fornecedor($_POST['nome_fornecedor']);
+        $compra->setTelefone($_POST['telefone']);
+        $compra->setStatus($_POST['status']);
+        $compra->setCpf($_POST['cpf']);
+        $compra->setCep($_POST['cep']);
+        $compra->setUf($_POST['uf']);
+        $compra->setCidade($_POST['cidade']);
+        $compra->setBairro($_POST['bairro']);
+        $compra->setLogradouro($_POST['logradouro']);
+        $compra->setComplemento($_POST['complemento']);
+        $compra->setNumero($_POST['numero']);
         Sessao::gravaFormulario($_POST);
 
-        $ClienteValidador = new ClienteValidador();
-        $resultadoValidacao = $ClienteValidador->validar($cliente);
+        $CompraValidador = new CompraValidador();
+        $resultadoValidacao = $CompraValidador->validar($compra);
 
         if ($resultadoValidacao->getErros()) {
             Sessao::gravaErro($resultadoValidacao->getErros());
-            $this->redirect('/cliente/edicao/'. $_POST['id']);
+            $this->redirect('/compra/edicao/'. $_POST['id']);
         }
 
-        $clienteDAO = new ClienteDAO();
+        $compraDAO = new CompraDAO();
 
-        $clienteDAO->atualizar($cliente);
+        $compraDAO->atualizar($compra);
 
         Sessao::limpaFormulario();
         Sessao::limpaMensagem();
         Sessao::limpaErro();
 
         Sessao::gravaMensagem("Informações atualizadas com sucesso!");
-        $this->redirect('/cliente/pesquisar');
+        $this->redirect('/compra/pesquisar');
     }
 
     public function exclusao($params)
     {
-        $idCliente = $params[0];
 
-        $clienteDAO = new ClienteDAO();
+        $idCompra = $params[0];
 
-        $cliente = $clienteDAO->listar($idCliente);
+        $compraDAO = new CompraDAO();
 
-        if (!$cliente) {
-            Sessao::gravaMensagem("Cliente inexistente");
-            $this->redirect('/cliente/pesquisar');
+        $compra = $compraDAO->listar($idCompra);
+
+        if (!$compra) {
+            Sessao::gravaMensagem("Compra inexistente");
+            $this->redirect('/compra/pesquisar');
         }
 
-        self::setViewParam('cliente', $cliente);
+        self::setViewParam('compra', $compra);
 
-        $this->render('/cliente/exclusao');
+        $this->render('/compra/exclusao');
 
         Sessao::limpaMensagem();
     }
 
     public function excluir(){
-        $cliente = new Cliente();
-        $cliente->setId($_POST['id']);
+        $compra = new Compra();
+        $compra->setId($_POST['id']);
 
-        $clienteDAO = new ClienteDAO();
+        $compraDAO = new CompraDAO();
 
-        if (!$clienteDAO->excluir($cliente)) {
-            Sessao::gravaMensagem("Cliente inexistente");
-            $this->redirect('/cliente/pesquisar');
+        if (!$compraDAO->excluir($compra)) {
+            Sessao::gravaMensagem("Cmpra inexistente");
+            $this->redirect('/compra/pesquisar');
         }
 
-        Sessao::gravaMensagem("Cliente excluído com sucesso!");
+        Sessao::gravaMensagem("Compra excluídoa com sucesso!");
 
-        $this->redirect('/cliente/pesquisar');
+        $this->redirect('/compra/pesquisar');
     }
 
 

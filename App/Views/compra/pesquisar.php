@@ -1,8 +1,12 @@
 <?php
+
+use App\Models\DAO\CarroDAO;
 use App\Models\DAO\ModeloDAO;
 use App\Models\DAO\MarcaDAO;
 use App\Models\DAO\CompraDAO;
-
+use App\Models\DAO\FornecedorDAO;
+use App\Models\DAO\VendedorDAO;
+use App\Models\Entidades\Fornecedor;
 
 session_start();
 
@@ -11,7 +15,7 @@ if (isset($_SESSION['login'])) {
 
 <div class="container-fluid">
 <br>
-<h3>Lista de Carros</h3>
+<h3>Lista de Compras</h3>
 <br>
 
         <?php 
@@ -47,60 +51,57 @@ if (isset($_SESSION['login'])) {
   <thead>
     <tr>
       <th scope="col">ID</th>
-      <th scope="col">Placa</th>
+      <th scope="col">CPF</th>
+      <th scope="col">CNPJ Empresa</th>
+      <th scope="col">Nome Fornecedor / Cliente</th>
+      <th scope="col">Nome Fantasia</th>
+      <th scope="col">E-mail</th>
       <th scope="col">Marca/Modelo</th>
       <th scope="col">Ano/Modelo</th>
-      <th scope="col">Cor</th>
-      <th scope="col">Quilometragem</th>
-      <th scope="col">Direção</th>
-      <th scope="col">Câmbio</th>
-      <th scope="col">Freio</th>
-      <th scope="col">Motor</th>
-      <th scope="col">Combustivel</th>
-      <th scope="col">Tração</th>
-      <th scope="col">Observações</th>
-      <th scope="col">Disponibilidade</th>
-      <th scope="col">P.Venda</th>
+      <th scope="col">Comprador</th>
+      <th scope="col">Data Compra</th>
+      <th scope="col">Forma Pagamento</th>
+      <th scope="col">P.Custo</th>
       <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
-<?php if (!count($viewVar['carro'])) { ?>
-                <div class="alert alert-info" role="alert">Nenhum carro encontrado!</div>
+<?php if (!count($viewVar['compra'])) { ?>
+                <div class="alert alert-info" role="alert">Nenhuma compra encontrado!</div>
             <?php 
                 }else{
-              foreach($viewVar['carro'] as $carro){
+              foreach($viewVar['compra'] as $compra){
 
+                $carroDAO = new CarroDAO();
+                $carro = $carroDAO->listar($compra->getId_carro());
+        
                 $modeloDAO = new ModeloDAO();
                 $modelo = $modeloDAO->listar($carro->getId_modelo());
                 $marcaDAO = new MarcaDAO();
                 $marca = $marcaDAO->listar($modelo->getId_marca());
 
-                $compraDAO = new CompraDAO();
-                $compra = $compraDAO->listarPorCarro($carro->getId());
-                var_dump($compra);            
+                $fornecedorDAO = new FornecedorDAO();
+                $fornecedor = $fornecedorDAO->listar($compra->getId_fornecedor());
+                
+                $vendedorDAO = new VendedorDAO();
+                $vendedor = $vendedorDAO->listar($compra->getId_vendedor());          
             ?>
     <tr>
-      <th scope="row"><?php echo $carro->getId(); ?></th>
-      <td><?php echo $carro->getPlaca(); ?></td>
+      <th scope="row"><?php echo $compra->getId(); ?></th>
+      <td><?php echo $fornecedor->getCpf(); ?></td>
+      <td><?php echo $fornecedor->getCnpj(); ?></td>
+      <td><?php echo $fornecedor->getNome(); ?></td>
+      <td><?php echo $fornecedor->getNome_fantasia(); ?></td>
+      <td><?php echo $fornecedor->getEmail(); ?></td>
       <td><?php echo $marca->getNome() . "/" . $modelo->getNome(); ?></td>
       <td><?php echo $carro->getAno_fabricacao() . "/" . $carro->getAno_modelo(); ?></td>
-      <td><?php echo $carro->getCor(); ?></td>
-      <td><?php echo $carro->getQuilometragem(); ?></td>
-      <td><?php echo $carro->getModelo_direcao(); ?></td>
-      <td><?php echo $carro->getModelo_transmissao(); ?></td>
-      <td><?php echo $carro->getTipo_freio(); ?></td>
-      <td><?php echo $carro->getMotor(); ?></td>
-      <td><?php echo $carro->getTipo_combustivel(); ?></td>
-      <td><?php echo $carro->getTipo_tracao(); ?></td>
-      <td><?php echo $carro->getObservacoes(); ?></td>
-      <td><?php echo $carro->getDisponibilidade(); ?></td>
-      <td><?php echo "R$ " . number_format($carro->getPreco_venda(), 2, ',', '.'); ?></td>
+      <td><?php echo $vendedor->getNome(); ?></td>
+      <td><?php echo date('d/m/Y', strtotime($compra->getData_compra())) ; ?></td>
+      <td><?php echo $compra->getTipo_pagamento(); ?></td>
+      <td><?php echo "R$ " . number_format($compra->getPreco_custo(), 2, ',', '.'); ?></td>
 
       <td>    
-        
-      <a href="http://<?php echo APP_HOST; ?>/carro/edicao/<?php echo $carro->getId(); ?>" class="btn btn-info btn-sm">Editar</a>
-        <a href="http://<?php echo APP_HOST; ?>/carro/exclusao/<?php echo $carro->getId(); ?>" class="btn btn-danger btn-sm">Excluir</a>
+        <a href="http://<?php echo APP_HOST; ?>/compra/exclusao/<?php echo $compra->getId(); ?>" class="btn btn-danger btn-sm">Excluir</a>
        </td>
     </tr>
     <?php 

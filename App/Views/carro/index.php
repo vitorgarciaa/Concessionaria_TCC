@@ -39,7 +39,7 @@ use App\Models\DAO\ImagemDAO;
                             ?>
                         </h5>
                         <p class="card-text"><?php echo $carro->getObservacoes(); ?></p>
-                        <p class="card-text"><?php echo "R$ " . number_format($carro->getPreco(), 2, ',', '.'); ?></p>
+                        <p class="card-text"><?php echo "R$ " . number_format($carro->getPreco_venda(), 2, ',', '.'); ?></p>
                         <p class="btn btn-primary "><a href="http://<?php echo APP_HOST; ?>/carro/informacoes/<?php echo $carro->getId(); ?>" style="text-decoration: none; color: white;" class="card-link">Mais informações</a></p>
 
                     </div>

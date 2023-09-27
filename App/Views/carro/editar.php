@@ -170,7 +170,7 @@ if (isset($_SESSION['login'])) {
               <div class="input-group-prepend">
                   <span class="input-group-text">R$</span>
               </div>
-              <input type="text" class="form-control money" id="inputPreco" name="preco" value="<?php echo number_format($carro->getPreco(), 2, ',', '.'); ?>">
+              <input type="text" class="form-control money" id="inputPreco_venda" name="preco_venda" value="<?php echo number_format($carro->getPreco_venda(), 2, ',', '.'); ?>">
           </div>
       </div>
 
