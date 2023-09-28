@@ -3,9 +3,11 @@
 namespace App\Controllers;
 
 use App\Lib\Sessao;
-use App\Models\DAO\ClienteDAO;
-use App\Models\Entidades\Cliente;
-use App\Models\Validacao\ClienteValidador;
+use App\Models\DAO\CarroDAO;
+use App\Models\Entidades\Venda;
+use App\Models\DAO\VendaDAO;
+use App\Models\Entidades\Carro;
+use App\Models\Validacao\VendaValidador;
 
 
 class VendaController extends Controller
@@ -17,154 +19,205 @@ class VendaController extends Controller
         $this->render('venda/index');
     }
 
-    public function cadastro()
+    public function cadastro($params)
     {
 
-        $this->render('cliente/cadastro');
+        $idCarro = $params[0];
+
+        $carroDAO = new CarroDAO();
+
+        $carro = $carroDAO->listar($idCarro);
+
+        if (!$carro) {
+            Sessao::gravaMensagem("Carro Inexistente!");
+            $this->redirect('/carro/pesquisar');
+        }
+
+        self::setViewParam('carro', $carro);
+
+        $this->render('venda/cadastro');
         Sessao::limpaFormulario();
         Sessao::limpaMensagem();
         Sessao::limpaErro();
     }
 
     public function salvar(){
-        $cliente = new Cliente();
+        $venda = new Venda();
+        $preco_venda = preg_replace('/[^0-9]/', '', $_POST['preco_venda']);    
+        $preco_venda = bcdiv($preco_venda, 100, 2);
+        $preco_venda = strtr($preco_venda, ',', '.');
 
-        $cliente->setNome($_POST['nome']);
-        $cliente->setEmail($_POST['email']);
-        $cliente->setTelefone($_POST['telefone']);
-        $cliente->setStatus($_POST['status']);
-        $cliente->setCpf($_POST['cpf']);
-        $cliente->setCep($_POST['cep']);
-        $cliente->setUf($_POST['uf']);
-        $cliente->setCidade($_POST['cidade']);
-        $cliente->setBairro($_POST['bairro']);
-        $cliente->setLogradouro($_POST['logradouro']);
-        $cliente->setComplemento($_POST['complemento']);
-        $cliente->setNumero($_POST['numero']);
+        $venda->setId_carro($_POST['id_carro']);
+        $venda->setId_cliente($_POST['id_cliente']);
+        $venda->setId_vendedor($_SESSION['login']);
+        $venda->setPreco_venda($preco_venda);
+        $venda->setTipo_pagamento($_POST['tipo_pagamento']);
+        $venda->setSituacao_pedido($_POST['situacao_pedido']);
+
+        $carro = new Carro();
+        
+        $carro->setId($_POST['id_carro']);
+        $carro->setDisponibilidade('Indisponível');
+
+        $carroDAO = new CarroDAO();
+
+        $carroDAO->atualizarSituacao($carro);
 
 
         Sessao::gravaFormulario($_POST);
 
-        $clienteValidador = new ClienteValidador();
-        $resultadoValidacao = $clienteValidador->validar($cliente);
+        $vendaValidador = new VendaValidador();
+        $resultadoValidacao = $vendaValidador->validar($venda);
 
         if ($resultadoValidacao->getErros()) {
             Sessao::gravaErro($resultadoValidacao->getErros());
-            $this->redirect('/cliente/cadastro');
+            $this->redirect('/venda/cadastro');
         }
 
         Sessao::limpaFormulario();
         Sessao::limpaMensagem();
         Sessao::limpaErro();
 
-        $clienteDAO = new ClienteDAO();
+        $vendaDAO = new VendaDAO();
 
-        $clienteDAO->salvar($cliente);
+        $vendaDAO->salvar($venda);
 
-        Sessao::gravaMensagem("Cliente cadastrado com Sucesso!");
-        $this->redirect('/cliente/cadastro');   
+        Sessao::gravaMensagem("Venda cadastrada com Sucesso!");
+        $this->redirect('/carro/index');   
     }
 
     public function edicao($params){
-        $idCliente = $params[0];
+        $idVenda = $params[0];
 
-        $clienteDAO = new ClienteDAO();
+        $vendaDAO = new VendaDAO();
 
-        $cliente = $clienteDAO->listar($idCliente);
+        $venda = $vendaDAO->listar($idVenda);
 
-        if (!$cliente) {
-            Sessao::gravaMensagem("Cliente Inexistente!");
-            $this->redirect('/cliente/pesquisar');
+        if (!$venda) {
+            Sessao::gravaMensagem("Venda Inexistente!");
+            $this->redirect('/venda/pesquisar');
         }
 
-        self::setViewParam('cliente', $cliente);
+        self::setViewParam('venda', $venda);
 
-        $this->render('/cliente/editar');
+        $this->render('/venda/editar');
 
         Sessao::limpaMensagem();
     }
 
     public function pesquisar()
     {
-        $clienteDAO = new ClienteDAO();
-        self::setViewParam('cliente', $clienteDAO->listar());
+        $vendaDAO = new VendaDAO();
+        self::setViewParam('venda', $vendaDAO->listar());
 
-        $this->render('cliente/pesquisar');
+        $this->render('venda/pesquisar');
     }
 
     public function atualizar(){
 
-        $cliente = new Cliente();
-        $cliente->setId($_POST['id']);
-        $cliente->setNome($_POST['nome']);
-        $cliente->setEmail($_POST['email']);
-        $cliente->setTelefone($_POST['telefone']);
-        $cliente->setStatus($_POST['status']);
-        $cliente->setCpf($_POST['cpf']);
-        $cliente->setCep($_POST['cep']);
-        $cliente->setUf($_POST['uf']);
-        $cliente->setCidade($_POST['cidade']);
-        $cliente->setBairro($_POST['bairro']);
-        $cliente->setLogradouro($_POST['logradouro']);
-        $cliente->setComplemento($_POST['complemento']);
-        $cliente->setNumero($_POST['numero']);
+        $venda = new Venda();
+        $venda->setId_carro($_POST['id_carro']);
+        $venda->setId_cliente($_POST['id_cliente']);
+        $venda->setPreco_venda($_POST['preco_venda']);
+        $venda->setTipo_pagamento($_POST['tipo_pagamento']);
+        $venda->setSituacao_pedido($_POST['situacao_pedido']);
         Sessao::gravaFormulario($_POST);
 
-        $ClienteValidador = new ClienteValidador();
-        $resultadoValidacao = $ClienteValidador->validar($cliente);
+        $VendaValidador = new VendaValidador();
+        $resultadoValidacao = $VendaValidador->validar($venda);
 
         if ($resultadoValidacao->getErros()) {
             Sessao::gravaErro($resultadoValidacao->getErros());
-            $this->redirect('/cliente/edicao/'. $_POST['id']);
+            $this->redirect('/venda/edicao/'. $_POST['id']);
         }
 
-        $clienteDAO = new ClienteDAO();
+        $vendaDAO = new VendaDAO();
 
-        $clienteDAO->atualizar($cliente);
+        $vendaDAO->atualizar($venda);
 
         Sessao::limpaFormulario();
         Sessao::limpaMensagem();
         Sessao::limpaErro();
 
         Sessao::gravaMensagem("Informações atualizadas com sucesso!");
-        $this->redirect('/cliente/pesquisar');
+        $this->redirect('/venda/pesquisar');
     }
 
     public function exclusao($params)
     {
-        $idCliente = $params[0];
+        $idVenda = $params[0];
 
-        $clienteDAO = new ClienteDAO();
+        $vendaDAO = new VendaDAO();
 
-        $cliente = $clienteDAO->listar($idCliente);
+        $venda = $vendaDAO->listar($idVenda);
 
-        if (!$cliente) {
-            Sessao::gravaMensagem("Cliente inexistente");
-            $this->redirect('/cliente/pesquisar');
+        if (!$venda) {
+            Sessao::gravaMensagem("Venda inexistente");
+            $this->redirect('/venda/pesquisar');
         }
 
-        self::setViewParam('cliente', $cliente);
+        self::setViewParam('venda', $venda);
 
-        $this->render('/cliente/exclusao');
+        $this->render('/venda/exclusao');
 
         Sessao::limpaMensagem();
     }
 
     public function excluir(){
-        $cliente = new Cliente();
-        $cliente->setId($_POST['id']);
+        $venda = new Venda();
+        $venda->setId($_POST['id']);
 
-        $clienteDAO = new ClienteDAO();
+        $vendaDAO = new VendaDAO();
 
-        if (!$clienteDAO->excluir($cliente)) {
+        $venda = $vendaDAO->listar($_POST['id']);
+
+        if (!$vendaDAO->excluir($venda)) {
             Sessao::gravaMensagem("Cliente inexistente");
-            $this->redirect('/cliente/pesquisar');
+            $this->redirect('/venda/pesquisar');
         }
 
-        Sessao::gravaMensagem("Cliente excluído com sucesso!");
+        $carro = new Carro();
+        
+        $carro->setId($venda->getId_carro());
+        $carro->setDisponibilidade('Disponivel');
 
-        $this->redirect('/cliente/pesquisar');
+        $carroDAO = new CarroDAO();
+
+        $carroDAO->atualizarSituacao($carro);
+
+
+        Sessao::gravaMensagem("Venda excluída com sucesso!");
+
+        $this->redirect('/venda/pesquisar');
+
     }
 
+    public function atualizarSituacao(){
 
+        $venda = new Venda();
+        $venda->setId($_POST['id_venda']);
+        $venda->setTipo_pagamento($_POST['tipo_pagamento']);
+        $venda->setSituacao_pedido($_POST['situacao_pedido']);
+        Sessao::gravaFormulario($_POST);
+
+        $VendaValidador = new VendaValidador();
+        $resultadoValidacao = $VendaValidador->validar($venda);
+
+        if ($resultadoValidacao->getErros()) {
+            Sessao::gravaErro($resultadoValidacao->getErros());
+            $this->redirect('/venda/edicao/'. $_POST['id']);
+        }
+
+        $vendaDAO = new VendaDAO();
+
+        $vendaDAO->atualizarSituacao($venda);
+
+        Sessao::limpaFormulario();
+        Sessao::limpaMensagem();
+        Sessao::limpaErro();
+
+        Sessao::gravaMensagem("Informações atualizadas com sucesso!");
+        $this->redirect('/venda/pesquisar');
+    }
+    
 }

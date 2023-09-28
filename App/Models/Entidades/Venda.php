@@ -12,6 +12,7 @@ class Venda {
     private $desconto;
     private $valor_total;
     private $tipo_pagamento;
+    private $situacao_pedido;
 
     public function getId() {
         return $this->id;
@@ -83,6 +84,14 @@ class Venda {
 
     public function setTipo_pagamento($tipo_pagamento) {
         $this->tipo_pagamento = $tipo_pagamento;
+    }
+
+    public function getSituacao_pedido() {
+        return $this->situacao_pedido;
+    }
+
+    public function setSituacao_pedido($situacao_pedido) {
+        $this->situacao_pedido = $situacao_pedido;
     }
 }
 ?>

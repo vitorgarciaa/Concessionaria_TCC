@@ -267,10 +267,10 @@ $modeloDAO = new ModeloDAO;
       <div class="col-md-2">
         <label for="inputTipo_pagamento" class="form-label">Tipo de Pagamento</label>
           <select class="form-control" id="inputTipo_pagamento" name="tipo_pagamento">
-              <option value="dinheiro">Dinheiro</option>
-              <option value="cartao">Cartão</option>
-              <option value="dinheiro">Cheque</option>
-              <option value="vale">Vale</option>
+              <option value="Dinheiro">Dinheiro</option>
+              <option value="Cartão">Cartão</option>
+              <option value="Cheque">Cheque</option>
+              <option value="Vale">Vale</option>
           </select>
       </div>
 

@@ -45,7 +45,7 @@ use App\Models\DAO\ImagemDAO;
                         <?php
                         if (isset($_SESSION['login'])) {
                         ?>
-                        <p class="btn btn-success "><a href="http://<?php echo APP_HOST; ?>/carro/informacoes/<?php echo $carro->getId(); ?>" style="text-decoration: none; color: white;" class="card-link">Vender</a></p>
+                        <p class="btn btn-success "><a href="http://<?php echo APP_HOST; ?>/venda/cadastro/<?php echo $carro->getId(); ?>" style="text-decoration: none; color: white;" class="card-link">Vender</a></p>
 
                         <?php
                         }

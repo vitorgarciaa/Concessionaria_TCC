@@ -166,5 +166,21 @@ class ClienteController extends Controller
         $this->redirect('/cliente/pesquisar');
     }
 
+    public function listarPorNome()
+    {
+        $clienteDAO = new ClienteDAO();
+
+        $resultados = $clienteDAO->listar();
+
+        if(empty($resultados)){
+            echo '<div class="alert alert-info col-md-12" role="alert">Nenhuma fornecedor encontrado. <label class="input-group-text btn-primary" for="inputGroupSelect02" data-bs-toggle="modal" data-bs-target="#modalModelo" data-bs-whatever="@fat">Cadastrar Modelo</label></div>';
+        }else{
+                foreach($resultados as $cliente){
+                    echo '<option value="' . 'ID: ' . $cliente->getId() . ' | CPF: ' . $cliente->getCpf() .  ' | ' . $cliente->getNome() . '">' . $cliente->getCpf() .  ' | ' . $cliente->getNome() . '</option>';
+                };
+        }
+
+    }
+
 
 }

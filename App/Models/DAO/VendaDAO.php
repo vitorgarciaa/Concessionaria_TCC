@@ -31,25 +31,24 @@ class VendaDAO extends BaseDAO{
             $id_vendedor = $venda->getId_vendedor();
             $data_venda = $venda->getData_venda();
             $preco_venda = $venda->getPreco_venda();
-            $desconto = $venda->getDesconto();
-            $valor_total = $venda->getValor_total();
+           // $desconto = $venda->getDesconto();
             $tipo_pagamento = $venda->getTipo_pagamento();
+            $situacao_pedido = $venda->getSituacao_pedido();
             return $this->insert(
-                'modelo',
-                ":id_carro, :id_cliente,:id_vendedor, :data_venda,:preco_venda, :desconto,:valor_total, :tipo_pagamento",
+                'venda',
+                ":id_carro, :id_cliente,:id_vendedor, :data_venda,:preco_venda, :tipo_pagamento, :situacao_pedido",
                 [
                     ':id_carro' => $id_carro,
                     ':id_cliente' => $id_cliente,
                     ':id_vendedor' => $id_vendedor,
                     ':data_venda' => $data_venda,
                     ':preco_venda' => $preco_venda,
-                    ':desconto' => $desconto,
-                    ':valor_total' => $valor_total,
                     ':tipo_pagamento' => $tipo_pagamento,
+                    ':situacao_pedido' => $situacao_pedido,
                 ]
             );
         } catch (\Exception $e) {
-            throw new \Exception("Erro ao salvar dados! ", 500);      
+            throw new \Exception("Erro ao salvar dados! ".$e, 500);      
         }
     }
 
@@ -61,13 +60,13 @@ class VendaDAO extends BaseDAO{
             $id_vendedor = $venda->getId_vendedor();
             $data_venda = $venda->getData_venda();
             $preco_venda = $venda->getPreco_venda();
-            $desconto = $venda->getDesconto();
-            $valor_total = $venda->getValor_total();
+           // $desconto = $venda->getDesconto();
             $tipo_pagamento = $venda->getTipo_pagamento();
+            $situacao_pedido = $venda->getSituacao_pedido();
 
             return $this->update(
-                'modelo',
-                "id_carro = :id_carro, id_cliente = :id_cliente, id_vendedor = :id_vendedor, data_venda = :data_venda, preco_venda = :preco_venda, desconto = :desconto, valor_total = :valor_total, tipo_pagamento = :tipo_pagamento",
+                'venda',
+                "id_carro = :id_carro, id_cliente = :id_cliente, id_vendedor = :id_vendedor, data_venda = :data_venda, preco_venda = :preco_venda, tipo_pagamento = :tipo_pagamento, situacao_pedido = :situacao_pedido",
                     [
                         "id = :id",
                         ':id_carro' => $id_carro,
@@ -75,9 +74,8 @@ class VendaDAO extends BaseDAO{
                         ':id_vendedor' => $id_vendedor,
                         ':data_venda' => $data_venda,
                         ':preco_venda' => $preco_venda,
-                        ':desconto' => $desconto,
-                        ':valor_total' => $valor_total,
                         ':tipo_pagamento' => $tipo_pagamento,
+                        ':situacao_pedido' => $situacao_pedido,
                     ]
             );
 
@@ -96,6 +94,27 @@ class VendaDAO extends BaseDAO{
 
         } catch (\Exception $e) {
             throw new \Exception("Erro ao deletar", 500);
+        }
+    }
+
+    public function atualizarSituacao(Venda $venda){
+        try {
+            $id = $venda->getId();
+            $tipo_pagamento = $venda->getTipo_pagamento();
+            $sitaucao_pedido = $venda->getSituacao_pedido();
+            
+            return $this->update(
+                'venda',
+                "tipo_pagamento = :tipo_pagamento, sitaucao_pedido = :sitaucao_pedido",
+                [
+                        ':id' => $id,
+                        ':tipo_pagamento' => $tipo_pagamento,
+                        ':sitaucao_pedido' => $sitaucao_pedido,
+                    ],
+                    "id = :id"
+            );
+        }catch (\Exception $e) {
+            throw new \Exception("Erro ao atualizar", 500);
         }
     }
 }

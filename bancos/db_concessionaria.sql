@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27/09/2023 às 22:37
+-- Tempo de geração: 28/09/2023 às 22:03
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -51,16 +51,16 @@ CREATE TABLE `carro` (
 --
 
 INSERT INTO `carro` (`id`, `id_modelo`, `ano_fabricacao`, `cor`, `preco_venda`, `quilometragem`, `modelo_direcao`, `modelo_transmissao`, `placa`, `observacoes`, `disponibilidade`, `tipo_freio`, `motor`, `tipo_combustivel`, `tipo_tracao`, `ano_modelo`) VALUES
-(1, 1, '2023', 'Branco', 0.00, 150, 'Manual', 'Transmissão Manual', 'AAA8A54', 'top', 'Disponível', 'ABS', 'VTEC - 1.6', 'Álcool', 'Traseira', '2023'),
+(1, 1, '2023', 'Branco', 0.00, 150, 'Manual', 'Transmissão Manual', 'AAA8A54', 'top', 'Indisponível', 'ABS', 'VTEC - 1.6', 'Álcool', 'Traseira', '2023'),
 (2, 2, '2023', 'Preto', 0.00, 0, 'Manual', 'Transmissão Manual', '', 'Melhor honda civic do mercado atual', 'Disponível', 'ABS', '2.0 Turbo', 'Álcool', 'Traseira', '2023'),
 (3, 2, '2023', 'Branco', 1.50, 0, 'Manual', 'Transmissão Manual', '', 'a', 'Disponível', 'ABS', '2.0 Turbo', 'Álcool', 'Traseira', '2023'),
 (4, 1, '2023', 'vermelho', 1750000.00, 0, 'Hidráulica', 'Transmissão Manual', '', 'aaaaaa', 'Disponível', 'a Disco', '2.0 Turbo', 'Álcool', 'Dianteira', '2023'),
-(5, 1, '2023', 'vermelho', 1750000.00, 0, 'Hidráulica', 'Transmissão Manual', '', 'aaaaaa', 'Disponível', 'a Disco', '2.0 Turbo', 'Álcool', 'Dianteira', '2023'),
-(6, 1, '2023', 'vermelho', 1750000.00, 0, 'Hidráulica', 'Transmissão Manual', '', 'qaaaaaa', 'Disponível', 'a Disco', '2.0 Turbo', 'Álcool', 'Dianteira', '2023'),
+(5, 1, '2023', 'vermelho', 1750000.00, 0, 'Hidráulica', 'Transmissão Manual', '', 'aaaaaa', 'Indisponível', 'a Disco', '2.0 Turbo', 'Álcool', 'Dianteira', '2023'),
+(6, 1, '2023', 'vermelho', 1750000.00, 0, 'Hidráulica', 'Transmissão Manual', '', 'qaaaaaa', 'Disponivel', 'a Disco', '2.0 Turbo', 'Álcool', 'Dianteira', '2023'),
 (7, 4, '2023', 'Branco', 17.50, 0, 'Manual', 'Transmissão Manual', '', 'sdfsfsdfsdfsdf', 'Disponível', 'ABS', '2.0 Turbo', 'Álcool', 'Traseira', '2023'),
 (8, 1, '2023', 'vermelho', 165000.00, 0, 'Manual', 'Transmissão Automático', '', '', 'Disponível', 'ABS', '2.0 Turbo', 'Álcool', 'Traseira', '2023'),
 (9, 1, '2023', 'Branco', 175000.00, 0, 'Manual', 'Transmissão Manual', '', '', 'Disponível', 'ABS', '2.0 Turbo', 'Álcool', 'Traseira', '2023'),
-(10, 2, '2023', 'Branco', 175000.00, 0, 'Manual', 'Transmissão Manual', '', '', 'Disponível', 'ABS', '2.0 Turbo', 'Álcool', 'Traseira', '2023');
+(11, 3, '2023', 'vermelho', 0.00, 0, 'Hidráulica', 'Transmissão Manual', '', '', 'Disponível', 'ABS', '2.0 Turbo', 'Álcool', 'Traseira', '2023');
 
 -- --------------------------------------------------------
 
@@ -112,7 +112,7 @@ CREATE TABLE `compra` (
 --
 
 INSERT INTO `compra` (`id`, `id_carro`, `id_fornecedor`, `id_vendedor`, `data_compra`, `preco_custo`, `tipo_pagamento`) VALUES
-(4, 9, 4, 16, '2023-09-27 17:24:19', 145000.00, 'dinheiro');
+(9, 14, 13, 1, '2023-09-28 11:09:02', 12500.00, 'Vale');
 
 -- --------------------------------------------------------
 
@@ -200,9 +200,16 @@ INSERT INTO `imagem` (`id`, `nome`, `id_carro`) VALUES
 (25, '00e5931314e76abf065e17dd410472b896914webp', 9),
 (26, '00e5931314e76abf065e17dd410472b8117924webp', 9),
 (27, '00e5931314e76abf065e17dd410472b8123554webp', 9),
-(28, 'eea7d0f02be0c58af462a686d727ed9a96914webp', 10),
-(29, 'eea7d0f02be0c58af462a686d727ed9a117924webp', 10),
-(30, 'eea7d0f02be0c58af462a686d727ed9a123554webp', 10);
+(31, '9afd1de38ed4a8cd126e6c3efbb9f2400', 11),
+(32, 'a058b9fcd05004287b6f39f7ede70cac96914webp', 12),
+(33, 'a058b9fcd05004287b6f39f7ede70cac117924webp', 12),
+(34, 'a058b9fcd05004287b6f39f7ede70cac123554webp', 12),
+(35, 'e3ef33b023eeb29ceb305842e0a05c5196914webp', 13),
+(36, 'e3ef33b023eeb29ceb305842e0a05c51117924webp', 13),
+(37, 'e3ef33b023eeb29ceb305842e0a05c51123554webp', 13),
+(38, '384ce93c98c7e8941b871ee4c5ab893d96914webp', 14),
+(39, '384ce93c98c7e8941b871ee4c5ab893d117924webp', 14),
+(40, '384ce93c98c7e8941b871ee4c5ab893d123554webp', 14);
 
 -- --------------------------------------------------------
 
@@ -261,8 +268,17 @@ CREATE TABLE `venda` (
   `preco_venda` decimal(10,2) DEFAULT NULL,
   `desconto` decimal(10,2) NOT NULL,
   `valor_total` decimal(10,2) NOT NULL,
-  `tipo_pagamento` varchar(15) NOT NULL
+  `tipo_pagamento` varchar(15) NOT NULL,
+  `situacao_pedido` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `venda`
+--
+
+INSERT INTO `venda` (`id`, `id_carro`, `id_cliente`, `id_vendedor`, `data_venda`, `preco_venda`, `desconto`, `valor_total`, `tipo_pagamento`, `situacao_pedido`) VALUES
+(1, 1, 5, 1, '0000-00-00 00:00:00', 0.00, 0.00, 0.00, 'Cartão', 'Orçado'),
+(2, 5, 5, 1, '0000-00-00 00:00:00', 1750000.00, 0.00, 0.00, 'Vale', 'Orçado');
 
 -- --------------------------------------------------------
 
@@ -293,24 +309,7 @@ CREATE TABLE `vendedor` (
 --
 
 INSERT INTO `vendedor` (`id`, `nome`, `telefone`, `email`, `cpf`, `status`, `cep`, `uf`, `cidade`, `bairro`, `logradouro`, `complemento`, `numero`, `usuario`, `senha`) VALUES
-(10, 'Vitor Garcia', '(44) 99803-5394', 'gazin@gazin.com.br', '127.984.059-55', 'Ativo', '79100580', 'MS', 'Campo Grande', 'Santo Antônio', 'Rua Ministro Azevedo', 'Casa', '696', '', ''),
-(11, 'Jubileu', '(44) 98055-394', 'jubileo@gazin.com.br', '127.984.059-55', 'Ativo', '87485000', 'PR', 'Douradina', 'aa', 'aa', 'aa', '222', '', ''),
-(12, 'milenio', '(44) 98055-394', 'milenio.rocha@gazin.com.br', '127.984.059-55', 'Ativo', '87485000', '', '', 'aa', 'aa', 'aa', '222', '', ''),
-(13, 'milenio', '(44) 98055-394', 'milenio.rocha@gazin.com.br', '127.984.059-55', 'Ativo', '87485000', 'PR', 'Douradina', 'aaa', 'aa', 'aa', '222', 'milenio', ''),
-(14, 'milenio', '(44) 98055-394', 'milenio.rocha@gazin.com.br', '127.984.059-55', 'Ativo', '87485000', '', '', 'aaa', 'aa', 'aa', '222', 'aaa', '123asd'),
-(15, 'milenio', '(44) 98055-394', 'milenio.rocha@gazin.com.br', '127.984.059-55', 'Ativo', '87485000', '', '', 'aaa', 'aa', 'aa', '222', '1111', '123'),
-(16, 'Ariane', '(44) 99803-5394', 'ariane@gazin.com.br', '490.688.659-00', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '222', 'ariane', '123'),
-(17, 'Ariane', '(44) 99803-5394', 'ariane@gazin.com.br', '490.688.659-00', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '222', 'ariane', '123'),
-(18, 'joao', '(44) 99803-5394', 'joao@gazin.com.br', '127.984.059-55', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '666', 'joao', '1234'),
-(19, 'joao', '(44) 99803-5394', 'joao@gazin.com.br', '127.984.059-55', 'Ativo', '04027060', '', '', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '666', 'asdasd', '$2y$10$seepqaB1OLQYUoYKFYEoVu9f4dlYvUULdugFJWDNAzQrVBV/F4sr6'),
-(20, 'Cristiano de Sá', '(44) 99803-5394', 'cristiano.sa@gazin.com.br', '047.526.489-46', 'Ativo', '87485000', '', '', '', '', '', '', 'cristiano', '$2y$10$AZRzEwnRnmPkoVwqUG47GeKiPZIdulC18jH02hgTNKW2NTXpbxHLq'),
-(21, 'Cristiano de Sá', '(44) 99803-5394', 'cristiano.sa@gazin.com.br', '047.526.489-46', 'Ativo', '87485000', 'PR', 'Douradina', 'Santo Antônio', 'Rua Rubens Cardoso Vieira', 'Casa', '666', 'cristiano', '$2y$10$uOutRkR6gEanLWIwv2.HzuUae/gr5dOaw5XICaJ/VAH36iGjdT6oK'),
-(22, 'Ariane', '(44) 99803-5394', 'ariane@gazin.com.br', '490.688.659-00', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '222', 'ariane', '$2y$10$6xb3lUmM3ggnFiwmia/Nje4AtDUv5/4GddUv//YL7fK/.9gPU4jlq'),
-(23, 'Ariane````', '(44) 99803-5394', 'ariane@gazin.com.br', '490.688.659-00', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '222', 'ariane````', '$2y$10$zDpcLryMj5gHBX5lINuKSe.Mu/q8kTF6.UM8zbCJAY9kZE/PK2NL2'),
-(24, 'Ariane````', '(44) 99803-5394', 'ariane@gazin.com.br', '490.688.659-00', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '222', 'ariane````485', '$2y$10$4kuBM6M7BpDJfguvEig5q.5jfVRpCZj54arBF6TXLcDJ9NMh14E5.'),
-(25, 'Ariane````', '(44) 99803-5394', 'ariane@gazin.com.br', '490.688.659-00', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '222', 'ariane````485234234', '$2y$10$GuroZ8l3PTh2h9iM/tVqE.THHVZ6lt4WxrdcaBEo9Bim1smTOk5Nu'),
-(26, 'Ariane````', '(44) 99803-5394', 'ariane@gazin.com.br', '490.688.659-00', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '222', 'ariane````485234234rewr', '$2y$10$J.qiKzhh4kAe1FHNNoNZgeHj1fRMKL4bt3XeUzywdf2YqahfcHVry'),
-(27, 'Ariane````', '(44) 99803-5394', 'ariane@gazin.com.br', '490.688.659-00', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '222', 'ariane', '$2y$10$wxKBnU7jC7lLOrP0Ife2V.WX9tdawbxRQa8ZfdoCnRsnJngiiTd3K');
+(1, 'Vitor Garcia', '(44) 99803-5394', 'vitor.garcia@gazin.com.br', '127.984.059-55', 'Ativo', '87485000', 'PR', 'Douradina', 'Centro', 'Rua XV De Novembro', 'Casa', '260', 'admin', 'admin');
 
 --
 -- Índices para tabelas despejadas
@@ -386,7 +385,7 @@ ALTER TABLE `vendedor`
 -- AUTO_INCREMENT de tabela `carro`
 --
 ALTER TABLE `carro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de tabela `cliente`
@@ -398,7 +397,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de tabela `compra`
 --
 ALTER TABLE `compra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `fornecedor`
@@ -410,7 +409,7 @@ ALTER TABLE `fornecedor`
 -- AUTO_INCREMENT de tabela `imagem`
 --
 ALTER TABLE `imagem`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de tabela `marca`
@@ -428,13 +427,13 @@ ALTER TABLE `modelo`
 -- AUTO_INCREMENT de tabela `venda`
 --
 ALTER TABLE `venda`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de tabela `vendedor`
 --
 ALTER TABLE `vendedor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restrições para tabelas despejadas

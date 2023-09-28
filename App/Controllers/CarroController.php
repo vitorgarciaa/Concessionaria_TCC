@@ -19,7 +19,7 @@ class CarroController extends Controller
     public function index()
     {
         $carroDAO = new CarroDAO();
-        self::setViewParam('carro', $carroDAO->listar());
+        self::setViewParam('carro', $carroDAO->listarAtivo());
 
         $this->render('carro/index');
     }

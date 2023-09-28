@@ -142,5 +142,33 @@ class CarroDAO extends BaseDAO{
         );
         return $resultado->fetchAll(\PDO::FETCH_CLASS, Carro::class);
     }
+
+
+    public function listarAtivo(){
+            $resultado = $this->select(
+                'SELECT * FROM carro WHERE disponibilidade = "Disponível"'
+            );
+            return $resultado->fetchAll(\PDO::FETCH_CLASS, Carro::class);
+    }
+
+    public function atualizarSituacao(Carro $carro){
+        try {
+            $id = $carro->getId();
+            $disponibilidade = $carro->getDisponibilidade();
+            
+            return $this->update(
+                'carro',
+                "disponibilidade = :disponibilidade",
+                [
+                        ':id' => $id,
+                        ':disponibilidade' => $disponibilidade,
+                    ],
+                    "id = :id"
+            );
+
+        } catch (\Exception $e) {
+            throw new \Exception("Erro ao atualizar dados!", 500);
+        }
+    }
 }
 ?>

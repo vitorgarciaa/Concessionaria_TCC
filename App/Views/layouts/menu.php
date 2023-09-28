@@ -39,7 +39,7 @@
           <a href="http://<?php echo APP_HOST; ?>/carro/index" class="nav-link text-white">Listar Carros</a>
         </li>
         <li class="nav-item">
-          <a href="http://<?php echo APP_HOST; ?>/sobre/index" class="nav-link text-white">Sobre Nós</a>
+          <a href="http://<?php echo APP_HOST; ?>/sob/index" class="nav-link text-white">Sobre Nós</a>
         </li>
 
         <?php
@@ -66,7 +66,6 @@
                 <div class="dropdown-submenu dropright">
                 <a class="dropdown-item dropdown-toggle" href="#">Venda</a>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/venda/index">Painel de Venda</a>
                   <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/venda/pesquisar">Pesquisar Venda</a>
                 </div>
                 <div class="dropdown-submenu dropright">

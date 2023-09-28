@@ -23,7 +23,7 @@ abstract class BaseDAO
     public function insert($table, $cols, $values)
     {
 
-      /*  echo '<pre>';
+       /* echo '<pre>';
         print_r([
             'table' => $table,
             'cols' => $cols,
@@ -31,6 +31,7 @@ abstract class BaseDAO
         ]);
         die; 
         */
+        
         if (!empty($table) && !empty($cols) && !empty($values)) {
             $parametros = $cols;
             $colunas = str_replace(":", "", $cols);
