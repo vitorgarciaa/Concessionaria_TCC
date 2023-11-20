@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28/09/2023 às 22:03
+-- Tempo de geração: 20/11/2023 às 19:26
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -51,16 +51,13 @@ CREATE TABLE `carro` (
 --
 
 INSERT INTO `carro` (`id`, `id_modelo`, `ano_fabricacao`, `cor`, `preco_venda`, `quilometragem`, `modelo_direcao`, `modelo_transmissao`, `placa`, `observacoes`, `disponibilidade`, `tipo_freio`, `motor`, `tipo_combustivel`, `tipo_tracao`, `ano_modelo`) VALUES
-(1, 1, '2023', 'Branco', 0.00, 150, 'Manual', 'Transmissão Manual', 'AAA8A54', 'top', 'Indisponível', 'ABS', 'VTEC - 1.6', 'Álcool', 'Traseira', '2023'),
-(2, 2, '2023', 'Preto', 0.00, 0, 'Manual', 'Transmissão Manual', '', 'Melhor honda civic do mercado atual', 'Disponível', 'ABS', '2.0 Turbo', 'Álcool', 'Traseira', '2023'),
-(3, 2, '2023', 'Branco', 1.50, 0, 'Manual', 'Transmissão Manual', '', 'a', 'Disponível', 'ABS', '2.0 Turbo', 'Álcool', 'Traseira', '2023'),
-(4, 1, '2023', 'vermelho', 1750000.00, 0, 'Hidráulica', 'Transmissão Manual', '', 'aaaaaa', 'Disponível', 'a Disco', '2.0 Turbo', 'Álcool', 'Dianteira', '2023'),
-(5, 1, '2023', 'vermelho', 1750000.00, 0, 'Hidráulica', 'Transmissão Manual', '', 'aaaaaa', 'Indisponível', 'a Disco', '2.0 Turbo', 'Álcool', 'Dianteira', '2023'),
-(6, 1, '2023', 'vermelho', 1750000.00, 0, 'Hidráulica', 'Transmissão Manual', '', 'qaaaaaa', 'Disponivel', 'a Disco', '2.0 Turbo', 'Álcool', 'Dianteira', '2023'),
-(7, 4, '2023', 'Branco', 17.50, 0, 'Manual', 'Transmissão Manual', '', 'sdfsfsdfsdfsdf', 'Disponível', 'ABS', '2.0 Turbo', 'Álcool', 'Traseira', '2023'),
-(8, 1, '2023', 'vermelho', 165000.00, 0, 'Manual', 'Transmissão Automático', '', '', 'Disponível', 'ABS', '2.0 Turbo', 'Álcool', 'Traseira', '2023'),
-(9, 1, '2023', 'Branco', 175000.00, 0, 'Manual', 'Transmissão Manual', '', '', 'Disponível', 'ABS', '2.0 Turbo', 'Álcool', 'Traseira', '2023'),
-(11, 3, '2023', 'vermelho', 0.00, 0, 'Hidráulica', 'Transmissão Manual', '', '', 'Disponível', 'ABS', '2.0 Turbo', 'Álcool', 'Traseira', '2023');
+(1, 1, '2023', 'vermelho', 1.00, 0, 'Manual', 'Transmissão Manual', '', 'top', 'Indisponível', 'ABS', '2.0 Turbo', 'Álcool', 'Dianteira', '2023'),
+(2, 1, '2023', 'Branco', 195000.00, 1500000, 'Hidráulica', 'Transmissão Automático', 'AAA8A54', 'TOP TOP', 'Indisponível', 'a Disco', '2.0 Turbo', 'Diesel', 'Dianteira', '2023'),
+(3, 1, '2023', 'vermelho', 1750000.00, 150000000, 'Hidráulica', 'Transmissão Manual', 'AAA8A54', 'aa', 'Disponível', 'a Disco', '2.0 Turbo', 'Diesel', 'Dianteira', '2023'),
+(4, 1, '2027', 'vermelho', 1750000.00, 15000, 'Manual', 'Transmissão Manual', 'AAA8A54', 'aa', 'Disponível', 'ABS', '2.0 Turbo', 'Álcool', 'Traseira', '2023'),
+(5, 1, '2027', 'Branco', 1750000.00, 0, 'Manual', 'Transmissão Manual', '', 'aa', 'Disponível', 'ABS', '2.0 Turbo', 'Álcool', 'Traseira', '2023'),
+(6, 1, '2023', 'vermelho', 1750000.00, 0, 'Manual', 'Transmissão Manual', '', 'aa', 'Disponível', 'ABS', '2.0 Turbo', 'Álcool', 'Traseira', '2023'),
+(7, 1, '2023', 'vermelho', 1750000.00, 0, 'Manual', 'Transmissão Manual', '', 'a', 'Disponível', 'ABS', '2.0 Turbo', 'Diesel', 'Dianteira', '2023');
 
 -- --------------------------------------------------------
 
@@ -89,7 +86,7 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`id`, `nome`, `telefone`, `email`, `cpf`, `status`, `cep`, `uf`, `cidade`, `bairro`, `logradouro`, `complemento`, `numero`) VALUES
-(5, 'Vitor Garcia', '(44) 99803-5394', 'lvitor2424@gmail.com', '127.984.059-55', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'Casa', '212');
+(1, 'Vitor Garcia', '(44) 99803-5394', 'lvitor2424@gmail.com', '127.984.059-55', 'Ativo', '79100580', 'MS', 'Campo Grande', 'Santo Antônio', 'Rua Ministro AzevedoA', 'apartamento 04', '222');
 
 -- --------------------------------------------------------
 
@@ -112,7 +109,9 @@ CREATE TABLE `compra` (
 --
 
 INSERT INTO `compra` (`id`, `id_carro`, `id_fornecedor`, `id_vendedor`, `data_compra`, `preco_custo`, `tipo_pagamento`) VALUES
-(9, 14, 13, 1, '2023-09-28 11:09:02', 12500.00, 'Vale');
+(2, 2, 1, 1, '2023-11-20 14:06:25', 184000.00, 'Cheque'),
+(3, 3, 1, 1, '2023-11-20 14:13:20', 1500000.00, 'Dinheiro'),
+(4, 4, 1, 1, '2023-11-20 14:14:16', 1500000.00, 'Cartão');
 
 -- --------------------------------------------------------
 
@@ -144,17 +143,7 @@ CREATE TABLE `fornecedor` (
 --
 
 INSERT INTO `fornecedor` (`id`, `nome`, `telefone`, `email`, `cpf`, `status`, `cep`, `uf`, `cidade`, `bairro`, `logradouro`, `complemento`, `numero`, `cnpj`, `email_empresa`, `nome_fantasia`) VALUES
-(4, 'Vitor Garcia', '(44) 44444-4444', 'lvitor2424@gmail.com', '127.984.059-55', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'aaa', '111', '11.111.111/1111-11', 'aaa@gazin.com.br', 'aaaa'),
-(5, 'Fornecedor 1', '(11) 1234-5678', 'fornecedor1@email.com', '123.456.789-01', 'Ativo', '12345-678', 'SP', 'São Paulo', 'Centro', 'Rua A', 'Apto 101', '1', '12.345.678/0001-01', 'empresa1@email.com', 'Fantasia 1'),
-(6, 'Fornecedor 2', '(22) 2345-6789', 'fornecedor2@email.com', '234.567.890-12', 'Inativo', '23456-789', 'RJ', 'Rio de Janeiro', 'Copacabana', 'Avenida B', 'Sala 201', '2', '23.456.789/0002-02', 'empresa2@email.com', 'Fantasia 2'),
-(7, 'Fornecedor 3', '(33) 3456-7890', 'fornecedor3@email.com', '345.678.901-23', 'Ativo', '34567-890', 'MG', 'Belo Horizonte', 'Savassi', 'Rua C', 'Casa 301', '3', '34.567.890/0003-03', 'empresa3@email.com', 'Fantasia 3'),
-(8, 'Fornecedor 4', '(44) 4567-8901', 'fornecedor4@email.com', '456.789.012-34', 'Inativo', '45678-901', 'RS', 'Porto Alegre', 'Moinhos de Vento', 'Avenida D', 'Apto 401', '4', '45.678.901/0004-04', 'empresa4@email.com', 'Fantasia 4'),
-(9, 'Fornecedor 5', '(55) 5678-9012', 'fornecedor5@email.com', '567.890.123-45', 'Ativo', '56789-012', 'BA', 'Salvador', 'Barra', 'Rua E', 'Casa 501', '5', '56.789.012/0005-05', 'empresa5@email.com', 'Fantasia 5'),
-(10, 'Fornecedor 6', '(66) 6789-0123', 'fornecedor6@email.com', '678.901.234-56', 'Inativo', '67890-123', 'PE', 'Recife', 'Boa Viagem', 'Avenida F', 'Sala 601', '6', '67.890.123/0006-06', 'empresa6@email.com', 'Fantasia 6'),
-(11, 'Fornecedor 7', '(77) 7890-1234', 'fornecedor7@email.com', '789.012.345-67', 'Ativo', '78901-234', 'DF', 'Brasília', 'Asa Sul', 'Quadra G', 'Apto 701', '7', '78.901.234/0007-07', 'empresa7@email.com', 'Fantasia 7'),
-(12, 'Fornecedor 8', '(88) 8901-2345', 'fornecedor8@email.com', '890.123.456-78', 'Inativo', '89012-345', 'CE', 'Fortaleza', 'Aldeota', 'Rua H', 'Casa 801', '8', '89.012.345/0008-08', 'empresa8@email.com', 'Fantasia 8'),
-(13, 'Fornecedor 9', '(99) 9012-3456', 'fornecedor9@email.com', '901.234.567-89', 'Ativo', '90123-456', 'PR', 'Curitiba', 'Batel', 'Avenida I', 'Sala 901', '9', '90.123.456/0009-09', 'empresa9@email.com', 'Fantasia 9'),
-(14, 'Fornecedor 10', '(10) 0123-4567', 'fornecedor10@email.com', '012.345.678-90', 'Inativo', '01234-567', 'SC', 'Florianópolis', 'Centro', 'Rua J', 'Apto 1001', '10', '01.234.567/0010-10', 'empresa10@email.com', 'Fantasia 10');
+(1, 'Vitor Garcia', '(44) 98055-394', 'lvitor2424@gmail.com', '127.984.059-55', 'Ativo', '87485000', 'PR', 'Douradina', 'Santo Antônio', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '260', '12.798.450/0001-55', 'vitor.garcia@gazin.com.br', 'Empresa top');
 
 -- --------------------------------------------------------
 
@@ -173,43 +162,27 @@ CREATE TABLE `imagem` (
 --
 
 INSERT INTO `imagem` (`id`, `nome`, `id_carro`) VALUES
-(1, '63ea04b22fadbd8ed7a9bb8eb86c1fab192961.jpg', 1),
-(2, '63ea04b22fadbd8ed7a9bb8eb86c1fab203483.jpg', 1),
-(3, '63ea04b22fadbd8ed7a9bb8eb86c1fab203483.jpg', 1),
-(4, '3162987ce5f1fb392e138513af70cf2f38558.jpg', 2),
-(5, '3162987ce5f1fb392e138513af70cf2f39072.jpg', 2),
-(6, '3162987ce5f1fb392e138513af70cf2f41016.jpg', 2),
-(7, '551f8d050672d83a5998e703bbace0b9117924webp', 3),
-(8, '551f8d050672d83a5998e703bbace0b9307294.png', 3),
-(9, '551f8d050672d83a5998e703bbace0b996914webp', 3),
-(10, '6617771a3ebea79c2a2844fc2ed6483196914webp', 4),
-(11, '6617771a3ebea79c2a2844fc2ed64831117924webp', 4),
-(12, '6617771a3ebea79c2a2844fc2ed64831307294.png', 4),
-(13, '28f06c11e85956ad64e01d7e66340f4596914webp', 5),
-(14, '28f06c11e85956ad64e01d7e66340f45117924webp', 5),
-(15, '28f06c11e85956ad64e01d7e66340f45307294.png', 5),
-(16, 'a830ec2bd7afe88b07d045c4f7d60062307294.png', 6),
-(17, 'a830ec2bd7afe88b07d045c4f7d60062117924webp', 6),
-(18, 'a830ec2bd7afe88b07d045c4f7d6006296914webp', 6),
-(19, 'f6a49ace721f4866b3d03f499575ff4296914webp', 7),
-(20, 'f6a49ace721f4866b3d03f499575ff42117924webp', 7),
-(21, 'f6a49ace721f4866b3d03f499575ff42123554webp', 7),
-(22, '4bb3ac9502203714e545bf06c402bf3f96914webp', 8),
-(23, '4bb3ac9502203714e545bf06c402bf3f117924webp', 8),
-(24, '4bb3ac9502203714e545bf06c402bf3f123554webp', 8),
-(25, '00e5931314e76abf065e17dd410472b896914webp', 9),
-(26, '00e5931314e76abf065e17dd410472b8117924webp', 9),
-(27, '00e5931314e76abf065e17dd410472b8123554webp', 9),
-(31, '9afd1de38ed4a8cd126e6c3efbb9f2400', 11),
-(32, 'a058b9fcd05004287b6f39f7ede70cac96914webp', 12),
-(33, 'a058b9fcd05004287b6f39f7ede70cac117924webp', 12),
-(34, 'a058b9fcd05004287b6f39f7ede70cac123554webp', 12),
-(35, 'e3ef33b023eeb29ceb305842e0a05c5196914webp', 13),
-(36, 'e3ef33b023eeb29ceb305842e0a05c51117924webp', 13),
-(37, 'e3ef33b023eeb29ceb305842e0a05c51123554webp', 13),
-(38, '384ce93c98c7e8941b871ee4c5ab893d96914webp', 14),
-(39, '384ce93c98c7e8941b871ee4c5ab893d117924webp', 14),
-(40, '384ce93c98c7e8941b871ee4c5ab893d123554webp', 14);
+(1, '9e883752242b1e315b2cb6c93057a0eb38558.jpg', 1),
+(2, '9e883752242b1e315b2cb6c93057a0eb39072.jpg', 1),
+(3, '9e883752242b1e315b2cb6c93057a0eb41016.jpg', 1),
+(4, 'fe825c0eec55a154ea4ce60be856a6f679513.png', 2),
+(5, 'fe825c0eec55a154ea4ce60be856a6f646188.png', 2),
+(6, 'fe825c0eec55a154ea4ce60be856a6f65286.png', 2),
+(7, 'ef8be0fd4d618daf36ab2e885cf529fb202010.png', 3),
+(8, 'ef8be0fd4d618daf36ab2e885cf529fb216508.png', 3),
+(9, 'ef8be0fd4d618daf36ab2e885cf529fb200426.png', 3),
+(10, 'ea39c4019ff3d47cad6d2368759c8e83202010.png', 4),
+(11, 'ea39c4019ff3d47cad6d2368759c8e83216508.png', 4),
+(12, 'ea39c4019ff3d47cad6d2368759c8e83200426.png', 4),
+(13, 'cf7ebc50b2aeb0ea3aa215195ba64872200426.png', 5),
+(14, 'cf7ebc50b2aeb0ea3aa215195ba64872216508.png', 5),
+(15, 'cf7ebc50b2aeb0ea3aa215195ba64872202010.png', 5),
+(16, '7e48f52f0e97eeefe3513eafc6836a9036899.png', 6),
+(17, '7e48f52f0e97eeefe3513eafc6836a90202010.png', 6),
+(18, '7e48f52f0e97eeefe3513eafc6836a90216508.png', 6),
+(19, 'b2e13acd43a9fd0afeeae27dea5323da216508.png', 7),
+(20, 'b2e13acd43a9fd0afeeae27dea5323da202010.png', 7),
+(21, 'b2e13acd43a9fd0afeeae27dea5323da200426.png', 7);
 
 -- --------------------------------------------------------
 
@@ -227,9 +200,7 @@ CREATE TABLE `marca` (
 --
 
 INSERT INTO `marca` (`id`, `nome`) VALUES
-(1, 'Volkswagem'),
-(2, 'Honda'),
-(3, 'netinho');
+(1, 'Honda');
 
 -- --------------------------------------------------------
 
@@ -248,10 +219,7 @@ CREATE TABLE `modelo` (
 --
 
 INSERT INTO `modelo` (`id`, `nome`, `id_marca`) VALUES
-(1, 'Golf MK 7.5R', 1),
-(2, 'Civic', 2),
-(3, 'netinho', 3),
-(4, 'matehsu', 2);
+(1, 'Civic', 1);
 
 -- --------------------------------------------------------
 
@@ -277,8 +245,8 @@ CREATE TABLE `venda` (
 --
 
 INSERT INTO `venda` (`id`, `id_carro`, `id_cliente`, `id_vendedor`, `data_venda`, `preco_venda`, `desconto`, `valor_total`, `tipo_pagamento`, `situacao_pedido`) VALUES
-(1, 1, 5, 1, '0000-00-00 00:00:00', 0.00, 0.00, 0.00, 'Cartão', 'Orçado'),
-(2, 5, 5, 1, '0000-00-00 00:00:00', 1750000.00, 0.00, 0.00, 'Vale', 'Orçado');
+(6, 1, 1, 1, '0000-00-00 00:00:00', 100000.00, 0.00, 0.00, 'Dinheiro', 'Fechado'),
+(7, 2, 1, 1, '0000-00-00 00:00:00', 195000.00, 0.00, 0.00, 'Dinheiro', 'Orçado');
 
 -- --------------------------------------------------------
 
@@ -309,7 +277,8 @@ CREATE TABLE `vendedor` (
 --
 
 INSERT INTO `vendedor` (`id`, `nome`, `telefone`, `email`, `cpf`, `status`, `cep`, `uf`, `cidade`, `bairro`, `logradouro`, `complemento`, `numero`, `usuario`, `senha`) VALUES
-(1, 'Vitor Garcia', '(44) 99803-5394', 'vitor.garcia@gazin.com.br', '127.984.059-55', 'Ativo', '87485000', 'PR', 'Douradina', 'Centro', 'Rua XV De Novembro', 'Casa', '260', 'admin', 'admin');
+(1, 'Vitor Garcia', '(44) 99803-5394', 'vitor.garcia@gazin.com.br', '127.984.059-55', 'Ativo', '87485000', 'PR', 'Douradina', 'Centro', 'Rua XV De Novembro', 'Casa', '260', 'admin', 'admin'),
+(2, 'Vitor Garcia', '(44) 99803-5394', 'lvitor2424@gmail.com', '127.984.059-55', 'Inativo', '79100580', 'MS', 'Campo Grande', 'Santo Antônio', 'Rua Ministro Azevedo', 'Casa', '696', 'vitor.garcia', '$2y$10$lvUfS1r.VpoclM5799W9ae7uTvjmqxeDZoCCgKXAYK1RezJYJ6PvO');
 
 --
 -- Índices para tabelas despejadas
@@ -385,55 +354,55 @@ ALTER TABLE `vendedor`
 -- AUTO_INCREMENT de tabela `carro`
 --
 ALTER TABLE `carro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `compra`
 --
 ALTER TABLE `compra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `fornecedor`
 --
 ALTER TABLE `fornecedor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `imagem`
 --
 ALTER TABLE `imagem`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de tabela `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `modelo`
 --
 ALTER TABLE `modelo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `venda`
 --
 ALTER TABLE `venda`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `vendedor`
 --
 ALTER TABLE `vendedor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restrições para tabelas despejadas

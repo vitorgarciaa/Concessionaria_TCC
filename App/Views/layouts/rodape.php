@@ -1,5 +1,6 @@
 <!--    Rodapé   -->
-<footer class="py-4 text-white bg-dark fixed-bottom">
+<footer class="py-4 text-white fixed-bottom" style=" background-color: #020147;">
+
         <div class="container">
             <p class="m-0 text-center"> &copy; 2023 | Desenvolvido por: Vitor Garcia</p>
         </div>    

@@ -93,7 +93,7 @@ $imagem = $imagemDAO->listarPorCarro($carro->getId());
                 error: function(data) {
                     alert("Houve um erro ao carregar");
                 }
-            });
+            });4
       }
 
       

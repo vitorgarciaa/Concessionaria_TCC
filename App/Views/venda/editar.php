@@ -134,8 +134,8 @@ $cliente = $clienteDAO->listar($venda->getId_cliente());
       </div>
 
       <div class="col-md-12 d-flex justify-content-end">
-      <button type="submit" class="btn btn-success">Cadastrar</button>&nbsp&nbsp
-      <button type="button" class="btn btn-danger">Cancelar</button>
+      <button type="submit" class="btn btn-success">Salvar</button>&nbsp&nbsp
+      <a href="http://<?php echo APP_HOST; ?>/venda/pesquisar" class="btn btn-danger btn-sm">Cancelar</a>
     </div>
 
 </div>

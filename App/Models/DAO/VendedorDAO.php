@@ -128,7 +128,7 @@ class VendedorDAO extends BaseDAO{
     public function logar($email, $senha){
         try {
             $resultado = $this->select(
-            "SELECT * FROM vendedor WHERE email = '{$email}' AND senha = '{$senha}' OR usuario = '{$email}' AND senha = '{$senha}'"
+            "SELECT * FROM vendedor WHERE email = '{$email}' AND senha = '{$senha}' AND status = 'Ativo' OR usuario = '{$email}' AND senha = '{$senha}' AND status = 'Ativo'"
             );
 
             $resultado = $resultado->fetchAll(\PDO::FETCH_ASSOC);
@@ -143,9 +143,17 @@ class VendedorDAO extends BaseDAO{
 
             }else{
                 echo "
-                    <div class='alert alert-danger' role='alert'>
-                        Usuário ou senha incorreto!
-                    </div>
+                <script src='https://cdn.jsdelivr.net/npm/sweetalert2@10'></script>
+                <script>
+                    // Wrap the code in a document-ready function
+                    document.addEventListener('DOMContentLoaded', function () {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Erro de autenticação',
+                            text: 'Usuário ou senha incorretos ou Inativo!',
+                        });
+                    });
+                </script>
                 ";
             }
         } catch (\Exception $e) {

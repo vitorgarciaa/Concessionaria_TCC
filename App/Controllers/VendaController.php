@@ -83,7 +83,7 @@ class VendaController extends Controller
         $vendaDAO->salvar($venda);
 
         Sessao::gravaMensagem("Venda cadastrada com Sucesso!");
-        $this->redirect('/carro/index');   
+        $this->redirect('/venda/pesquisar');   
     }
 
     public function edicao($params){
