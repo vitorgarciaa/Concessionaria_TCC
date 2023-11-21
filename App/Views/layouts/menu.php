@@ -63,7 +63,7 @@
 
 <nav class="navbar navbar-expand-lg text-white " style="background-color: #020147; padding: 40px 10px;">
   <div class="container-fluid">
-    <a class="navbar-brand  hover" href="http://<?php echo APP_HOST; ?>/home/index">Concessionária VG</a>
+    <a class="navbar-brand  hover" href="http://<?php echo APP_HOST; ?>/home/index">Concessionária Blackbeard</a>
     <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

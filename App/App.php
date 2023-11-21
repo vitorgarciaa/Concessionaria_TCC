@@ -19,7 +19,7 @@ class App
         define('PATH', realpath('./'));
         define('PATH_IMAGENS', "http://" . $_SERVER['HTTP_HOST'] . "/concessionaria_mvc/App/Views/imagens/");
         define('PATH_CSS', "http://" . $_SERVER['HTTP_HOST'] . "/concessionaria_mvc/public/css/");
-        define('TITLE', "Concessionaria VG");
+        define('TITLE', "Concessionaria Blackbeard");
         define('DB_HOST', "localhost");
         define('DB_USER', "root");
         define('DB_PASSWORD', "");
