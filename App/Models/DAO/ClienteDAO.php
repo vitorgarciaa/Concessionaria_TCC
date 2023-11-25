@@ -113,7 +113,7 @@ class ClienteDAO extends BaseDAO{
             return $this->delete('cliente', $id);
 
         } catch (\Exception $e) {
-            throw new \Exception("Erro ao deletar", 500);
+            throw new \Exception("Erro ao deletar".$e, 500);
         }
     }
 }

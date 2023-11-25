@@ -27,13 +27,13 @@
                 <p>A Concessionária VG oferece uma vasta gama de opções de veículos para atender a todas as necessidades e preferências. Se você está procurando um sedan elegante, um SUV espaçoso, um carro esportivo emocionante ou um veículo utilitário resistente, a VG tem o que você precisa. Nossa seleção é cuidadosamente curada para garantir que cada veículo em nosso showroom atenda aos mais altos padrões de qualidade e desempenho.</p>
             </div>
             <div class="col-md-6">
-                <img src="imagens/veiculo.jpg" class="img-fluid" alt="Veículo">
+                <img src="<?php echo PATH_IMAGENS ?>sobre/veiculo.jpg" class="img-fluid" alt="Veículo">
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-6">
-                <img src="imagens/equipe.jfif" class="img-fluid" alt="Equipe">
+                <img src="<?php echo PATH_IMAGENS ?>sobre/equipe.jpg" class="img-fluid" alt="Equipe">
             </div>
             <div class="col-md-6">
                 <h2>Equipe Experiente e Amigável</h2>
@@ -47,7 +47,7 @@
                 <p>Além de ser uma concessionária de automóveis de renome, a VG também se compromete com a comunidade. Participamos ativamente de iniciativas locais, apoiando eventos beneficentes e causas sociais. Acreditamos que, ao investir em nossa comunidade, podemos contribuir para um futuro melhor.</p>
             </div>
             <div class="col-md-6">
-                <img src="./imagens/comunidade.jfif" class="img-fluid" alt="Comunidade">
+                <img src="<?php echo PATH_IMAGENS ?>sobre/comunidade.jpg" class="img-fluid" alt="Comunidade">
             </div>
         </div>
     </div>

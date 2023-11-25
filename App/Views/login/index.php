@@ -32,6 +32,22 @@ if (!isset($_SESSION['login'])) {
                         <div class="text-center">
                             <button type="submit" name="entrar" class="btn btn-primary btn-block">Entrar</button>
                         </div>
+                        <?php 
+                            $separaUrl = explode("=", $_SERVER["REQUEST_URI"]);
+                            if (count($separaUrl) > 1 ){
+                                $separaUrl['1'];
+                                if ($separaUrl['1']) {
+                                    echo "
+                                        <script>
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Erro de autenticação',
+                                                text: 'Usuário ou senha incorretos ou Inativo!',
+                                            });
+                                        </script>";
+                                }
+                            }
+                        ?>
                     </form>
                 </div>
             </div>

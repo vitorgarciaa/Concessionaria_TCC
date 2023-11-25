@@ -104,22 +104,22 @@ $cliente = $clienteDAO->listar($venda->getId_cliente());
     <input type="hidden" name="id_carro" value="<?php echo $carro->getId(); ?>">
       
 
-      <div class="col-md-2">
+    <div class="col-md-2">
         <label for="inputTipo_pagamento" class="form-label">Tipo de Pagamento</label>
           <select class="form-control" id="inputTipo_pagamento" name="tipo_pagamento">
-              <option value="Dinheiro">Dinheiro</option>
-              <option value="Cartão">Cartão</option>
-              <option value="Cheque">Cheque</option>
-              <option value="Vale">Vale</option>
+              <option <?php echo ($venda->getTipo_pagamento() == "Dinheiro" ) ? "selected" : null ; ?> value="Dinheiro">Dinheiro</option>
+              <option <?php echo ($venda->getTipo_pagamento() == "Cartão" ) ? "selected" : null ; ?> value="Cartão">Cartão</option>
+              <option <?php echo ($venda->getTipo_pagamento() == "Cheque" ) ? "selected" : null ; ?> value="Cheque">Cheque</option>
+              <option <?php echo ($venda->getTipo_pagamento() == "Vale" ) ? "selected" : null ; ?> value="Vale">Vale</option>
           </select>
       </div>
 
       <div class="col-md-2">
         <label for="inputSituacao_pedido" class="form-label">Situação Pedido</label>
           <select class="form-control" id="inputSituacao_pedido" name="situacao_pedido">
-              <option value="Orçado">Orçado</option>
-              <option value="Fechado">Fechado</option>
-              <option value="Cancelado">Cancelado</option>
+              <option <?php echo ($venda->getSituacao_pedido() == "Orçado" ) ? "selected" : null ; ?> value="Orçado">Orçado</option>
+              <option <?php echo ($venda->getSituacao_pedido() == "Fechado" ) ? "selected" : null ; ?> value="Fechado">Fechado</option>
+              <option <?php echo ($venda->getSituacao_pedido() == "Cancelado" ) ? "selected" : null ; ?> value="Cancelado">Cancelado</option>
           </select>
       </div>
 

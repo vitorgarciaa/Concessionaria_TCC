@@ -304,21 +304,6 @@ $modeloDAO = new ModeloDAO;
             </div>
           </div>
       </div>
-      
-    <div class="col-md-12">
-        <label for="inputAno" class="form-label">Opcionais</label>
-        <div class="form-check">
-          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">Ar condicionado
-          <br>
-          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">Vidros Elétricos
-          <br>
-          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">Travas Elétricas
-          <br>
-          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">AirBags
-          <br>
-          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">Som
-        </div>
-    </div>
 
     <div class="col-md-12 d-flex justify-content-end">
       <button type="submit" class="btn btn-success">Cadastrar</button>&nbsp&nbsp

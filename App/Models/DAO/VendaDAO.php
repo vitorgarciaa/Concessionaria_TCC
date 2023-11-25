@@ -101,20 +101,20 @@ class VendaDAO extends BaseDAO{
         try {
             $id = $venda->getId();
             $tipo_pagamento = $venda->getTipo_pagamento();
-            $sitaucao_pedido = $venda->getSituacao_pedido();
+            $situacao_pedido = $venda->getSituacao_pedido();
             
             return $this->update(
                 'venda',
-                "tipo_pagamento = :tipo_pagamento, sitaucao_pedido = :sitaucao_pedido",
+                "tipo_pagamento = :tipo_pagamento, situacao_pedido = :situacao_pedido",
                 [
                         ':id' => $id,
                         ':tipo_pagamento' => $tipo_pagamento,
-                        ':sitaucao_pedido' => $sitaucao_pedido,
+                        ':situacao_pedido' => $situacao_pedido,
                     ],
                     "id = :id"
             );
         }catch (\Exception $e) {
-            throw new \Exception("Erro ao atualizar", 500);
+            throw new \Exception("Erro ao atualizar".$e, 500);
         }
     }
 }

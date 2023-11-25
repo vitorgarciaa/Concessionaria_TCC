@@ -198,21 +198,8 @@ if (isset($_SESSION['login'])) {
         <textarea type="textarea" class="form-control" id="inputObservacao" name="observacao"><?php echo $carro->getObservacoes(); ?></textarea>
       </div>
     </div>
-    <div class="col-md-12">
-        <label for="inputAno" class="form-label">Opcionais</label>
-        <div class="form-check">
-          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">Ar condicionado
-          <br>
-          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">Vidros Elétricos
-          <br>
-          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">Travas Elétricas
-          <br>
-          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">AirBags
-          <br>
-          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">Som
-        </div>
-    </div>
 
+    
     <div class="col-md-12 d-flex justify-content-end">
       <button type="submit" class="btn btn-success">Atualizar</button>&nbsp&nbsp
       <a href="http://<?php echo APP_HOST; ?>/carro/pesquisar" class="btn btn-danger btn-sm">Cancelar</a>

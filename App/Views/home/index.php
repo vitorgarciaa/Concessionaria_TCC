@@ -30,9 +30,7 @@ use App\Models\DAO\MarcaDAO;
     .carousel-control-prev,
     .carousel-control-next {
         opacity: 0.7;
-        background-color: #007bff;
         width: 60px;
-        background: #333;
         transition: all 0.3s ease-in-out;
     }
 
@@ -40,7 +38,7 @@ use App\Models\DAO\MarcaDAO;
     .control-next-icon {
         background-color: #fff;
         border-radius: 50%;
-        padding: 10px;
+        padding: 10px 12px;
     }
 
     .control-prev-icon i,
@@ -115,6 +113,21 @@ use App\Models\DAO\MarcaDAO;
 
     .card-body {
         height: 100%;
+    }
+
+    span.control-next-icon,
+    span.control-prev-icon{
+        border-radius: 50%;
+        background-color: gray;
+        transition: all 0.2s ease-in-out
+    }
+    span.control-next-icon i,
+    span.control-prev-icon i{
+        color: white;
+    }
+    span.control-next-icon:hover,
+    span.control-prev-icon:hover{
+        background-color: black;
     }
 </style>
 

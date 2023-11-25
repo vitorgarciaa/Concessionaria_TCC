@@ -182,7 +182,6 @@ if (isset($_SESSION['login'])) {
             </tr>
         <?php
           }
-        }
         ?>
       </tbody>
     </table>
@@ -190,10 +189,16 @@ if (isset($_SESSION['login'])) {
     <nav aria-label="Page navigation">
       <ul class="pagination centralizar">
         <?php
+
+        if(!is_null($totalVendas)){
+          $totalPaginas = 0;
+      }else{
         for ($i = 1; $i <= $totalPaginas; $i++) {
           $activeClass = ($i === $paginaAtual) ? 'active' : '';
           echo "<li class='page-item $activeClass'><a class='page-link' href='?page=$i'>$i</a></li>";
         }
+      }
+    }
         ?>
       </ul>
     </nav>

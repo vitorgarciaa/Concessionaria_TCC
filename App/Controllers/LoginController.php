@@ -27,7 +27,7 @@ class LoginController extends Controller
         $vendedorDAO->logar($email, $senha);
 
         if (!isset($_SESSION['login'])) {
-            $this->render('/login/index');
+            $this->redirect('/login/index?usi=1');
         }
         $this->redirect('/carro/index');
     }

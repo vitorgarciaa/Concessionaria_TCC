@@ -142,19 +142,8 @@ class VendedorDAO extends BaseDAO{
                 $_SESSION['nome'] = $nomeVendedor;
 
             }else{
-                echo "
-                <script src='https://cdn.jsdelivr.net/npm/sweetalert2@10'></script>
-                <script>
-                    // Wrap the code in a document-ready function
-                    document.addEventListener('DOMContentLoaded', function () {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Erro de autenticação',
-                            text: 'Usuário ou senha incorretos ou Inativo!',
-                        });
-                    });
-                </script>
-                ";
+                echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@10'></script>";
+                echo "<script>alert('You clicked the button!')</script>";
             }
         } catch (\Exception $e) {
             throw new \Exception("Erro ao logar ", 500);

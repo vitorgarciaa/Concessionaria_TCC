@@ -32,10 +32,11 @@ class CarroController extends Controller
         $modeloDAO = new ModeloDAO();
         self::setViewParam('modelo', $modeloDAO->listar());
 
-        $this->render('carro/cadastro');
         Sessao::limpaFormulario();
         Sessao::limpaMensagem();
         Sessao::limpaErro();
+
+        $this->render('carro/cadastro');
     }
 
     public function salvar(){

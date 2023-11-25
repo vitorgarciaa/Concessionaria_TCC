@@ -69,9 +69,11 @@ class VendaController extends Controller
         $vendaValidador = new VendaValidador();
         $resultadoValidacao = $vendaValidador->validar($venda);
 
+        $idCarro = $_POST['id_carro'];
+
         if ($resultadoValidacao->getErros()) {
             Sessao::gravaErro($resultadoValidacao->getErros());
-            $this->redirect('/venda/cadastro');
+            $this->redirect('/venda/cadastro/' . $idCarro);
         }
 
         Sessao::limpaFormulario();
@@ -97,12 +99,15 @@ class VendaController extends Controller
             Sessao::gravaMensagem("Venda Inexistente!");
             $this->redirect('/venda/pesquisar');
         }
-
+        
         self::setViewParam('venda', $venda);
+
+        Sessao::limpaFormulario();
+        Sessao::limpaMensagem();
+        Sessao::limpaErro();
 
         $this->render('/venda/editar');
 
-        Sessao::limpaMensagem();
     }
 
     public function pesquisar()
@@ -199,14 +204,6 @@ class VendaController extends Controller
         $venda->setTipo_pagamento($_POST['tipo_pagamento']);
         $venda->setSituacao_pedido($_POST['situacao_pedido']);
         Sessao::gravaFormulario($_POST);
-
-        $VendaValidador = new VendaValidador();
-        $resultadoValidacao = $VendaValidador->validar($venda);
-
-        if ($resultadoValidacao->getErros()) {
-            Sessao::gravaErro($resultadoValidacao->getErros());
-            $this->redirect('/venda/edicao/'. $_POST['id']);
-        }
 
         $vendaDAO = new VendaDAO();
 

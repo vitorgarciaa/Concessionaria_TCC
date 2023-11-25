@@ -69,7 +69,7 @@ class CompraController extends Controller
             $this->redirect('/compra/pesquisar');
         }
 
-        Sessao::gravaMensagem("Compra excluídoa com sucesso!");
+        Sessao::gravaMensagem("Compra excluída com sucesso!");
 
         $this->redirect('/compra/pesquisar');
     }
