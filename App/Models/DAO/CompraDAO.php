@@ -99,5 +99,15 @@ class CompraDAO extends BaseDAO{
 
             return $resultado->fetchObject(Compra::class);
     }
+    
+    //FUNÇÃO PARA LISTAR OS CARROS
+    public function listarCarroPorVenda(){
+        $resultado = $this->select(
+            'SELECT c.*, IFNULL(venda.id, null) AS idVenda
+            FROM compra c
+            LEFT JOIN venda ON c.id_carro = venda.id_carro'
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Compra::class);
+    }
 }
 ?>

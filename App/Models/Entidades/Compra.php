@@ -67,5 +67,12 @@ class Compra {
     public function setTipo_pagamento($tipo_pagamento) {
         $this->tipo_pagamento = $tipo_pagamento;
     }
+
+    //variaveis adicionais 
+    private $idVenda;
+
+    public function getIdVenda(){
+         return $this->idVenda;
+    }
 }
 ?>

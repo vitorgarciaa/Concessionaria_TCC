@@ -136,7 +136,13 @@ if (isset($_SESSION['login'])) {
                             <td><?php echo $fornecedor->getStatus(); ?></td>
                             <td>
                                 <a href="http://<?php echo APP_HOST; ?>/fornecedor/edicao/<?php echo $fornecedor->getId(); ?>" class="btn btn-info btn-sm">Editar</a>
-                                <a href="http://<?php echo APP_HOST; ?>/fornecedor/exclusao/<?php echo $fornecedor->getId(); ?>" class="btn btn-danger btn-sm">Excluir</a>
+                                <?php if($fornecedor->getQtdCompras() != 0 ){ ?>
+                                <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Não é possível excluir Fornecedor que possui compras vinculadas!">
+                                    <a class="btn btn-danger btn-sm disabled">Excluir</a>
+                                </span>
+                                <?php }else{ ?>
+                                    <a href="http://<?php echo APP_HOST; ?>/fornecedor/exclusao/<?php echo $fornecedor->getId(); ?>" class="btn btn-danger btn-sm">Excluir</a>
+                                <?php } ?>
                             </td>
                         </tr>
                 <?php

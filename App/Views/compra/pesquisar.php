@@ -101,7 +101,13 @@ if (isset($_SESSION['login'])) {
       <td><?php echo "R$ " . number_format($compra->getPreco_custo(), 2, ',', '.'); ?></td>
 
       <td>    
-        <a href="http://<?php echo APP_HOST; ?>/compra/exclusao/<?php echo $compra->getId(); ?>" class="btn btn-danger btn-sm">Excluir</a>
+      <?php if(!is_null($compra->getIdVenda())){ ?>
+          <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Não é possível excluir Compra que possui Venda vinculada!">
+              <a class="btn btn-danger btn-sm disabled">Excluir</a>
+          </span>
+          <?php }else{ ?>
+            <a href="http://<?php echo APP_HOST; ?>/compra/exclusao/<?php echo $compra->getId(); ?>" class="btn btn-danger btn-sm">Excluir</a>
+          <?php } ?>
        </td>
     </tr>
     <?php 

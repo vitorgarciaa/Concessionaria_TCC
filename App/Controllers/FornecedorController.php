@@ -20,7 +20,7 @@ class FornecedorController extends Controller
     public function pesquisar()
     {
         $fornecedorDAO = new FornecedorDAO();
-        self::setViewParam('fornecedor', $fornecedorDAO->listar());
+        self::setViewParam('fornecedor', $fornecedorDAO->listarPorCompras());
 
         $this->render('fornecedor/pesquisar');
     }

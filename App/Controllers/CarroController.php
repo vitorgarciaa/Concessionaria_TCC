@@ -222,6 +222,10 @@ class CarroController extends Controller
 
         Sessao::gravaMensagem("Carro excluído com sucesso!");
 
+        Sessao::limpaFormulario();
+        Sessao::limpaMensagem();
+        Sessao::limpaErro();
+
         $this->redirect('/carro/pesquisar');
     }
 

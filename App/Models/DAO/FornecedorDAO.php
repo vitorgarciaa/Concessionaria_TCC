@@ -126,8 +126,20 @@ class FornecedorDAO extends BaseDAO{
             return $this->delete('fornecedor', $id);
 
         } catch (\Exception $e) {
-            throw new \Exception("Erro ao deletar", 500);
+            throw new \Exception("Erro ao deletar".$e, 500);
         }
+    }
+
+    //FUNÇÃO PARA LISTAR OS POR QUANTIDADE DE COMPRAS
+    public function listarPorCompras(){
+            
+        $resultado = $this->select(
+            'SELECT f.*, COUNT(c.id) qtdCompras 
+                FROM fornecedor f 
+                LEFT JOIN compra c ON c.id_fornecedor = f.id
+                GROUP BY f.id'
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Fornecedor::class);
     }
 }
 ?>

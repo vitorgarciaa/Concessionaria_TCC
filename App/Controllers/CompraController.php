@@ -31,7 +31,7 @@ class CompraController extends Controller
     public function pesquisar()
     {
         $compraDAO = new CompraDAO();
-        self::setViewParam('compra', $compraDAO->listar());
+        self::setViewParam('compra', $compraDAO->listarCarroPorVenda());
 
         $this->render('compra/pesquisar');
     }

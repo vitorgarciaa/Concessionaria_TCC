@@ -116,5 +116,16 @@ class ClienteDAO extends BaseDAO{
             throw new \Exception("Erro ao deletar".$e, 500);
         }
     }
+
+    public function listarPorVenda(){
+            
+        $resultado = $this->select(
+            'SELECT c.*, IFNULL(COUNT(venda.id), null) AS qtdVendas
+            FROM cliente c
+            LEFT JOIN venda ON c.id = venda.id_cliente
+            GROUP BY c.id'
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Cliente::class);
+    }
 }
 ?>

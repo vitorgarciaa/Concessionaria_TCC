@@ -130,5 +130,12 @@ class Cliente{
    public function setNumero($numero){
        $this->numero = $numero;
    }
+
+    // VARIÁVEIS AUXILIARES
+   private $qtdVendas;
+
+   public function getQtdVendas(){
+       return $this->qtdVendas;
+   }
 }
 ?>

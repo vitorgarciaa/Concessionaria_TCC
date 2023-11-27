@@ -87,7 +87,7 @@ class ClienteController extends Controller
     public function pesquisar()
     {
         $clienteDAO = new ClienteDAO();
-        self::setViewParam('cliente', $clienteDAO->listar());
+        self::setViewParam('cliente', $clienteDAO->listarPorVenda());
 
         $this->render('cliente/pesquisar');
     }

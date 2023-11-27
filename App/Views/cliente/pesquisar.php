@@ -135,7 +135,13 @@ if (isset($_SESSION['login'])) {
                             <td><?php echo $cliente->getStatus(); ?></td>
                             <td>
                                 <a href="http://<?php echo APP_HOST; ?>/cliente/edicao/<?php echo $cliente->getId(); ?>" class="btn btn-info btn-sm">Editar</a>
-                                <a href="http://<?php echo APP_HOST; ?>/cliente/exclusao/<?php echo $cliente->getId(); ?>" class="btn btn-danger btn-sm">Excluir</a>
+                                <?php if($cliente->getQtdVendas() != 0){ ?>
+                                <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Não é possível excluir Cliente que possui Compra vinculada!">
+                                    <a class="btn btn-danger btn-sm disabled">Excluir</a>
+                                </span>
+                                <?php }else{ ?>
+                                    <a href="http://<?php echo APP_HOST; ?>/cliente/exclusao/<?php echo $cliente->getId(); ?>" class="btn btn-danger btn-sm">Excluir</a>
+                                <?php } ?>
                             </td>
                         </tr>
                 <?php

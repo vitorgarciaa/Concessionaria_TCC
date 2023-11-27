@@ -146,5 +146,12 @@ class Fornecedor{
    public function setNumero($numero){
        $this->numero = $numero;
    }
+
+   // VARIÁVEIS AUXILIARES
+   private $qtdCompras;
+
+   public function getQtdCompras(){
+       return $this->qtdCompras;
+   }
 }
 ?>
