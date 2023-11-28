@@ -92,7 +92,7 @@ class FornecedorController extends Controller
         Sessao::limpaErro();
 
         Sessao::gravaMensagem("Informações atualizadas com sucesso!");
-        $this->redirect('/fornecedor/edicao/' . $_POST['id']);
+        $this->redirect('/fornecedor/pesquisar/');
     }
 
     public function exclusao($params)

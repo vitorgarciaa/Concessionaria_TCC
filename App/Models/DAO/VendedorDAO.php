@@ -149,5 +149,16 @@ class VendedorDAO extends BaseDAO{
             throw new \Exception("Erro ao logar ", 500);
         }
     }
+
+    public function listarVendedorPorVenda(){
+            
+        $resultado = $this->select(
+            'SELECT v.*, IFNULL(COUNT(venda.id), null) AS qtdVendasVendedor
+            FROM vendedor v
+            LEFT JOIN venda ON v.id = venda.id_cliente
+            GROUP BY v.id'
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Vendedor::class);
+    }
 }
 ?>

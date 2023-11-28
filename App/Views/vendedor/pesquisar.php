@@ -131,7 +131,13 @@ if (isset($_SESSION['login'])) {
                             <td><?php echo $vendedor->getStatus(); ?></td>
                             <td>
                                 <a href="http://<?php echo APP_HOST; ?>/vendedor/edicao/<?php echo $vendedor->getId(); ?>" class="btn btn-info btn-sm">Editar</a>
-                                <a href="http://<?php echo APP_HOST; ?>/vendedor/exclusao/<?php echo $vendedor->getId(); ?>" class="btn btn-danger btn-sm">Excluir</a>
+                                <?php if($vendedor->getQtdVendasVendedor() != 0 ){ ?>
+                                <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Não é possível excluir Vendedor que possui vendas vinculadas!">
+                                    <a class="btn btn-danger btn-sm disabled">Excluir</a>
+                                </span>
+                                <?php }else{ ?>
+                                    <a href="http://<?php echo APP_HOST; ?>/vendedor/exclusao/<?php echo $vendedor->getId(); ?>" class="btn btn-danger btn-sm">Excluir</a>
+                                <?php } ?>
                             </td>
                         </tr>
                 <?php

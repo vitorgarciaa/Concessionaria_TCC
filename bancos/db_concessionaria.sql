@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21/11/2023 às 17:33
+-- Tempo de geração: 28/11/2023 às 18:10
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -57,7 +57,9 @@ INSERT INTO `carro` (`id`, `id_modelo`, `ano_fabricacao`, `cor`, `preco_venda`, 
 (4, 1, '2027', 'vermelho', 1750000.00, 15000, 'Manual', 'Transmissão Manual', 'AAA8A54', 'aa', 'Disponível', 'ABS', '2.0 Turbo', 'Álcool', 'Traseira', '2023'),
 (5, 1, '2027', 'Branco', 1750000.00, 0, 'Manual', 'Transmissão Manual', '', 'aa', 'Disponível', 'ABS', '2.0 Turbo', 'Álcool', 'Traseira', '2023'),
 (6, 1, '2023', 'vermelho', 1750000.00, 0, 'Manual', 'Transmissão Manual', '', 'aa', 'Disponível', 'ABS', '2.0 Turbo', 'Álcool', 'Traseira', '2023'),
-(7, 1, '2023', 'vermelho', 1750000.00, 0, 'Manual', 'Transmissão Manual', '', 'a', 'Disponível', 'ABS', '2.0 Turbo', 'Diesel', 'Dianteira', '2023');
+(7, 1, '2023', 'vermelho', 1750000.00, 0, 'Manual', 'Transmissão Manual', '', 'a', 'Disponível', 'ABS', '2.0 Turbo', 'Diesel', 'Dianteira', '2023'),
+(8, 2, '2023', 'Branco', 150000.00, 0, 'Hidráulica', 'Transmissão Manual', '', 'O Golf MK7.5R e um carro excelente para quem gosta de velocidade. ', 'Disponível', 'ABS', '2.0 Turbo', 'Flex', 'Traseira', '2024'),
+(9, 2, '2023', 'vermelho', 1750000.00, 0, 'Hidráulica', 'Transmissão Manual', '', 'top', 'Disponível', 'a Disco', '2.0 Turbo', 'Álcool', '4x4', '2024');
 
 -- --------------------------------------------------------
 
@@ -111,7 +113,9 @@ CREATE TABLE `compra` (
 INSERT INTO `compra` (`id`, `id_carro`, `id_fornecedor`, `id_vendedor`, `data_compra`, `preco_custo`, `tipo_pagamento`) VALUES
 (2, 2, 1, 1, '2023-11-20 14:06:25', 184000.00, 'Cheque'),
 (3, 3, 1, 1, '2023-11-20 14:13:20', 1500000.00, 'Dinheiro'),
-(4, 4, 1, 1, '2023-11-20 14:14:16', 1500000.00, 'Cartão');
+(4, 4, 1, 1, '2023-11-20 14:14:16', 1500000.00, 'Cartão'),
+(8, 8, 1, 1, '2023-11-28 08:48:31', 135000.00, 'Dinheiro'),
+(9, 9, 1, 1, '2023-11-28 08:51:27', 1500000.00, 'Dinheiro');
 
 -- --------------------------------------------------------
 
@@ -182,7 +186,13 @@ INSERT INTO `imagem` (`id`, `nome`, `id_carro`) VALUES
 (18, '7e48f52f0e97eeefe3513eafc6836a90216508.png', 6),
 (19, 'b2e13acd43a9fd0afeeae27dea5323da216508.png', 7),
 (20, 'b2e13acd43a9fd0afeeae27dea5323da202010.png', 7),
-(21, 'b2e13acd43a9fd0afeeae27dea5323da200426.png', 7);
+(21, 'b2e13acd43a9fd0afeeae27dea5323da200426.png', 7),
+(22, 'ba8bea266af5bedf59c238583b9826d635742.jpg', 8),
+(23, 'ba8bea266af5bedf59c238583b9826d631374.jpg', 8),
+(24, 'ba8bea266af5bedf59c238583b9826d630035.jpg', 8),
+(25, '3f600bcfff090dd08df44d174e6c9edd473380.png', 9),
+(26, '3f600bcfff090dd08df44d174e6c9edd30035.jpg', 9),
+(27, '3f600bcfff090dd08df44d174e6c9edd31374.jpg', 9);
 
 -- --------------------------------------------------------
 
@@ -200,7 +210,8 @@ CREATE TABLE `marca` (
 --
 
 INSERT INTO `marca` (`id`, `nome`) VALUES
-(1, 'Honda');
+(1, 'Honda'),
+(2, 'Volkswagem');
 
 -- --------------------------------------------------------
 
@@ -219,7 +230,8 @@ CREATE TABLE `modelo` (
 --
 
 INSERT INTO `modelo` (`id`, `nome`, `id_marca`) VALUES
-(1, 'Civic', 1);
+(1, 'Civic', 1),
+(2, 'Golf MK 7.5R', 2);
 
 -- --------------------------------------------------------
 
@@ -354,7 +366,7 @@ ALTER TABLE `vendedor`
 -- AUTO_INCREMENT de tabela `carro`
 --
 ALTER TABLE `carro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `cliente`
@@ -366,7 +378,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de tabela `compra`
 --
 ALTER TABLE `compra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `fornecedor`
@@ -378,19 +390,19 @@ ALTER TABLE `fornecedor`
 -- AUTO_INCREMENT de tabela `imagem`
 --
 ALTER TABLE `imagem`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de tabela `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `modelo`
 --
 ALTER TABLE `modelo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `venda`

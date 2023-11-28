@@ -20,8 +20,8 @@ class VendedorController extends Controller
     public function pesquisar()
     {
         $vendedorDAO = new VendedorDAO();
-        self::setViewParam('vendedor', $vendedorDAO->listar());
-
+        self::setViewParam('vendedor', $vendedorDAO->listarVendedorPorVenda());
+        
         $this->render('vendedor/pesquisar');
     }
 
@@ -94,7 +94,7 @@ class VendedorController extends Controller
         Sessao::limpaErro();
 
         Sessao::gravaMensagem("Informações atualizadas com sucesso!");
-        $this->redirect('/vendedor/edicao/' . $_POST['id']);
+        $this->redirect('/vendedor/pesquisar/');
     }
 
     public function exclusao($params)

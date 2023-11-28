@@ -29,19 +29,17 @@ class VendaDAO extends BaseDAO{
             $id_carro = $venda->getId_carro();
             $id_cliente = $venda->getId_cliente();
             $id_vendedor = $venda->getId_vendedor();
-            $data_venda = $venda->getData_venda();
             $preco_venda = $venda->getPreco_venda();
            // $desconto = $venda->getDesconto();
             $tipo_pagamento = $venda->getTipo_pagamento();
             $situacao_pedido = $venda->getSituacao_pedido();
             return $this->insert(
                 'venda',
-                ":id_carro, :id_cliente,:id_vendedor, :data_venda,:preco_venda, :tipo_pagamento, :situacao_pedido",
+                ":id_carro, :id_cliente,:id_vendedor, :preco_venda, :tipo_pagamento, :situacao_pedido",
                 [
                     ':id_carro' => $id_carro,
                     ':id_cliente' => $id_cliente,
                     ':id_vendedor' => $id_vendedor,
-                    ':data_venda' => $data_venda,
                     ':preco_venda' => $preco_venda,
                     ':tipo_pagamento' => $tipo_pagamento,
                     ':situacao_pedido' => $situacao_pedido,
@@ -58,7 +56,6 @@ class VendaDAO extends BaseDAO{
             $id_carro = $venda->getId_carro();
             $id_cliente = $venda->getId_cliente();
             $id_vendedor = $venda->getId_vendedor();
-            $data_venda = $venda->getData_venda();
             $preco_venda = $venda->getPreco_venda();
            // $desconto = $venda->getDesconto();
             $tipo_pagamento = $venda->getTipo_pagamento();
@@ -66,13 +63,12 @@ class VendaDAO extends BaseDAO{
 
             return $this->update(
                 'venda',
-                "id_carro = :id_carro, id_cliente = :id_cliente, id_vendedor = :id_vendedor, data_venda = :data_venda, preco_venda = :preco_venda, tipo_pagamento = :tipo_pagamento, situacao_pedido = :situacao_pedido",
+                "id_carro = :id_carro, id_cliente = :id_cliente, id_vendedor = :id_vendedor, preco_venda = :preco_venda, tipo_pagamento = :tipo_pagamento, situacao_pedido = :situacao_pedido",
                     [
                         "id = :id",
                         ':id_carro' => $id_carro,
                         ':id_cliente' => $id_cliente,
                         ':id_vendedor' => $id_vendedor,
-                        ':data_venda' => $data_venda,
                         ':preco_venda' => $preco_venda,
                         ':tipo_pagamento' => $tipo_pagamento,
                         ':situacao_pedido' => $situacao_pedido,

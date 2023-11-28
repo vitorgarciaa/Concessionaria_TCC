@@ -62,7 +62,7 @@ class ClienteController extends Controller
         $clienteDAO->salvar($cliente);
 
         Sessao::gravaMensagem("Cliente cadastrado com Sucesso!");
-        $this->redirect('/cliente/cadastro');   
+        $this->redirect('/cliente/pesquisar');   
     }
 
     public function edicao($params){

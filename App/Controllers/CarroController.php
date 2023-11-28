@@ -122,7 +122,7 @@ class CarroController extends Controller
         }
 
         Sessao::gravaMensagem("Carro cadastrado com Sucesso!");
-        $this->redirect('/carro/cadastro');
+        $this->redirect('/carro/pesquisar');
     }
 
     public function edicao($params){
@@ -147,14 +147,14 @@ class CarroController extends Controller
     public function atualizar(){
         $preco_venda = preg_replace('/[^0-9]/', '', $_POST['preco_venda']);    
         $preco_venda = bcdiv($preco_venda, 100, 2);
-        $preco_venda = strtr($preco_venda, ',', '.');
+        $preco_venda = strtr($preco_venda, ',', '.'); 
         
         $carro = new Carro();
         $carro->setId($_POST['id']);
         $carro->setAno_fabricacao($_POST['ano_fabricacao']);
         $carro->setAno_modelo($_POST['ano_modelo']);
         $carro->setCor($_POST['cor']);
-        $carro->setPreco_venda($_POST['preco_venda']);
+        $carro->setPreco_venda($preco_venda);
         $carro->setIdModelo($_POST['modeloId']);
         $carro->setTipo_tracao($_POST['tracao']);
         $carro->setTipo_freio($_POST['freio']);
@@ -186,7 +186,7 @@ class CarroController extends Controller
         Sessao::limpaErro();
 
         Sessao::gravaMensagem("Informações atualizadas com sucesso!");
-        $this->redirect('/carro/edicao/' . $_POST['id']);
+        $this->redirect('/carro/pesquisar/');
     }
 
     public function exclusao($params)

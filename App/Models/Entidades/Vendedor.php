@@ -137,5 +137,12 @@ class Vendedor{
    public function setNumero($numero){
        $this->numero = $numero;
    }
+
+       // VARIÁVEIS AUXILIARES
+       private $qtdVendasVendedor;
+
+       public function getQtdVendasVendedor(){
+           return $this->qtdVendasVendedor;
+       }
 }
 ?>

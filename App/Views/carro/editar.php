@@ -138,7 +138,7 @@ if (isset($_SESSION['login'])) {
             <select class="form-select" aria-label="Disponibildiade" id="selectDisponibilidade" name="disponibilidade">
               <option <?php echo ($carro->getDisponibilidade() == "Disponível" ) ? "selected" : null ; ?> value="Disponível">Disponivel</option>
               <option <?php echo ($carro->getDisponibilidade() == "Reservado" ) ? "selected" : null ; ?> value="Reservado">Reservado</option>
-              <option <?php echo ($carro->getDisponibilidade() == "Reservado" ) ? "selected" : null ; ?> value="Indisponível">Indisponível</option>
+              <option <?php echo ($carro->getDisponibilidade() == "Indisponível" ) ? "selected" : null ; ?> value="Indisponível">Indisponível</option>
             </select>
         </div>
       </div>
