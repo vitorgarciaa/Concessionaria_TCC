@@ -164,6 +164,12 @@ class Carro{
           return $this->id_modelo;
      }
 
+     // VARIÁVEIS AUXILIARES
+     private $qtdCarroCompra;
+     public function getQtdCarroCompra(){
+         return $this->qtdCarroCompra;
+     }
+
 
 }
 ?>

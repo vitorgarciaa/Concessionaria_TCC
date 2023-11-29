@@ -184,7 +184,8 @@ $imagem = $imagemDAO->listarPorCarro($carro->getId());
         </div>
     <?php endforeach; ?>
     <br>
-    <div class="row">
+    <div class="row card p-5">
+        <div class="row m-3">
         <div class="col-md-3 col-sm-6 mb-4">
             <div class=" info-card">
                 <h6 class="card-title">Ano de Fabricação:</h6>
@@ -305,6 +306,7 @@ $imagem = $imagemDAO->listarPorCarro($carro->getId());
                     <h6 class="card-title">Valor:</h1>
                     <h5 class="card-text"><?php echo "R$ " . number_format($carro->getPreco_venda(), 2, ',', '.'); ?></h5>
             </div>
+        </div>
         </div>
     </div>
     <a href="http://<?php echo APP_HOST; ?>/carro" class="btn btn-primary">Voltar</a>

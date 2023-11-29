@@ -242,7 +242,7 @@ class CarroController extends Controller
     public function pesquisar()
     {
         $carroDAO = new CarroDAO();
-        self::setViewParam('carro', $carroDAO->listar());
+        self::setViewParam('carro', $carroDAO->listarCarroPorCompra());
 
         $this->render('carro/pesquisar');
     }

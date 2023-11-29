@@ -108,7 +108,6 @@ $cliente = $clienteDAO->listar($venda->getId_cliente());
         <label for="inputTipo_pagamento" class="form-label">Tipo de Pagamento</label>
           <select class="form-control" id="inputTipo_pagamento" name="tipo_pagamento">
               <option <?php echo ($venda->getTipo_pagamento() == "Dinheiro" ) ? "selected" : null ; ?> value="Dinheiro">Dinheiro</option>
-              <option <?php echo ($venda->getTipo_pagamento() == "Cartão" ) ? "selected" : null ; ?> value="Cartão">Cartão</option>
               <option <?php echo ($venda->getTipo_pagamento() == "Cheque" ) ? "selected" : null ; ?> value="Cheque">Cheque</option>
               <option <?php echo ($venda->getTipo_pagamento() == "Vale" ) ? "selected" : null ; ?> value="Vale">Vale</option>
           </select>

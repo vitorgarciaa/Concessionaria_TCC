@@ -157,7 +157,13 @@ if (isset($_SESSION['login'])) {
               <td><?php echo "R$ " . number_format($carro->getPreco_venda(), 2, ',', '.'); ?></td>
               <td>
                 <a href="http://<?php echo APP_HOST; ?>/carro/edicao/<?php echo $carro->getId(); ?>" class="btn btn-info btn-sm">Editar</a>
-                <a href="http://<?php echo APP_HOST; ?>/carro/exclusao/<?php echo $carro->getId(); ?>" class="btn btn-danger btn-sm">Excluir</a>
+                <?php if($carro->getQtdCarroCompra() != 0){ ?>
+                                <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Não é possível excluir Carro que possui Compra vinculada!">
+                                    <a class="btn btn-danger btn-sm disabled">Excluir</a>
+                                </span>
+                                <?php }else{ ?>
+                                    <a href="http://<?php echo APP_HOST; ?>/carro/exclusao/<?php echo $carro->getId(); ?>" class="btn btn-danger btn-sm">Excluir</a>
+                                <?php } ?>
               </td>
             </tr>
         <?php

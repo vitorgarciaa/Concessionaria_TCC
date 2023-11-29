@@ -132,7 +132,7 @@ use App\Models\DAO\MarcaDAO;
 </style>
 
 <div class=" container margem">
-    <h4>Concessionária VG</h4>
+    <h4>Concessionária Blackbeard</h4>
 
     <?php if (!count($viewVar['carro'])) { ?>
         <div class="alert alert-info" role="alert">Nenhum carro encontrado!</div>

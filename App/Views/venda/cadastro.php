@@ -127,7 +127,6 @@ $imagem = $imagemDAO->listarPorCarro($carro->getId());
         <label for="inputTipo_pagamento" class="form-label">Tipo de Pagamento</label>
           <select class="form-control" id="inputTipo_pagamento" name="tipo_pagamento">
               <option value="Dinheiro">Dinheiro</option>
-              <option value="Cartão">Cartão</option>
               <option value="Cheque">Cheque</option>
               <option value="Vale">Vale</option>
           </select>

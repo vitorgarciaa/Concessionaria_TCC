@@ -170,5 +170,15 @@ class CarroDAO extends BaseDAO{
             throw new \Exception("Erro ao atualizar dados!", 500);
         }
     }
+
+    public function listarCarroPorCompra(){
+            
+        $resultado = $this->select(
+            'SELECT c.*, IFNULL(compra.id, null) AS qtdCarroCompra
+            FROM carro c
+            LEFT JOIN compra ON c.id = compra.id_carro'
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Carro::class);
+    }
 }
 ?>
