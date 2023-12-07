@@ -16,7 +16,24 @@ if (isset($_SESSION['login'])) {
     } else {
         $todosFornecedores = [];
         foreach ($viewVar['fornecedor'] as $fornecedor) {
-            if (stripos($fornecedor->getNome(), $pesquisa) !== false || stripos($fornecedor->getEmail(), $pesquisa) !== false || stripos($fornecedor->getTelefone(), $pesquisa) !== false) {
+            if (
+                stripos($fornecedor->getId(), $pesquisa) !== false ||
+                stripos($fornecedor->getNome(), $pesquisa) !== false ||
+                stripos($fornecedor->getCpf(), $pesquisa) !== false ||
+                stripos($fornecedor->getEmail(), $pesquisa) !== false ||
+                stripos($fornecedor->getNome_fantasia(), $pesquisa) !== false ||
+                stripos($fornecedor->getCnpj(), $pesquisa) !== false ||
+                stripos($fornecedor->getEmail_empresa(), $pesquisa) !== false ||
+                stripos($fornecedor->getTelefone(), $pesquisa) !== false ||
+                stripos($fornecedor->getCEP(), $pesquisa) !== false ||
+                stripos($fornecedor->getUF(), $pesquisa) !== false ||
+                stripos($fornecedor->getCidade(), $pesquisa) !== false ||
+                stripos($fornecedor->getBairro(), $pesquisa) !== false ||
+                stripos($fornecedor->getLogradouro(), $pesquisa) !== false ||
+                stripos($fornecedor->getComplemento(), $pesquisa) !== false ||
+                stripos($fornecedor->getNumero(), $pesquisa) !== false ||
+                stripos($fornecedor->getStatus(), $pesquisa) !== false
+            ) {
                 $todosFornecedores[] = $fornecedor;
             }
         }

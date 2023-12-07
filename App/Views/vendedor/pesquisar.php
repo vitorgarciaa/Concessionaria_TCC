@@ -15,9 +15,20 @@ if (isset($_SESSION['login'])) {
     } else {
         $todosVendedores = [];
         foreach ($viewVar['vendedor'] as $vendedor) {
-            // Adicione a lógica para verificar se o vendedor corresponde à pesquisa.
-            if (stripos($vendedor->getNome(), $pesquisa) !== false || stripos($vendedor->getEmail(), $pesquisa) !== false) {
-                $todosVendedores[] = $vendedor;
+            // Verifica se a pesquisa está presente em cada propriedade individualmente
+            if (stripos($vendedor->getNome(), $pesquisa) !== false ||
+                stripos($vendedor->getEmail(), $pesquisa) !== false ||
+                stripos($vendedor->getUsuario(), $pesquisa) !== false ||
+                stripos($vendedor->getTelefone(), $pesquisa) !== false ||
+                stripos($vendedor->getCEP(), $pesquisa) !== false ||
+                stripos($vendedor->getUF(), $pesquisa) !== false ||
+                stripos($vendedor->getCidade(), $pesquisa) !== false ||
+                stripos($vendedor->getBairro(), $pesquisa) !== false ||
+                stripos($vendedor->getLogradouro(), $pesquisa) !== false ||
+                stripos($vendedor->getComplemento(), $pesquisa) !== false ||
+                stripos($vendedor->getNumero(), $pesquisa) !== false ||
+                stripos($vendedor->getStatus(), $pesquisa) !== false) {
+                    $todosVendedores[] = $vendedor;
             }
         }
     }

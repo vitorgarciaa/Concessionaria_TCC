@@ -11,12 +11,37 @@ use App\Models\Entidades\Fornecedor;
 session_start();
 
 if (isset($_SESSION['login'])) {
-?>
 
-<div class="container-fluid">
+  $carrosPorPagina = 10;
+  $paginaAtual = isset($_GET['page']) ? intval($_GET['page']) : 1;
+  $filtroPesquisa = isset($_GET['filtro']) ? $_GET['filtro'] : '';
+
+?>
+<style>
+  .container2{
+    margin-bottom: 100px;
+  }
+  .centralizar{
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+</style>
+<div class="container-fluid container2">
 <br>
 <h3>Lista de Compras</h3>
 <br>
+  <div class="row centralizar">
+      <div class="col-md-6">
+        <form class="form-inline" action="" method="GET">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Pesquisar por Fornecedor ou Marca/Modelo" name="filtro" value="<?php echo htmlentities($filtroPesquisa); ?>">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-primary" type="submit">Pesquisar</button>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
 
         <?php 
             if ($Sessao::retornaMensagem()) { ?>
@@ -46,7 +71,7 @@ if (isset($_SESSION['login'])) {
                 </div>
                 <br>
         <?php } ?>
-
+                      
 <table class="table table-hover table-bordered">
   <thead>
     <tr>
@@ -66,26 +91,36 @@ if (isset($_SESSION['login'])) {
     </tr>
   </thead>
   <tbody>
-<?php if (!count($viewVar['compra'])) { ?>
-                <div class="alert alert-info" role="alert">Nenhuma compra encontrado!</div>
-            <?php 
-                }else{
-              foreach($viewVar['compra'] as $compra){
+    
+  <?php
+      $carrosFiltrados = [];
+      if (!count($viewVar['compra'])) { ?>
+        <div class="alert alert-info" role="alert">Nenhuma compra encontrada!</div>
+      <?php } else {
+        foreach ($viewVar['compra'] as $compra) {
 
-                $carroDAO = new CarroDAO();
-                $carro = $carroDAO->listar($compra->getId_carro());
-        
-                $modeloDAO = new ModeloDAO();
-                $modelo = $modeloDAO->listar($carro->getId_modelo());
-                $marcaDAO = new MarcaDAO();
-                $marca = $marcaDAO->listar($modelo->getId_marca());
+          $carroDAO = new CarroDAO();
+          $carro = $carroDAO->listar($compra->getId_carro());
 
-                $fornecedorDAO = new FornecedorDAO();
-                $fornecedor = $fornecedorDAO->listar($compra->getId_fornecedor());
-                
-                $vendedorDAO = new VendedorDAO();
-                $vendedor = $vendedorDAO->listar($compra->getId_vendedor());          
-            ?>
+          $modeloDAO = new ModeloDAO();
+          $modelo = $modeloDAO->listar($carro->getId_modelo());
+          $marcaDAO = new MarcaDAO();
+          $marca = $marcaDAO->listar($modelo->getId_marca());
+
+          $fornecedorDAO = new FornecedorDAO();
+          $fornecedor = $fornecedorDAO->listar($compra->getId_fornecedor());
+
+          $vendedorDAO = new VendedorDAO();
+          $vendedor = $vendedorDAO->listar($compra->getId_vendedor());
+
+          $filtro = strtolower($filtroPesquisa);
+          $marcaModelo = strtolower($marca->getNome() . " " . $modelo->getNome());
+          $fornecedorNome = strtolower($fornecedor->getNome());
+          $fornecedorCPF = strtolower($fornecedor->getCpf());
+          
+          if (empty($filtroPesquisa) || strpos($marcaModelo, $filtro) !== false || strpos($fornecedorNome, $filtro) !== false || strpos($fornecedorCPF, $filtro) !== false) {
+          $carrosFiltrados[] = $compra;
+      ?>
     <tr>
       <th scope="row"><?php echo $compra->getId(); ?></th>
       <td><?php echo $fornecedor->getCpf(); ?></td>
@@ -113,26 +148,39 @@ if (isset($_SESSION['login'])) {
     <?php 
     }
   }
+}
 ?>
   </tbody>
 </table>
 
+<nav aria-label="Page navigation">
+      <ul class="pagination centralizar">
+        <?php
+        $totalCarros = count($carrosFiltrados);
+        $totalPaginas = ceil($totalCarros / $carrosPorPagina);
 
+        for ($i = 1; $i <= $totalPaginas; $i++) {
+          $activeClass = ($i === $paginaAtual) ? 'active' : '';
+          echo "<li class='page-item $activeClass'><a class='page-link' href='?page=$i&filtro=$filtroPesquisa'>$i</a></li>";
+        }
+        ?>
+      </ul>
+    </nav>
 </div>
 
 <?php
 
 } else { ?>
-<br>
+    <br>
     <div class="container">
         <h2> FAÇA LOGIN PARA CONTINUAR! </h2>
         <a href="http://<?php echo APP_HOST; ?>/login/index" class="btn btn-dark">FAZER LOGIN</a>
-            <p>
-                ou <a href="http://<?php echo APP_HOST;?>/">Voltar para Página Inicial</a>
-            </p>
+        <p>
+            ou <a href="http://<?php echo APP_HOST; ?>/">Voltar para Página Inicial</a>
+        </p>
     </div>
-<br>
+    <br>
 <?php
-    }
+}
 ?>
 <br>

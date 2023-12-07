@@ -214,16 +214,24 @@ if (isset($_SESSION['login'])) {
           <input type="text" class="form-control" id="inputUsuario" name="usuario" required>
         </div>
 
-        <div class="col-md-2">
-          <label for="inputSenha" class="form-label">Senha</label>
-          <input type="password" class="form-control" id="inputSenha" name="senha" required>
-        </div>
+
 
         <div class="col-md-2">
           <label for="inputTelefone" class="form-label">Telefone</label>
           <input type="tel" class="form-control" id="inputTelefone" name="telefone" required>
         </div>
 
+        <div class="col-md-2">
+        <label for="inputSenha" class="form-label">Senha</label>
+        <input type="password" class="form-control" id="inputSenha" name="senha" required>
+        </div>
+
+        
+
+        <div class="col-md-2">
+        <label for="confirmarSenha" class="form-label">Confirmar Senha</label>
+        <input type="password" class="form-control" id="confirmarSenha" name="confirmarSenha" required>
+        </div>
         <div class="col-md-2">
           <label for="selectStatus" class="form-label">Status</label>
             <select class="form-select" aria-label="Status" id="selectStatus" name="status">
@@ -232,6 +240,64 @@ if (isset($_SESSION['login'])) {
               <option value="Inativo">Inativo</option>
             </select>
         </div>
+
+        <div id="senhaFeedback"></div>
+
+        <script>
+        $(document).ready(function() {
+            $('#inputSenha').on('input', function() {
+            var senha = $(this).val();
+            var strength = verificarForcaSenha(senha);
+            exibirFeedbackForcaSenha(strength);
+            });
+        });
+        
+        function verificarForcaSenha(senha) {
+            var letrasMaiusculas = /[A-Z]/;
+            var letrasMinusculas = /[a-z]/;
+            var numeros = /[0-9]/;
+            var caracteresEspeciais = /[!@#$%^&*()-_]/;
+
+            var forca = 0;
+
+            if (letrasMaiusculas.test(senha)) {
+            forca++;
+            }
+
+            if (letrasMinusculas.test(senha)) {
+            forca++;
+            }
+
+            if (numeros.test(senha)) {
+            forca++;
+            }
+
+            if (caracteresEspeciais.test(senha)) {
+            forca++;
+            }
+
+            // Avalie a força da senha com base nos requisitos
+            if (forca < 3) {
+            return 'fraca';
+            } else {
+            return 'forte';
+            }
+        }
+
+        function exibirFeedbackForcaSenha(forca) {
+            var feedbackDiv = $('#senhaFeedback');
+            if (forca === 'fraca') {
+            feedbackDiv.html('Senha fraca').css('color', 'red');
+            const elemento = document.querySelector('#validaSenha');
+            elemento.classList.add('disabled');
+            } else {
+            feedbackDiv.html('Senha forte').css('color', 'green');
+            const elemento = document.querySelector('#validaSenha');
+            elemento.classList.remove('disabled');
+            }
+        }
+    
+        </script>
       </div> 
 
     <h5 class="text-center">Endereço</h5>
@@ -279,7 +345,7 @@ if (isset($_SESSION['login'])) {
             </div>
 
     <div class="col-md-12 d-flex justify-content-end">
-      <button type="submit" class="btn btn-success">Cadastrar</button>&nbsp&nbsp
+      <button type="submit" class="btn btn-success" id="validaSenha">Cadastrar</button>&nbsp&nbsp
       <button type="button" class="btn btn-danger">Cancelar</button>
    </div>
 

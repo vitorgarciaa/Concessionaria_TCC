@@ -101,7 +101,6 @@ if (isset($_SESSION['login'])) {
           $paginaAtual = isset($_GET['page']) ? intval($_GET['page']) : 1;
           $carrosFiltrados = $viewVar['venda'];
 
-          // Filtro de pesquisa
           $pesquisa = isset($_GET['pesquisa']) ? $_GET['pesquisa'] : '';
           if (!empty($pesquisa)) {
             $carrosFiltrados = array_filter($carrosFiltrados, function ($venda) use ($pesquisa) {

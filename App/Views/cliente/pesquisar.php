@@ -4,7 +4,6 @@ use App\Models\DAO\ClienteDAO;
 use App\Models\Entidades\Cliente;
 use App\Lib\Sessao;
 
-// Verificar se o usuário está logado
 session_start();
 if (isset($_SESSION['login'])) {
 ?>
@@ -99,7 +98,30 @@ if (isset($_SESSION['login'])) {
                 } else {
                     $clienteDAO = new ClienteDAO();
                     foreach ($viewVar['cliente'] as $cliente) {
-                        if (stripos($cliente->getNome(), $pesquisa) !== false || stripos($cliente->getEmail(), $pesquisa) !== false || stripos($cliente->getTelefone(), $pesquisa) !== false) {
+                        $clienteData = [
+                            $cliente->getId(),
+                            $cliente->getNome(),
+                            $cliente->getEmail(),
+                            $cliente->getTelefone(),
+                            $cliente->getCEP(),
+                            $cliente->getUF(),
+                            $cliente->getCidade(),
+                            $cliente->getBairro(),
+                            $cliente->getLogradouro(),
+                            $cliente->getComplemento(),
+                            $cliente->getNumero(),
+                            $cliente->getStatus()
+                        ];
+                
+                        $encontrado = false;
+                        foreach ($clienteData as $campo) {
+                            if (stripos($campo, $pesquisa) !== false) {
+                                $encontrado = true;
+                                break;
+                            }
+                        }
+                
+                        if ($encontrado) {
                             $clientesFiltrados[] = $cliente;
                         }
                     }

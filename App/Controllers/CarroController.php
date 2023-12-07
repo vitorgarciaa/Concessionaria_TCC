@@ -76,10 +76,6 @@ class CarroController extends Controller
             $this->redirect('/carro/cadastro');
         }
 
-        Sessao::limpaFormulario();
-        Sessao::limpaMensagem();
-        Sessao::limpaErro();
-
         $carroDAO = new CarroDAO();
 
         $carroDAO->salvar($carro);

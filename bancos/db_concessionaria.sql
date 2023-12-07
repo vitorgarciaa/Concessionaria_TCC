@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 29/11/2023 às 18:37
+-- Tempo de geração: 07/12/2023 às 23:31
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -286,7 +286,8 @@ CREATE TABLE `vendedor` (
 
 INSERT INTO `vendedor` (`id`, `nome`, `telefone`, `email`, `cpf`, `status`, `cep`, `uf`, `cidade`, `bairro`, `logradouro`, `complemento`, `numero`, `usuario`, `senha`) VALUES
 (1, 'Vitor Garcia', '(44) 99803-5394', 'vitor.garcia@gazin.com.br', '127.984.059-55', 'Ativo', '87485000', 'PR', 'Douradina', 'Centro', 'Rua XV De Novembro', 'Casa', '260', 'admin', 'admin'),
-(2, 'Vitor Garcia', '(44) 99803-5394', 'lvitor2424@gmail.com', '127.984.059-55', 'Ativo', '79100580', 'MS', 'Campo Grande', 'Santo Antônio', 'Rua Ministro Azevedo', 'Casa', '696', 'vitor.garcia', '$2y$10$fjVA.144iNKHF.PC7.if2edVido4HafdQkyym3BXTgoxkE/UZo8I.');
+(2, 'Vitor Garcia', '(44) 99803-5394', 'lvitor2424@gmail.com', '127.984.059-55', 'Ativo', '79100580', 'MS', 'Campo Grande', 'Santo Antônio', 'Rua Ministro Azevedo', 'Casa', '696', 'vitor.garcia', '$2y$10$fjVA.144iNKHF.PC7.if2edVido4HafdQkyym3BXTgoxkE/UZo8I.'),
+(3, 'vitor.longhi', '(44) 99803-5394', 'vitor.garcia@gazin.com.br', '127.984.059-55', 'Ativo', '87485000', 'PR', 'Douradina', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '69', 'vitor.longhi', '$2y$10$Myf.00pUKYSJf8E4ZCqg5un2dHcGwli.ZR0NGwjGuy3euVvfRiSmO');
 
 --
 -- Índices para tabelas despejadas
@@ -410,7 +411,7 @@ ALTER TABLE `venda`
 -- AUTO_INCREMENT de tabela `vendedor`
 --
 ALTER TABLE `vendedor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restrições para tabelas despejadas
