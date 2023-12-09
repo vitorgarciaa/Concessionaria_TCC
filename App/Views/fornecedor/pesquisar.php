@@ -6,16 +6,31 @@ use App\Models\Entidades\Fornecedor;
 session_start();
 
 if (isset($_SESSION['login'])) {
+
+    $separaUrl = explode("=", $_SERVER["REQUEST_URI"]);
+    $fornecedores = $viewVar['fornecedor'];
+if (count($separaUrl) > 1 ){
+    $filtro = $separaUrl[1];
+    $fornecedores = $viewVar['fornecedor'];
+
+    if ($filtro == 'ativo') {
+        $fornecedores = $viewVar['ativo'];
+    }else 
+    if ($filtro == 'inativo') {
+        $fornecedores = $viewVar['inativo'];
+    }
+}
+
     $fornecedorDAO = new FornecedorDAO();
     $clientesPorPagina = 10;
     $paginaAtual = isset($_GET['page']) ? intval($_GET['page']) : 1;
     $pesquisa = isset($_GET['pesquisa']) ? $_GET['pesquisa'] : '';
 
     if (empty($pesquisa)) {
-        $todosFornecedores = $viewVar['fornecedor'];
+        $todosFornecedores = $fornecedores;
     } else {
         $todosFornecedores = [];
-        foreach ($viewVar['fornecedor'] as $fornecedor) {
+        foreach ($fornecedores as $fornecedor) {
             if (
                 stripos($fornecedor->getId(), $pesquisa) !== false ||
                 stripos($fornecedor->getNome(), $pesquisa) !== false ||
@@ -61,6 +76,7 @@ if (isset($_SESSION['login'])) {
         <br>
         <h3>Lista de Fornecedores</h3>
         <br>
+        <button type="button" class="btn btn-warning" aria-haspopup="true" aria-expanded="false" onclick="gerarPDF()">GERAR PDF</button>
 
         <?php if ($Sessao::retornaMensagem()) { ?>
             <br>
@@ -101,7 +117,7 @@ if (isset($_SESSION['login'])) {
                 </form>
             </div>
         </div>
-
+    <div class="table-responsive" id="tableFornecedores">
         <table class="table table-hover table-bordered">
             <thead>
                 <tr>
@@ -120,7 +136,24 @@ if (isset($_SESSION['login'])) {
                     <th scope="col">Logradouro</th>
                     <th scope="col">Complemento</th>
                     <th scope="col">Numero</th>
-                    <th scope="col">Status</th>
+                    <?php 
+                        $separaUrl = explode("=", $_SERVER["REQUEST_URI"]);
+
+                        if (count($separaUrl) > 1 ){
+                            $filtro = $separaUrl[1];
+
+                            if ($filtro == 'ativo') {
+                            ?> 
+                            <th scope="col">Status <a href="http://<?= APP_HOST; ?>/fornecedor/pesquisar/ordenar=inativo" style="text-decoration: none; color:black">⇅</a></th>
+                            <?php } else if ($filtro == 'inativo') {
+                                ?>
+                                <th scope="col">Status <a href="http://<?= APP_HOST; ?>/fornecedor/pesquisar/ordenar=ativo" style="text-decoration: none; color:black">⇅</a></th>
+                                <?php 
+                            }
+                            }else{ ?>
+                            <th scope="col">Status <a href="http://<?= APP_HOST; ?>/fornecedor/pesquisar/ordenar=ativo" style="text-decoration: none; color:black">⇅</a></th>
+                        <?php }
+                    ?>
                     <th scope="col">Ações</th>
                 </tr>
             </thead>
@@ -168,7 +201,7 @@ if (isset($_SESSION['login'])) {
                 ?>
             </tbody>
         </table>
-
+    </div>
         <nav aria-label="Page navigation">
             <ul class="pagination centralizar">
                 <?php for ($i = 1; $i <= $totalPaginas; $i++) { ?>
@@ -179,7 +212,29 @@ if (isset($_SESSION['login'])) {
             </ul>
         </nav>
     </div>
+    <script>
+      //http://www.macoratti.net/18/09/js_pdf1.htm
+      function gerarPDF() {
+      var table = document.getElementById('tableFornecedores').innerHTML;
+      var style = "<style>";
 
+      style = style + "table {width: 100%;font: 20px Calibri;}";
+      style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
+      style = style + "padding: 2px 3px;text-align: center;}";
+      style = style + "</style>";
+      // CRIA UM OBJETO (JANELA)
+      var win = window.open('', '', 'height=700,width=700');
+      win.document.write('<html><head>');
+      win.document.write('<title> Listagem de Fornecedores </title>'); // <title> CABEÇALHO DO PDF.
+      win.document.write(style); // INCLUI UM ESTILO NA TAB HEAD
+      win.document.write('</head>');
+      win.document.write('<body>');
+      win.document.write(table); // O CONTEUDO DA TABELA DENTRO DA TAG BODY
+      win.document.write('</body></html>');
+      win.document.close(); // FECHA A JANELA
+      win.print(); // IMPRIME O CONTEUDO
+    }
+  </script>
 <?php
 }
 ?>

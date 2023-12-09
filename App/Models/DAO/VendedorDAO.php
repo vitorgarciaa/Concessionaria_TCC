@@ -160,5 +160,21 @@ class VendedorDAO extends BaseDAO{
         );
         return $resultado->fetchAll(\PDO::FETCH_CLASS, Vendedor::class);
     }
+
+    public function listarAtivo(){
+            
+        $resultado = $this->select(
+            'SELECT * FROM vendedor ORDER BY status ASC'
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Vendedor::class);
+    }
+
+    public function listarInativo(){
+            
+        $resultado = $this->select(
+            'SELECT * FROM vendedor ORDER BY status DESC'
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Vendedor::class);
+    }
 }
 ?>

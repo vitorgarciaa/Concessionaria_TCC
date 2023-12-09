@@ -21,7 +21,9 @@ class VendedorController extends Controller
     {
         $vendedorDAO = new VendedorDAO();
         self::setViewParam('vendedor', $vendedorDAO->listarVendedorPorVenda());
-        
+        self::setViewParam('ativo', $vendedorDAO->listarAtivo());
+        self::setViewParam('inativo', $vendedorDAO->listarInativo());
+
         $this->render('vendedor/pesquisar');
     }
 

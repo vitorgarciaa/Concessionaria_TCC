@@ -20,6 +20,10 @@ class CarroController extends Controller
     {
         $carroDAO = new CarroDAO();
         self::setViewParam('carro', $carroDAO->listarAtivo());
+        self::setViewParam('carroMenorPreco', $carroDAO->listarMenorPreco());
+        self::setViewParam('carroMaiorPreco', $carroDAO->listarMaiorPreco());
+        self::setViewParam('carroMenorAno', $carroDAO->listarMenorAnoFabricacao());
+        self::setViewParam('carroMaiorAno', $carroDAO->listarMaiorAnoFabricacao());
 
         $this->render('carro/index');
     }
@@ -232,6 +236,7 @@ class CarroController extends Controller
         $carroDAO = new CarroDAO();
         self::setViewParam('carro', $carroDAO->listar($idCarro));
 
+
         $this->render('carro/informacoes');
     }
 
@@ -239,6 +244,12 @@ class CarroController extends Controller
     {
         $carroDAO = new CarroDAO();
         self::setViewParam('carro', $carroDAO->listarCarroPorCompra());
+        self::setViewParam('carroMenorPreco', $carroDAO->listarMenorPreco());
+        self::setViewParam('carroMaiorPreco', $carroDAO->listarMaiorPreco());
+        self::setViewParam('carroMenorAno', $carroDAO->listarMenorAnoFabricacao());
+        self::setViewParam('carroMaiorAno', $carroDAO->listarMaiorAnoFabricacao());
+        self::setViewParam('disponivel', $carroDAO->listarCarroDisponivel());
+        self::setViewParam('indisponivel', $carroDAO->listarCarroIndisponivel());
 
         $this->render('carro/pesquisar');
     }

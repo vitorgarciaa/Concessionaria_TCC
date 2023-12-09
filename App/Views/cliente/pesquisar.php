@@ -6,6 +6,20 @@ use App\Lib\Sessao;
 
 session_start();
 if (isset($_SESSION['login'])) {
+    $clientes = $viewVar['cliente'];
+$separaUrl = explode("=", $_SERVER["REQUEST_URI"]);
+
+if (count($separaUrl) > 1 ){
+    $filtro = $separaUrl[1];
+    $clientes = $viewVar['cliente'];
+
+    if ($filtro == 'ativo') {
+        $clientes = $viewVar['ativo'];
+    }else 
+    if ($filtro == 'inativo') {
+        $clientes = $viewVar['inativo'];
+    }
+}
 ?>
 
     <style>
@@ -26,7 +40,7 @@ if (isset($_SESSION['login'])) {
         <br>
         <h3>Lista de Clientes</h3>
         <br>
-
+        <button type="button" class="btn btn-warning" aria-haspopup="true" aria-expanded="false" onclick="gerarPDF()">GERAR PDF</button>
         <?php if ($Sessao::retornaMensagem()) { ?>
             <br>
             <div class="container">
@@ -66,7 +80,7 @@ if (isset($_SESSION['login'])) {
                 </form>
             </div>
         </div>
-
+        <div class="table-responsive" id="tableCompras">
         <table class="table table-hover table-bordered">
             <thead>
                 <tr>
@@ -81,7 +95,24 @@ if (isset($_SESSION['login'])) {
                     <th scope="col">Logradouro</th>
                     <th scope="col">Complemento</th>
                     <th scope="col">Numero</th>
-                    <th scope="col">Status</th>
+                    <?php 
+                        $separaUrl = explode("=", $_SERVER["REQUEST_URI"]);
+
+                        if (count($separaUrl) > 1 ){
+                            $filtro = $separaUrl[1];
+
+                            if ($filtro == 'ativo') {
+                            ?> 
+                            <th scope="col">Status <a href="http://<?= APP_HOST; ?>/cliente/pesquisar/ordenar=inativo" style="text-decoration: none; color:black">⇅</a></th>
+                            <?php } else if ($filtro == 'inativo') {
+                                ?>
+                                <th scope="col">Status <a href="http://<?= APP_HOST; ?>/cliente/pesquisar/ordenar=ativo" style="text-decoration: none; color:black">⇅</a></th>
+                                <?php 
+                            }
+                            }else{ ?>
+                            <th scope="col">Status <a href="http://<?= APP_HOST; ?>/cliente/pesquisar/ordenar=ativo" style="text-decoration: none; color:black">⇅</a></th>
+                        <?php }
+                    ?>
                     <th scope="col">Ações</th>
                 </tr>
             </thead>
@@ -94,10 +125,10 @@ if (isset($_SESSION['login'])) {
                 $pesquisa = isset($_GET['pesquisa']) ? $_GET['pesquisa'] : '';
 
                 if (empty($pesquisa)) {
-                    $clientesFiltrados = $viewVar['cliente'];
+                    $clientesFiltrados = $clientes;
                 } else {
                     $clienteDAO = new ClienteDAO();
-                    foreach ($viewVar['cliente'] as $cliente) {
+                    foreach ($clientes as $cliente) {
                         $clienteData = [
                             $cliente->getId(),
                             $cliente->getNome(),
@@ -172,7 +203,7 @@ if (isset($_SESSION['login'])) {
                 ?>
             </tbody>
         </table>
-
+        </div>
         <nav aria-label="Page navigation">
             <ul class="pagination centralizar">
                 <?php
@@ -184,7 +215,29 @@ if (isset($_SESSION['login'])) {
             </ul>
         </nav>
     </div>
+<script>
+        //http://www.macoratti.net/18/09/js_pdf1.htm
+        function gerarPDF() {
+      var table = document.getElementById('tableCompras').innerHTML;
+      var style = "<style>";
 
+      style = style + "table {width: 100%;font: 20px Calibri;}";
+      style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
+      style = style + "padding: 2px 3px;text-align: center;}";
+      style = style + "</style>";
+      // CRIA UM OBJETO (JANELA)
+      var win = window.open('', '', 'height=700,width=700');
+      win.document.write('<html><head>');
+      win.document.write('<title> Listagem de Compras </title>'); // <title> CABEÇALHO DO PDF.
+      win.document.write(style); // INCLUI UM ESTILO NA TAB HEAD
+      win.document.write('</head>');
+      win.document.write('<body>');
+      win.document.write(table); // O CONTEUDO DA TABELA DENTRO DA TAG BODY
+      win.document.write('</body></html>');
+      win.document.close(); // FECHA A JANELA
+      win.print(); // IMPRIME O CONTEUDO
+    }
+  </script>
 <?php
 
 } else { ?>

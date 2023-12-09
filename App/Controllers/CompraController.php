@@ -32,6 +32,8 @@ class CompraController extends Controller
     {
         $compraDAO = new CompraDAO();
         self::setViewParam('compra', $compraDAO->listarCarroPorVenda());
+        self::setViewParam('dataAsc', $compraDAO->listarDataAsc());
+        self::setViewParam('dataDesc', $compraDAO->listarDataDesc());
 
         $this->render('compra/pesquisar');
     }
@@ -73,6 +75,4 @@ class CompraController extends Controller
 
         $this->redirect('/compra/pesquisar');
     }
-
-
 }

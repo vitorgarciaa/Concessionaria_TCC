@@ -180,5 +180,56 @@ class CarroDAO extends BaseDAO{
         );
         return $resultado->fetchAll(\PDO::FETCH_CLASS, Carro::class);
     }
+
+    public function listarMenorPreco(){
+        $resultado = $this->select(
+            'SELECT * FROM carro WHERE disponibilidade = "Disponível" ORDER BY preco_venda ASC'
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Carro::class);
+    }
+
+    public function listarMaiorPreco(){
+        $resultado = $this->select(
+            'SELECT * FROM carro WHERE disponibilidade = "Disponível" ORDER BY preco_venda DESC'
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Carro::class);
+    }
+
+    public function listarMenorAnoFabricacao(){
+        $resultado = $this->select(
+            'SELECT * FROM carro WHERE disponibilidade = "Disponível" ORDER BY ano_fabricacao DESC'
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Carro::class);
+    }
+
+    public function listarMaiorAnoFabricacao(){
+        $resultado = $this->select(
+            'SELECT * FROM carro WHERE disponibilidade = "Disponível" ORDER BY ano_fabricacao DESC'
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Carro::class);
+    }
+
+    public function listarCarroPorValor($menorPreco, $maiorPreco){
+        $resultado = $this->select(
+            "SELECT * FROM carro WHERE preco_venda >= $menorPreco AND preco_venda <= $maiorPreco"
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Carro::class);
+    }
+
+    public function listarCarroDisponivel(){
+        $resultado = $this->select(
+            'SELECT * FROM carro ORDER BY disponibilidade ASC'
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Carro::class);
+    }
+
+    public function listarCarroIndisponivel(){
+        $resultado = $this->select(
+            'SELECT * FROM carro ORDER BY disponibilidade DESC'
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Carro::class);
+    }
+
+
 }
 ?>

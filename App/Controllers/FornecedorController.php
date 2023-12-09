@@ -21,6 +21,8 @@ class FornecedorController extends Controller
     {
         $fornecedorDAO = new FornecedorDAO();
         self::setViewParam('fornecedor', $fornecedorDAO->listarPorCompras());
+        self::setViewParam('ativo', $fornecedorDAO->listarAtivo());
+        self::setViewParam('inativo', $fornecedorDAO->listarInativo());
 
         $this->render('fornecedor/pesquisar');
     }

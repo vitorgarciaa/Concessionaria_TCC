@@ -11,6 +11,27 @@ use App\Models\Entidades\Fornecedor;
 session_start();
 
 if (isset($_SESSION['login'])) {
+  $vendas = $viewVar['venda'];
+  $separaUrl = explode("=", $_SERVER["REQUEST_URI"]);
+  
+  if (count($separaUrl) > 1 ){
+      $filtro = $separaUrl[1];
+      $vendas = $viewVar['venda'];
+  
+      if ($filtro == 'dataAsc') {
+          $vendas = $viewVar['dataAsc'];
+      }else 
+      if ($filtro == 'dataDesc') {
+          $vendas = $viewVar['dataDesc'];
+      }else 
+      if ($filtro == 'situacaoAsc') {
+          $vendas = $viewVar['situacaoAsc'];
+      }else 
+      if ($filtro == 'situacaoDesc') {
+          $vendas = $viewVar['situacaoDesc'];
+      }
+  }
+
 ?>
 
   <style>
@@ -28,7 +49,7 @@ if (isset($_SESSION['login'])) {
     <br>
     <h3>Lista de Vendas</h3>
     <br>
-
+    <button type="button" class="btn btn-warning" aria-haspopup="true" aria-expanded="false" onclick="gerarPDF()">GERAR PDF</button>
     <?php
     if ($Sessao::retornaMensagem()) { ?>
       <br>
@@ -71,7 +92,7 @@ if (isset($_SESSION['login'])) {
       </div>
     </div>
 
-
+    <div class="table-responsive" id="tableVendas">
     <table class="table table-hover table-bordered">
       <thead>
         <tr>
@@ -82,15 +103,49 @@ if (isset($_SESSION['login'])) {
           <th scope="col">Marca/Modelo</th>
           <th scope="col">Ano/Modelo</th>
           <th scope="col">Vendedor</th>
-          <th scope="col">Data Venda</th>
-          <th scope="col">Forma Pagamento</th>
-          <th scope="col">Situacao Pedido</th>
+          <?php 
+            $separaUrl = explode("=", $_SERVER["REQUEST_URI"]);
+            if (count($separaUrl) > 1 ){
+                $filtro = $separaUrl[1];
+                if ($filtro == 'dataAsc') {
+                ?> 
+                <th scope="col">Data Venda <a href="http://<?= APP_HOST; ?>/venda/pesquisar/ordenar=dataDesc" style="text-decoration: none; color:black">⇅</a></th>
+                <th scope="col">Situacao Pedido <a href="http://<?= APP_HOST; ?>/venda/pesquisar/ordenar=situacaoAsc" style="text-decoration: none; color:black">⇅</a></th>
+                <?php } else if ($filtro == 'dataDesc') {
+                    ?>
+                    <th scope="col">Data Venda <a href="http://<?= APP_HOST; ?>/venda/pesquisar/ordenar=dataAsc" style="text-decoration: none; color:black">⇅</a></th>
+                    <th scope="col">Situacao Pedido <a href="http://<?= APP_HOST; ?>/venda/pesquisar/ordenar=situacaoAsc" style="text-decoration: none; color:black">⇅</a></th>
+                    <?php 
+                }
+                }else{ ?>
+                <th scope="col">Data Venda <a href="http://<?= APP_HOST; ?>/venda/pesquisar/ordenar=dataAsc" style="text-decoration: none; color:black">⇅</a></th>
+            <?php }
+        ?>
+          <?php 
+            $separaUrl = explode("=", $_SERVER["REQUEST_URI"]);
+            if (count($separaUrl) > 1 ){
+                $filtro = $separaUrl[1];
+                if ($filtro == 'situacaoAsc') {
+                ?> 
+                <th scope="col">Data Venda <a href="http://<?= APP_HOST; ?>/venda/pesquisar/ordenar=dataAsc" style="text-decoration: none; color:black">⇅</a></th>
+                <th scope="col">Situacao Pedido <a href="http://<?= APP_HOST; ?>/venda/pesquisar/ordenar=situacaoDesc" style="text-decoration: none; color:black">⇅</a></th>
+                <?php } else if ($filtro == 'situacaoDesc') {
+                    ?>
+                    <th scope="col">Data Venda <a href="http://<?= APP_HOST; ?>/venda/pesquisar/ordenar=dataAsc" style="text-decoration: none; color:black">⇅</a></th>
+                    <th scope="col">Situacao Pedido <a href="http://<?= APP_HOST; ?>/venda/pesquisar/ordenar=situacaoAsc" style="text-decoration: none; color:black">⇅</a></th>
+                    <?php 
+                }
+                }else{ ?>
+                <th scope="col">Situacao Pedido <a href="http://<?= APP_HOST; ?>/venda/pesquisar/ordenar=situacaoDesc" style="text-decoration: none; color:black">⇅</a></th>
+            <?php }
+        ?>
+        <th scope="col">Forma Pagamento</th>
           <th scope="col">P.Venda</th>
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
-        <?php if (empty($viewVar['venda'])) { ?>
+        <?php if (empty($vendas)) { ?>
           <tr>
             <td colspan="12">
               <div class="alert alert-info" role="alert">Nenhuma venda encontrada!</div>
@@ -99,7 +154,7 @@ if (isset($_SESSION['login'])) {
           <?php } else {
           $carrosPorPagina = 10;
           $paginaAtual = isset($_GET['page']) ? intval($_GET['page']) : 1;
-          $carrosFiltrados = $viewVar['venda'];
+          $carrosFiltrados = $vendas;
 
           $pesquisa = isset($_GET['pesquisa']) ? $_GET['pesquisa'] : '';
           if (!empty($pesquisa)) {
@@ -127,8 +182,8 @@ if (isset($_SESSION['login'])) {
                 stripos($carro->getAno_modelo(), $pesquisa) !== false ||
                 stripos($vendedor->getNome(), $pesquisa) !== false ||
                 stripos($venda->getData_venda(), $pesquisa) !== false ||
-                stripos($venda->getTipo_pagamento(), $pesquisa) !== false ||
                 stripos($venda->getSituacao_pedido(), $pesquisa) !== false ||
+                stripos($venda->getTipo_pagamento(), $pesquisa) !== false ||
                 stripos($venda->getPreco_venda(), $pesquisa) !== false
               );
             });
@@ -171,8 +226,8 @@ if (isset($_SESSION['login'])) {
               <td><?php echo $carro->getAno_fabricacao() . "/" . $carro->getAno_modelo(); ?></td>
               <td><?php echo $vendedor->getNome(); ?></td>
               <td><?php echo date('d/m/Y', strtotime($venda->getData_venda())); ?></td>
-              <td><?php echo $venda->getTipo_pagamento(); ?></td>
               <td><?php echo $venda->getSituacao_pedido(); ?></td>
+              <td><?php echo $venda->getTipo_pagamento(); ?></td>
               <td><?php echo "R$ " . number_format($venda->getPreco_venda(), 2, ',', '.'); ?></td>
               <td>
                 <a href="http://<?php echo APP_HOST; ?>/venda/edicao/<?php echo $venda->getId(); ?>" class="btn btn-info btn-sm">Editar</a>
@@ -184,6 +239,7 @@ if (isset($_SESSION['login'])) {
         ?>
       </tbody>
     </table>
+    </div>
 
     <nav aria-label="Page navigation">
       <ul class="pagination centralizar">
@@ -202,7 +258,29 @@ if (isset($_SESSION['login'])) {
       </ul>
     </nav>
   </div>
+<script>
+      //http://www.macoratti.net/18/09/js_pdf1.htm
+      function gerarPDF() {
+      var table = document.getElementById('tableVendas').innerHTML;
+      var style = "<style>";
 
+      style = style + "table {width: 100%;font: 20px Calibri;}";
+      style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
+      style = style + "padding: 2px 3px;text-align: center;}";
+      style = style + "</style>";
+      // CRIA UM OBJETO (JANELA)
+      var win = window.open('', '', 'height=700,width=700');
+      win.document.write('<html><head>');
+      win.document.write('<title> Listagem de Vendas </title>'); // <title> CABEÇALHO DO PDF.
+      win.document.write(style); // INCLUI UM ESTILO NA TAB HEAD
+      win.document.write('</head>');
+      win.document.write('<body>');
+      win.document.write(table); // O CONTEUDO DA TABELA DENTRO DA TAG BODY
+      win.document.write('</body></html>');
+      win.document.close(); // FECHA A JANELA
+      win.print(); // IMPRIME O CONTEUDO
+    }
+  </script>
 <?php
 
 } else { ?>

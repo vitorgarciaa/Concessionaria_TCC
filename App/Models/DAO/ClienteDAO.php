@@ -127,5 +127,21 @@ class ClienteDAO extends BaseDAO{
         );
         return $resultado->fetchAll(\PDO::FETCH_CLASS, Cliente::class);
     }
+
+    public function listarAtivo(){
+            
+        $resultado = $this->select(
+            'SELECT * FROM cliente ORDER BY status ASC'
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Cliente::class);
+    }
+
+    public function listarInativo(){
+            
+        $resultado = $this->select(
+            'SELECT * FROM cliente ORDER BY status DESC'
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Cliente::class);
+    }
 }
 ?>

@@ -88,6 +88,8 @@ class ClienteController extends Controller
     {
         $clienteDAO = new ClienteDAO();
         self::setViewParam('cliente', $clienteDAO->listarPorVenda());
+        self::setViewParam('ativo', $clienteDAO->listarAtivo());
+        self::setViewParam('inativo', $clienteDAO->listarInativo());
 
         $this->render('cliente/pesquisar');
     }

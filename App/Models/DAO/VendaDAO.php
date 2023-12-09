@@ -113,5 +113,37 @@ class VendaDAO extends BaseDAO{
             throw new \Exception("Erro ao atualizar".$e, 500);
         }
     }
+
+    public function listarDataAsc(){
+            
+        $resultado = $this->select(
+            'SELECT * FROM venda ORDER BY data_venda ASC'
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Venda::class);
+    }
+
+    public function listarDataDesc(){
+            
+        $resultado = $this->select(
+            'SELECT * FROM venda ORDER BY data_venda DESC'
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Venda::class);
+    }
+
+    public function listarSituacaoAsc(){
+            
+        $resultado = $this->select(
+            'SELECT * FROM venda ORDER BY situacao_pedido ASC'
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Venda::class);
+    }
+
+    public function listarSituacaoDesc(){
+            
+        $resultado = $this->select(
+            'SELECT * FROM venda ORDER BY situacao_pedido DESC'
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Venda::class);
+    }
 }
 ?>

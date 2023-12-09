@@ -3,6 +3,21 @@
 use App\Models\DAO\ModeloDAO;
 use App\Models\DAO\MarcaDAO;
 use App\Models\DAO\ImagemDAO;
+
+$carros = $viewVar['carro'];
+
+$separaUrl = explode("=", $_SERVER["REQUEST_URI"]);
+if (count($separaUrl) > 1 ){
+    $filtro = $separaUrl[1];
+    $carros = $viewVar['carro'];
+    if ($filtro == 'menorPreco') {
+        $carros = $viewVar['carroMenorPreco'];
+    }else 
+    if ($filtro == 'maiorPreco') {
+        $carros = $viewVar['carroMaiorPreco'];
+    }
+}
+
 ?>
 
 <style>
@@ -129,12 +144,18 @@ use App\Models\DAO\ImagemDAO;
     <div class="centro">
         <h3>Lista de Carros</h3>
     </div>
+    <div>
+        <a href="http://<?= APP_HOST; ?>/carro/index" class="button" style="text-decoration: none;">Remover Filtro</a>
+        <a href="http://<?= APP_HOST; ?>/carro/index/ordenar=menorPreco" class="button" style="text-decoration: none;" >Menor Preço</a>
+        <a href="http://<?= APP_HOST; ?>/carro/index/ordenar=maiorPreco" class="button" style="text-decoration: none;" >Maior Preço</a>
+    </div>
 
+<br><br><br>
     <div class="row row-cols-1 row-cols-md-3 g-4 border">
-        <?php if (empty($viewVar['carro'])) { ?>
+        <?php if (empty($carros)) { ?>
             <div class="alert alert-info" role="alert">Nenhum carro encontrado!</div>
             <?php } else {
-            foreach ($viewVar['carro'] as $carro) {
+            foreach ($carros as $carro) {
                 $imagemDAO = new ImagemDAO();
                 $imagem = $imagemDAO->listarPorCarro($carro->getId());
                 $modeloDAO = new ModeloDAO();

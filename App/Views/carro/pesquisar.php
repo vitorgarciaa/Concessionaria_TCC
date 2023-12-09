@@ -11,6 +11,27 @@ $pesquisa = isset($_GET['pesquisa']) ? $_GET['pesquisa'] : '';
 session_start();
 
 if (isset($_SESSION['login'])) {
+
+
+$carros = $viewVar['carro'];
+
+$separaUrl = explode("=", $_SERVER["REQUEST_URI"]);
+if (count($separaUrl) > 1 ){
+    $filtro = $separaUrl[1];
+    $carros = $viewVar['carro'];
+    if ($filtro == 'menorPreco') {
+        $carros = $viewVar['carroMenorPreco'];
+    }else 
+    if ($filtro == 'maiorPreco') {
+        $carros = $viewVar['carroMaiorPreco'];
+    }else 
+    if ($filtro == 'disponivel') {
+        $carros = $viewVar['disponivel'];
+    }else 
+    if ($filtro == 'indisponivel') {
+        $carros = $viewVar['indisponivel'];
+    }
+}
 ?>
 
 
@@ -88,7 +109,24 @@ if (isset($_SESSION['login'])) {
             <th scope="col">Combustível</th>
             <th scope="col">Tração</th>
             <th scope="col">Observações</th>
-            <th scope="col">Disponibilidade</th>
+            <?php 
+              $separaUrl = explode("=", $_SERVER["REQUEST_URI"]);
+              if (count($separaUrl) > 1 ){
+                  $filtro = $separaUrl[1];
+
+                  if ($filtro == 'disponivel') {
+                  ?> 
+                  <th scope="col">Disponibilidade <a href="http://<?= APP_HOST; ?>/carro/pesquisar/ordenar=indisponivel" style="text-decoration: none; color:black">⇅</a></th>
+                   <?php } else if ($filtro == 'indisponivel') {
+                      ?>
+                      <th scope="col">Disponibilidade <a href="http://<?= APP_HOST; ?>/carro/pesquisar/ordenar=disponivel" style="text-decoration: none; color:black">⇅</a></th>
+                      <?php 
+                  }
+                }else{ ?>
+                  <th scope="col">Disponibilidade <a href="http://<?= APP_HOST; ?>/carro/pesquisar/ordenar=disponivel" style="text-decoration: none; color:black">⇅</a></th>
+                <?php }
+
+              ?>
             <th scope="col">P.Venda</th>
             <th scope="col"></th>
           </tr>
@@ -97,9 +135,9 @@ if (isset($_SESSION['login'])) {
           <?php
           $carrosFiltrados = [];
           if (empty($pesquisa)) {
-            $carrosFiltrados = $viewVar['carro'];
+            $carrosFiltrados = $carros;
           } else {
-            foreach ($viewVar['carro'] as $carro) {
+            foreach ($carros as $carro) {
               $modeloDAO = new ModeloDAO();
               $modelo = $modeloDAO->listar($carro->getId_modelo());
               $marcaDAO = new MarcaDAO();

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07/12/2023 às 23:31
+-- Tempo de geração: 09/12/2023 às 04:20
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -87,7 +87,7 @@ CREATE TABLE `cliente` (
 INSERT INTO `cliente` (`id`, `nome`, `telefone`, `email`, `cpf`, `status`, `cep`, `uf`, `cidade`, `bairro`, `logradouro`, `complemento`, `numero`) VALUES
 (1, 'Rodrigo Marques Coutinho', '(44) 99173-7701', 'rodrigo.coutinho@gazin.com.br', '075.108.939-76', 'Ativo', '87485000', 'PR', 'Douradina', 'Rural', 'Rural', 'Casa', 'KM01'),
 (4, 'carolina palhari', '(44) 99803-5394', 'gazin@gazin.com.br', '127.984.059-55', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '69'),
-(5, 'carolina palhari', '(44) 99803-5394', 'gazin@gazin.com.br', '127.984.059-55', 'Ativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '69');
+(5, 'carolina palhari', '(44) 99803-5394', 'gazin@gazin.com.br', '127.984.059-55', 'Inativo', '04027060', 'SP', 'São Paulo', 'Indianópolis', 'Rua Rubens Cardoso Vieira', 'apartamento 04', '69');
 
 -- --------------------------------------------------------
 

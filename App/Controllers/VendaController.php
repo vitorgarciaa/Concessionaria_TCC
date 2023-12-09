@@ -114,7 +114,12 @@ class VendaController extends Controller
     {
         $vendaDAO = new VendaDAO();
         self::setViewParam('venda', $vendaDAO->listar());
-        
+        self::setViewParam('dataAsc', $vendaDAO->listarDataAsc());
+        self::setViewParam('dataDesc', $vendaDAO->listarDataDesc());
+        self::setViewParam('situacaoAsc', $vendaDAO->listarSituacaoAsc());
+        self::setViewParam('situacaoDesc', $vendaDAO->listarSituacaoDesc());
+
+
         $this->render('venda/pesquisar');
     }
 

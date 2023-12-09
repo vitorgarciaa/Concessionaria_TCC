@@ -141,5 +141,21 @@ class FornecedorDAO extends BaseDAO{
         );
         return $resultado->fetchAll(\PDO::FETCH_CLASS, Fornecedor::class);
     }
+
+    public function listarAtivo(){
+            
+        $resultado = $this->select(
+            'SELECT * FROM fornecedor ORDER BY status ASC'
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Fornecedor::class);
+    }
+
+    public function listarInativo(){
+            
+        $resultado = $this->select(
+            'SELECT * FROM fornecedor ORDER BY status DESC'
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Fornecedor::class);
+    }
 }
 ?>

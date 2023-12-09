@@ -109,5 +109,21 @@ class CompraDAO extends BaseDAO{
         );
         return $resultado->fetchAll(\PDO::FETCH_CLASS, Compra::class);
     }
+
+    public function listarDataAsc(){
+            
+        $resultado = $this->select(
+            'SELECT * FROM compra ORDER BY data_compra ASC'
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Compra::class);
+    }
+
+    public function listarDataDesc(){
+            
+        $resultado = $this->select(
+            'SELECT * FROM compra ORDER BY data_compra DESC'
+        );
+        return $resultado->fetchAll(\PDO::FETCH_CLASS, Compra::class);
+    }
 }
 ?>
